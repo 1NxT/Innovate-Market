@@ -11,7 +11,6 @@ tela1.resizable(False, False)
 #tela1.iconbitmap('logo.ico')
 
 img = PhotoImage(file="Logo.png")
-imgbtn1 = PhotoImage(file="clientes.png")
 imgbtn2 = PhotoImage(file="produtos.png")
 imgbtn3 = PhotoImage(file="pedidos.png")
 imgbtn4 = PhotoImage(file="fornecedor.png")
@@ -225,62 +224,6 @@ def logar():
         lbl_total_item = Label(caixa, text="Total do item:", font="arial 24",bg="DodgerBlue")
         lbl_total_item.place(x=805,y=200)
         
-        #Def de cliente
-    def cliente():
-        clientes = Toplevel()
-        clientes.title("Clientes")
-        clientes.geometry("1366x768")
-        clientes.configure(bg="DodgerBlue")
-
-        def voltar_inicial_cli():
-            clientes.destroy()
-            return
-        
-
-        def view_cli():
-            banco = sqlite3.connect("data.db")
-            cursor = banco.cursor()
-
-            tree_cli.delete(*tree_cli.get_children())
-            cursor.execute("SELECT * FROM clientes ORDER BY nome ASC")
-            res_view = cursor.fetchall()
-            for i in res_view:
-                tree_cli.insert("", "end", values=i)
-
-        def pesquisar():
-            banco = sqlite3.connect("data.db")
-            cursor = banco.cursor()
-
-            tree_cli.delete(*tree_cli.get_children())
-            vquery = "SELECT * FROM clientes WHERE nome LIKE '%"+ent_pesquisar.get()+"%' order by nome"
-            cursor.execute(vquery)
-            res_pesquisa = cursor.fetchall()
-            for i in res_pesquisa:
-                tree_cli.insert("","end",values=i)
-
-        
-        
-
-        tree_cli = ttk.Treeview(clientes,column=("Nome","Telefone"), show='headings', height=20)
-        tree_cli.place(x=0, y=0)
-        tree_cli.heading('#1', text="Nome", anchor=CENTER)
-        tree_cli.heading('#2', text="Telefone", anchor=CENTER)
-        view_cli()
-
-
-        ent_pesquisar = Entry(clientes)
-        ent_pesquisar.place(x=950,y=10)
-
-        btn_pesquisar_pro = Button(clientes, text="Pesquisar", command=pesquisar)
-        btn_pesquisar_pro.place(x=1100, y=10)
-
-        btn_show = Button(clientes, text="Mostrar todos", command=view_cli)
-        btn_show.place(x=1000,y=50)
-        
-        btn_telainicial_cli = Button(clientes, text="Voltar Para Tela Inicial", command=voltar_inicial_cli, bg="firebrick")
-        btn_telainicial_cli.place(x=430, y=550)
-  
-
 
     #Def de produto
     def produto():
@@ -648,99 +591,7 @@ def logar():
         btn_excluir.place(x=500,y=500,relwidth=0.24)
 
     
-       
-
-#Edicao  de clientes
-    def edit_cli():
-        edit_cli = Tk()
-        edit_cli.title("Cadastro dos Clientes")
-        edit_cli.geometry("1360x768")
-        edit_cli.configure(bg="DodgerBlue")
-        edit_cli.resizable(False, False)
-        def voltar_inicial_edit_cli():
-            edit_cli.destroy()
-            return
-        
-
-        def inserir():
-            banco = sqlite3.connect("data.db")
-            cursor = banco.cursor()
-
-            if ent_nome.get() == "" or ent_telefone_cli.get() == "":
-                lbl_confere["text"] = "Insira todos os dados do produto!"
-            else:
-                cursor.execute("INSERT INTO clientes (nome,telefone) VALUES ('"+ent_nome.get()+"' , '"+ent_telefone_cli.get()+"')")
-                tree_cli.insert("", "end", values=(ent_nome.get(),ent_telefone_cli.get()))
-                banco.commit()
-                cursor.close()
-                banco.close()
-
-        def view_cli():
-            banco = sqlite3.connect("data.db")
-            cursor = banco.cursor()
-
-            tree_cli.delete(*tree_cli.get_children())
-            cursor.execute("SELECT * FROM clientes ORDER BY nome ASC")
-            res_view = cursor.fetchall()
-            for i in res_view:
-                tree_cli.insert("", "end", values=i)
-
-        def excluir():
-            try:
-                item = tree_cli.selection()[0]
-                tree_cli.delete(item)
-            except:
-                tkMessageBox.showinfo('ERRO', message="SELECIONE UM PRODUTO")
-
-        def pesquisar():
-            banco = sqlite3.connect("data.db")
-            cursor = banco.cursor()
-
-            tree_cli.delete(*tree_cli.get_children())
-            vquery = "SELECT * FROM clientes WHERE nome LIKE '%"+ent_pesquisar.get()+"%' order by nome"
-            cursor.execute(vquery)
-            res_pesquisa = cursor.fetchall()
-            for i in res_pesquisa:
-                tree_cli.insert("","end",values=i)
-        
-
-
-##############################   ###########################
-
-        tree_cli = ttk.Treeview(edit_cli, columns=("1","2"), show="headings",height=90)
-        tree_cli.heading('#1',text="Nome", anchor=CENTER)
-        tree_cli.heading('#2',text="Telefone", anchor=CENTER)
-        tree_cli.place(x=0,y=4)
-        view_cli()
-
-        lbl_nome_cli = Label(edit_cli, text="Nome do Cliente:", bg="DodgerBlue")
-        lbl_nome_cli.place(x=500,y=70)
-
-        lbl_telefone_cli = Label(edit_cli, text="Telefone Do Cliente:", bg="DodgerBlue")
-        lbl_telefone_cli.place(x=500,y=100)
-
-        ent_nome = Entry(edit_cli)
-        ent_nome.place(x=625,y=70)
-        
-        ent_telefone_cli = Entry(edit_cli)
-        ent_telefone_cli.place(x=650,y=100)
-
-        ent_pesquisar = Entry(edit_cli)
-        ent_pesquisar.place(x=1000,y=500)
-
-        btn_inserir_cli = Button(edit_cli, text="Salvar", command=inserir)
-        btn_inserir_cli.place(x=600,y=150)
-
-        btn_deletar_cli = Button(edit_cli, text="excluir", command=excluir)
-        btn_deletar_cli.place(x=670,y=150)
-
-        btn_pesquisar = Button(edit_cli, text="Pesquisar", command=pesquisar)
-        btn_pesquisar.place(x=1100, y=500)
-
-        btn_show = Button(edit_cli, text="Mostrar todos", command=view_cli)
-        btn_show.place(x=700,y=600)
-
-        btn_tela_cancelar_clientes = Button(edit_cli,text="Voltar Para a Tela Inicial",bg="Red",font="arial 12",command=voltar_inicial_edit_cli).place(x=585,y=285)
+       #Editar Fornecedor
 
 
     def editar_for():
@@ -1037,9 +888,6 @@ def logar():
     btn_caixa = Button(tela2, text="Caixa", width=15, height=2,command=caixa) 
     btn_caixa.grid(row=2,column=8)
 
-    btn_clientes = Button(tela2, text="Clientes", width=15, height=2,command=cliente) 
-    btn_clientes.grid(row=2,column=1)
-
     btn_produtos = Button(tela2, text='Produtos',width=15, height=2,command=produto)
     btn_produtos.grid(row=2,column=2)
 
@@ -1051,9 +899,6 @@ def logar():
 
     btn_lucro = Button(tela2, text='Lucro',width=15, height=2,command=lucros)
     btn_lucro.grid(row=2,column=5)
-
-    btn_Editarcli = Button(tela2, text='Editar Clientes',width=15, height=2,command=edit_cli)
-    btn_Editarcli.grid(row=4,column=1)
 
     btn_Editarpro = Button(tela2, text='Editar Produtos',width=15, height=2, command=editar_pro)
     btn_Editarpro.grid(row=4,column=2)
@@ -1084,9 +929,6 @@ def logar():
     #ICON BUTTONS 2° tela
     btn_img9 = Button(tela2, image=imgbtn9, width=140, height=140, bg="DodgerBlue", command=caixa, relief="flat")
     btn_img9.grid(row=1,column=8)
-    
-    btn_img1 = Button(tela2, image=imgbtn1, width=140, height=140, bg="DodgerBlue", command=cliente, relief="flat")
-    btn_img1.grid(row=1,column=1)
 
     btn_img2 = Button(tela2, image=imgbtn2,  width=140, height=140, bg="DodgerBlue", command=produto,relief="flat")
     btn_img2.grid(row=1,column=2)
