@@ -8,7 +8,7 @@ tela1.title("Tela de Login")
 tela1.geometry("600x600")
 tela1.configure(bg="DodgerBlue")
 tela1.resizable(False, False)
-#tela1.iconbitmap('logo.ico')
+tela1.iconbitmap('logo.ico')
 
 img = PhotoImage(file="Logo.png")
 imgcaixa = PhotoImage(file="Logo(1).png")
@@ -55,7 +55,7 @@ def logar():
         tela2.geometry("1360x768")
         tela2.configure(bg="DodgerBlue")
         tela2.resizable(False, False)
-        #tela2.iconbitmap('logo.ico')
+        tela2.iconbitmap('logo.ico')
 
         
     def editar_promocoes():
@@ -64,6 +64,7 @@ def logar():
         edit_promo.title("Editar Promocoes")
         edit_promo.geometry("1366x768")
         edit_promo.configure(bg="DodgerBlue")
+        edit_promo.iconbitmap('logo.ico')
 
         def voltar_inicial_promo_edit():
             edit_promo.destroy()
@@ -185,6 +186,7 @@ def logar():
         caixa.title("Caixa")
         caixa.geometry("1366x768")
         caixa.configure(bg="DodgerBlue")
+        caixa.iconbitmap('logo.ico')
 
         options=["1","2","3","4","5","6","7","8","9","10"]
         itemVariable = StringVar()
@@ -273,6 +275,7 @@ def logar():
         produtos.title("Produtos")
         produtos.geometry("1360x768")
         produtos.configure(bg="DodgerBlue")
+        produtos.iconbitmap('logo.ico')
 
         
         def voltar_inicial_pro():
@@ -343,6 +346,7 @@ def logar():
         editpro.title("Editar Produtos")
         editpro.configure(bg="DodgerBlue")
         editpro.geometry("1360x768")
+        editpro.iconbitmap('logo.ico')
         
 
         def voltar_inicial_pro():
@@ -466,6 +470,7 @@ def logar():
         pedidos.title("Pedidos")
         pedidos.geometry("1360x768")
         pedidos.configure(bg="DodgerBlue")
+        pedidos.iconbitmap('logo.ico')
 
         def voltar_inicial_pedi():
             pedidos.destroy()
@@ -535,6 +540,7 @@ def logar():
         fornecedores.title("Fornecedores")
         fornecedores.geometry("1366x768")
         fornecedores.configure(bg="DodgerBlue")
+        fornecedores.iconbitmap('logo.ico')
 
         def voltar_inicial_forne():
             fornecedores.destroy()
@@ -604,6 +610,7 @@ def logar():
         lucro.title("Lucros")
         lucro.geometry("1360x768")
         lucro.configure(bg="DodgerBlue")
+        lucro.iconbitmap('logo.ico')
 
         def voltar_inicial_lucros():
             lucro.destroy()
@@ -621,6 +628,7 @@ def logar():
         cadastro_usuario.geometry("1366x768")
         cadastro_usuario.resizable(False, False)
         cadastro_usuario.configure(bg="DodgerBlue")
+        cadastro_usuario.iconbitmap('logo.ico')
         
         def tela_inicial_gerenciar():
             cadastro_usuario.destroy()
@@ -712,6 +720,7 @@ def logar():
         editar_for.geometry("1360x768")
         editar_for.configure(bg="DodgerBlue")
         editar_for.resizable(False, False)
+        editar_for.iconbitmap('logo.ico')
         
         def voltar_inicial_edit_for():
             editar_for.destroy()
@@ -845,6 +854,7 @@ def logar():
         edit_pedidos.geometry("1360x768")
         edit_pedidos.configure(bg="DodgerBlue")
         edit_pedidos.resizable(False, False)
+        edit_pedidos.iconbitmap('logo.ico')
         
         def voltar_inicial_tela_edit_pedi():
             edit_pedidos.destroy()
@@ -967,6 +977,7 @@ def logar():
         promocoes.title("Promocoes")
         promocoes.geometry("1360x768")
         promocoes.configure(bg="DodgerBlue")
+        promocoes.iconbitmap('logo.ico')
 
         def voltar_inicial_promocoes():
             promocoes.destroy()
