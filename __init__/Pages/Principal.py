@@ -8,6 +8,10 @@ class Principal():
         self.elementos()
         self.tk.mainloop()
 
+    def iExit(self):
+        self.tk.destroy()
+        return
+
     def geometry(self):
         self.tk.title("Tela de login")
         self.tk.geometry("600x600")
@@ -38,11 +42,11 @@ class Principal():
         ent_senha.place(x=240, y=355)
 
         # #BUTTONS 1° TELA
-        btn_entrar = Button(self.tk, text="Entrar", command=Logar.login(ent_login(), ent_senha()),width=30, height=2, bg="cyan")
-        
+        btn_entrar = Button(self.tk, text="Entrar", command=Logar().login(ent_login.get(), ent_senha.get()),width=30, height=2, bg="cyan")
         btn_entrar.place(x=190, y=450)
 
-        btn_sair = Button(self.tk, text="Sair", command=iExit, width=15, bg="firebrick")
+
+        btn_sair = Button(self.tk, text="Sair", command=self.iExit, width=15, bg="firebrick")
         btn_sair.place(x=430, y=550)
         
         
