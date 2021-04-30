@@ -1,11 +1,11 @@
 from tkinter import *
 from Pages.Caixa import *
-from Pages.Fornecedor import *
+from Pages.Fornecedores import *
 from Pages.Gerenciar import *
 from Pages.Lucros import *
-from Pages.Pedido import *
-from Pages.Produto import *
-from Pages.Promocoe import *
+from Pages.Pedidos import *
+from Pages.Produtos import *
+from Pages.Promocoes import *
 
 class SegundaTela:
     def __init__(self):
