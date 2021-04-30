@@ -1,5 +1,5 @@
 from tkinter import *
-class Promocoestela:
+class Promocoe:
     def __init__(self):
         self.telap = Toplevel()
         self.geometry()
