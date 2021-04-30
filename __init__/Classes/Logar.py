@@ -1,12 +1,13 @@
 from Classes.MySql import *
 class Logar():
     def __init__(self):
-        self.cursor = MySql().concectar()
+        self.cursor = MySql().conectar()
+        
 
-    def login(user, password):
-        self.cursor.execute(f"SELECT * FROM usuarios WHERE login = {user}")
+    def login(self,user, password):
+        self.cursor.execute("SELECT * FROM usuarios WHERE login = ?", (user, ))
         resultado1 = self.cursor.fetchone()
-        self.cursor.execute(f"SELECT * FROM usuarios WHERE senha = {password}")
+        self.cursor.execute("SELECT * FROM usuarios WHERE senha = ?", (password, ))
         resultado2 = self.cursor.fetchone()
 
         if resultado1 == None:
