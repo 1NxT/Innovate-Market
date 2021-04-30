@@ -44,7 +44,7 @@ class SegundaTela:
         btn_img5 = Button(tela2, image=self.imgbtn5,  width=140, height=140,bg="DodgerBlue", command=Lucros(), relief="flat")
         btn_img5.grid(row=1, column=5)
 
-        btn_img6 = Button(tela2, image=self.imgbtn6,  width=140,height=140, bg="DodgerBlue", command=Promocoe(), relief="flat")
+        btn_img6 = Button(tela2, image=self.imgbtn6,  width=140,height=140, bg="DodgerBlue", command=Promocoes(), relief="flat")
         btn_img6.grid(row=1, column=6)
 
         btn_img7 = Button(tela2, image=self.imgbtn7,  width=140, height=140,bg="DodgerBlue", command=Gerenciar(), relief="flat")
