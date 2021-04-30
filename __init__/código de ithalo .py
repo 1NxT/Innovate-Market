@@ -11,6 +11,7 @@ tela1.resizable(False, False)
 #tela1.iconbitmap('logo.ico')
 
 img = PhotoImage(file="Logo.png")
+imgcaixa = PhotoImage(file="Logo(1).png")
 imgbtn2 = PhotoImage(file="produtos.png")
 imgbtn3 = PhotoImage(file="pedidos.png")
 imgbtn4 = PhotoImage(file="fornecedor.png")
@@ -109,10 +110,25 @@ def logar():
             res_pesquisa = cursor.fetchall()
             for i in res_pesquisa:
                 tree_promo_edit.insert("","end",values=i)
+       
+         # Estilo da Treeview
+        style = ttk.Style()
+        style.theme_use("default")
         
+        # Frame da Treeview
+        tree_promo_frame = Frame(edit_promo, padx=1, pady=10, bg="DodgerBlue")
+        tree_promo_frame.place(x=0, y=0)
 
-        tree_promo_edit = ttk.Treeview(edit_promo,column=("1","2","3","4"), show='headings', height=90)
-        tree_promo_edit.place(x=0, y=0)
+        ## ScrollBar        
+        scroll = ttk.Scrollbar(tree_promo_frame)
+        scroll.pack(side=RIGHT, fill=Y, padx=0)
+
+        tree_promo_edit = ttk.Treeview(tree_promo_frame, column=("1","2","3","4"), show='headings', height=35, yscrollcommand=scroll.set)
+        
+        tree_promo_edit.pack()
+
+        scroll.config(command=tree_promo_edit.yview)
+
         tree_promo_edit.heading('#1', text="Cupom", anchor=CENTER)
         tree_promo_edit.heading('#2', text="Nome do produto", anchor=CENTER)
         tree_promo_edit.heading('#3', text="Preço do Produto", anchor=CENTER)
@@ -170,6 +186,10 @@ def logar():
         caixa.geometry("1366x768")
         caixa.configure(bg="DodgerBlue")
 
+        options=["1","2","3","4","5","6","7","8","9","10"]
+        itemVariable = StringVar()
+        itemVariable.set(options[0])
+
         def voltar_inicial_caixa():
             caixa.destroy()
             return
@@ -177,17 +197,39 @@ def logar():
         btn_telainicial_caixa = Button(caixa, text="Voltar Para Tela Inicial", command=voltar_inicial_caixa,bg="firebrick")
         btn_telainicial_caixa.place(x=1200, y=700)
 
+        style = ttk.Style()
+        style.theme_use("default")
 
-        tree_caixa = ttk.Treeview(caixa,column=("1","2","3","4"), show='headings', height=25)
-        tree_caixa.place(x=0, y=0)
+        # Frame da Treeview Caixa
+        tree_caixa_frame = Frame(caixa, padx=1, pady=10, bg="DodgerBlue")
+        tree_caixa_frame.place(x=0, y=0)
+
+        # ScrollBar Caixa
+        scroll = ttk.Scrollbar(tree_caixa_frame)
+        scroll.pack(side=RIGHT, fill=Y, padx=0)
+        
+        # Treeview Caixa
+        tree_caixa = ttk.Treeview(tree_caixa_frame, column=("1","2","3","4"), show='headings', height=24, yscrollcommand=scroll.set)
+        
+        tree_caixa.pack()
+
+        scroll.config(command=tree_caixa.yview)
+        
+        # Colunas da Treeview Caixa
         tree_caixa.heading('#1', text="N° Item", anchor=CENTER)
         tree_caixa.heading('#2', text="Descrição", anchor=CENTER)
         tree_caixa.heading('#3', text="Preço", anchor=CENTER)
         tree_caixa.heading('#4', text="ID do Produto", anchor=CENTER)
 
-        lbl_imagem_caixa = Label(caixa, image=img, width=280, height=240, bg="DodgerBlue")
-        lbl_imagem_caixa.place(x=1075,y=0)
+        # Imagem da Logo
+        lbl_imagem_caixa = Label(caixa, image=imgcaixa, width=280, height=240, bg="DodgerBlue")
+        lbl_imagem_caixa.place(x=1100,y=0)
 
+        # Menu de opções
+        menu_quantidade = OptionMenu(caixa, itemVariable, *options)
+        menu_quantidade.place(x=840,y=300)
+
+        # Botões da tela Caixa
         btn_editar = Button(caixa,text="Editar", font="arial 18")
         btn_editar.place(x=1150,y=400)
 
@@ -202,7 +244,7 @@ def logar():
 
         
         ent_cod_barras = Entry(caixa,font="arial 18")
-        ent_cod_barras.place(x=805,y=60)
+        ent_cod_barras.place(x=830,y=60)
 
         
         lbl_subtotal = Label(caixa,text="SUB TOTAL:", font="arial 24",fg="black",bg="DodgerBlue")
@@ -212,17 +254,17 @@ def logar():
         lbl_total_recebido.place(x=0,y=640)
 
         lbl_total_unitario = Label(caixa, text="Valor Unitario :", font="arial 24",bg="DodgerBlue")
-        lbl_total_unitario.place(x=805,y=100)
+        lbl_total_unitario.place(x=830,y=100)
 
 
         lbl_troco = Label(caixa, text="Troco:", font="arial 24",bg="DodgerBlue")
         lbl_troco.place(x=470,y=640)
 
         lbl_codigo = Label(caixa, text="ID do Produto:", font="arial 24",bg="DodgerBlue")
-        lbl_codigo.place(x=805,y=10)
+        lbl_codigo.place(x=830,y=10)
 
         lbl_total_item = Label(caixa, text="Total do item:", font="arial 24",bg="DodgerBlue")
-        lbl_total_item.place(x=805,y=200)
+        lbl_total_item.place(x=830,y=200)
         
 
     #Def de produto
@@ -257,10 +299,25 @@ def logar():
             res_pesquisa = cursor.fetchall()
             for i in res_pesquisa:
                 tree_pro.insert("","end",values=i)
-                
         
-        tree_pro = ttk.Treeview(produtos,column=("Nome","Fornecedor", "Preco","Codigo de Barras"), show='headings', height=90)
-        tree_pro.place(x=0, y=0)
+         # Estilo da Treeview
+        style = ttk.Style()
+        style.theme_use("default")
+        
+        # Frame da Treeview
+        tree_pro_frame = Frame(produtos, padx=1, pady=10, bg="DodgerBlue")
+        tree_pro_frame.place(x=0, y=0)
+
+        ## ScrollBar        
+        scroll = ttk.Scrollbar(tree_pro_frame)
+        scroll.pack(side=RIGHT, fill=Y, padx=0)
+
+        tree_pro = ttk.Treeview(tree_pro_frame, column=("Nome","Fornecedor", "Preco","Codigo de Barras"), show='headings', height=35, yscrollcommand=scroll.set)
+        
+        tree_pro.pack()
+
+        scroll.config(command=tree_pro.yview)
+
         tree_pro.heading('#1', text="Nome", anchor=CENTER)
         tree_pro.heading('#3', text="Preco", anchor=CENTER)
         tree_pro.heading('#2', text="Codigo de Barras", anchor=CENTER)
@@ -333,12 +390,27 @@ def logar():
             for i in res_pesquisa:
                 tree_editpro.insert("","end",values=i)
 
+        # Estilo da Treeview
+        style = ttk.Style()
+        style.theme_use("default")
         
-        tree_editpro = ttk.Treeview(editpro, columns=("1","2","3"), show="headings")
+        # Frame da Treeview
+        tree_editpro_frame = Frame(editpro, padx=1, pady=10, bg="DodgerBlue")
+        tree_editpro_frame.place(x=0, y=0)
+
+        ## ScrollBar        
+        scroll = ttk.Scrollbar(tree_editpro_frame)
+        scroll.pack(side=RIGHT, fill=Y, padx=0)
+
+        tree_editpro = ttk.Treeview(tree_editpro_frame, columns=("1","2","3"), show="headings", height=35, yscrollcommand=scroll.set)
+        
+        tree_editpro.pack()
+
+        scroll.config(command=tree_editpro.yview)
+
         tree_editpro.heading('#1',text="Produto", anchor=CENTER)
         tree_editpro.heading('#2',text="Preço", anchor=CENTER)
         tree_editpro.heading('#3',text="Fornecedor", anchor=CENTER)
-        tree_editpro.place(x=0,y=4)
         view_prod()
 
 
@@ -419,11 +491,24 @@ def logar():
             res_pesquisa = cursor.fetchall()
             for i in res_pesquisa:
                 tree_pedi.insert("","end",values=i)
-    
-        
 
-        tree_pedi = ttk.Treeview(pedidos,column=("1","2","3","4"), show='headings', height=90)
-        tree_pedi.place(x=0, y=0)
+        # Estilo da Treeview
+        style = ttk.Style()
+        style.theme_use("default")
+
+        # Frame da Treeview
+        tree_pedi_frame = Frame(pedidos, padx=1, pady=10, bg="DodgerBlue")
+        tree_pedi_frame.place(x=0, y=0)
+
+        # ScrollBar
+        scroll = ttk.Scrollbar(tree_pedi_frame)
+        scroll.pack(side=RIGHT, fill=Y, padx=0)
+
+        tree_pedi = ttk.Treeview(tree_pedi_frame, column=("1","2","3","4"), show='headings', height=35, yscrollcommand=scroll.set)
+        tree_pedi.pack()
+
+        scroll.config(command=tree_pedi.yview)
+
         tree_pedi.heading('#1', text="Nome do produto", anchor=CENTER)
         tree_pedi.heading('#2', text="Cliente", anchor=CENTER)
         tree_pedi.heading('#3', text="Valor Total", anchor=CENTER)
@@ -476,10 +561,23 @@ def logar():
             for i in res_pesquisa:
                 tree_forne.insert("","end",values=i)
     
-        
+        # Estilo da Treeview
+        style = ttk.Style()
+        style.theme_use("default")
 
-        tree_forne = ttk.Treeview(fornecedores,column=("1","2","3","4","5"), show='headings', height=90)
-        tree_forne.place(x=0, y=0)
+        # Frame da Treeview
+        tree_forne_frame = Frame(fornecedores, padx=1, pady=5, bg="DodgerBlue")
+        tree_forne_frame.place(x=0, y=0)
+
+        # ScrollBar
+        scroll = ttk.Scrollbar(tree_forne_frame)
+        scroll.pack(side=RIGHT, fill=Y, padx=0)
+
+        tree_forne = ttk.Treeview(tree_forne_frame, column=("1","2","3","4","5"), show='headings', height=35, yscrollcommand=scroll.set)
+        tree_forne.pack()
+
+        scroll.config(command=tree_forne.yview)
+
         tree_forne.heading('#1', text="Nome", anchor=CENTER)
         tree_forne.heading('#2', text="CNPJ", anchor=CENTER)
         tree_forne.heading('#3', text="Telefone", anchor=CENTER)
@@ -559,11 +657,25 @@ def logar():
             except:
                 tkMessageBox.showinfo('ERRO', message="SELECIONE UM PRODUTO")
 
+        # Estilo da Treeview
+        style = ttk.Style()
+        style.theme_use("default")
 
-        tree_gere = ttk.Treeview(cadastro_usuario, columns=("1","2"), show="headings",height=90)
+        # Frame da Treeview
+        tree_gere_frame = Frame(cadastro_usuario, padx=1, pady=5, bg="DodgerBlue")
+        tree_gere_frame.place(x=0, y=0)
+
+        # ScrollBar
+        scroll = ttk.Scrollbar(tree_gere_frame)
+        scroll.pack(side=RIGHT, fill=Y, padx=0)
+
+        tree_gere = ttk.Treeview(tree_gere_frame, columns=("1","2"), show="headings",height=35, yscrollcommand=scroll.set)
+        tree_gere.pack()
+
+        scroll.config(command=tree_gere.yview)
+
         tree_gere.heading('#1',text="Nome De Usuario", anchor=CENTER)
         tree_gere.heading('#2',text="Senha Do Usuario", anchor=CENTER)
-        tree_gere.place(x=0,y=4)
         view_gere()
 
         lbl_nome = Label(cadastro_usuario,text="Nome Do Usuario: ",font="arial 12")
@@ -646,15 +758,28 @@ def logar():
             for i in res_pesquisa:
                 tree_for.insert("","end",values=i)
 
-        
+        # Estilo da Treeview
+        style = ttk.Style()
+        style.theme_use("default")
 
-        tree_for = ttk.Treeview(tela_editar_for, columns=("1","2","3","4","5"), show="headings",height=90)
+        # Frame da Treeview
+        tree_editfor_frame = Frame(tela_editar_for, padx=1, pady=5, bg="DodgerBlue")
+        tree_editfor_frame.place(x=0, y=0)
+
+        # ScrollBar
+        scroll = ttk.Scrollbar(tree_editfor_frame)
+        scroll.pack(side=RIGHT, fill=Y, padx=0)
+
+        tree_for = ttk.Treeview(tree_editfor_frame, columns=("1","2","3","4","5"), show="headings",height=35, yscrollcommand=scroll.set)
+        tree_for.pack()
+
+        scroll.config(command=tree_for.yview)
+
         tree_for.heading('#1',text="Nome", anchor=CENTER)
         tree_for.heading('#2',text="CNPJ", anchor=CENTER)
         tree_for.heading('#3',text="Telefone", anchor=CENTER)
         tree_for.heading('#4',text="Endereço", anchor=CENTER)        
         tree_for.heading('#5',text="Produto", anchor=CENTER)
-        tree_for.place(x=0,y=4)
         view_for()
 
 
@@ -763,14 +888,27 @@ def logar():
             for i in res_pesquisa:
                 tree_edit_pedi.insert("","end",values=i)        
 
-        
+        # Estilo da Treeview
+        style = ttk.Style()
+        style.theme_use("default")
 
-        tree_edit_pedi = ttk.Treeview(edit_pedidos, columns=("1","2","3","4"), show="headings",height=90)
+        # Frame da Treeview
+        tree_editpedi_frame = Frame(edit_pedidos, padx=1, pady=5, bg="DodgerBlue")
+        tree_editpedi_frame.place(x=0, y=0)
+
+        # ScrollBar
+        scroll = ttk.Scrollbar(tree_editpedi_frame)
+        scroll.pack(side=RIGHT, fill=Y, padx=0)
+
+        tree_edit_pedi = ttk.Treeview(tree_editpedi_frame, columns=("1","2","3","4"), show="headings",height=35, yscrollcommand=scroll.set)
+        tree_edit_pedi.pack()
+
+        scroll.config(command=tree_edit_pedi.yview)
+
         tree_edit_pedi.heading('#1',text="Nome do Produto", anchor=CENTER)
         tree_edit_pedi.heading('#2',text="Cliente", anchor=CENTER)
         tree_edit_pedi.heading('#3',text="Valor Total", anchor=CENTER)
         tree_edit_pedi.heading('#4',text="ID do Pedido", anchor=CENTER)
-        tree_edit_pedi.place(x=0,y=4)
         view_pedi()
 
         lbl_produto_pedi = Label(edit_pedidos, text="Nome do produto:", bg="DodgerBlue")
@@ -852,10 +990,23 @@ def logar():
             for i in res_pesquisa:
                 tree_promo.insert("","end",values=i)
 
-        
+        # Estilo da Treeview
+        style = ttk.Style()
+        style.theme_use("default")
 
-        tree_promo = ttk.Treeview(promocoes,column=("1","2","3","4"), show='headings', height=90)
-        tree_promo.place(x=0, y=0)
+        # Frame da Treeview
+        tree_promo_frame = Frame(promocoes, padx=1, pady=5, bg="DodgerBlue")
+        tree_promo_frame.place(x=0, y=0)
+
+        # ScrollBar
+        scroll = ttk.Scrollbar(tree_promo_frame)
+        scroll.pack(side=RIGHT, fill=Y, padx=0)
+
+        tree_promo = ttk.Treeview(tree_promo_frame,column=("1","2","3","4"), show='headings', height=35, yscrollcommand=scroll.set)
+        tree_promo.pack()
+
+        scroll.config(command=tree_promo.yview)
+
         tree_promo.heading('#1', text="Cupom", anchor=CENTER)
         tree_promo.heading('#2', text="Nome do Produto", anchor=CENTER)
         tree_promo.heading('#3', text="Preço do Produto", anchor=CENTER)
