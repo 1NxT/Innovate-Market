@@ -271,7 +271,7 @@ def logar():
     def produto():
         produtos = Toplevel()
         produtos.title("Produtos")
-        produtos.geometry("1366x768")
+        produtos.geometry("1360x768")
         produtos.configure(bg="DodgerBlue")
 
         
@@ -464,7 +464,7 @@ def logar():
     def pedido():
         pedidos = Toplevel()
         pedidos.title("Pedidos")
-        pedidos.geometry("1366x768")
+        pedidos.geometry("1360x768")
         pedidos.configure(bg="DodgerBlue")
 
         def voltar_inicial_pedi():
@@ -602,7 +602,7 @@ def logar():
     def lucros():
         lucro = Toplevel()
         lucro.title("Lucros")
-        lucro.geometry("600x600")
+        lucro.geometry("1360x768")
         lucro.configure(bg="DodgerBlue")
 
         def voltar_inicial_lucros():
@@ -707,14 +707,14 @@ def logar():
 
 
     def editar_for():
-        tela_editar_for = Tk()
-        tela_editar_for.title("Cadastrar Fornecedores")
-        tela_editar_for.geometry("1366x768")
-        tela_editar_for.configure(bg="DodgerBlue")
-        tela_editar_for.resizable(False, False)
+        editar_for = Tk()
+        editar_for.title("Cadastrar Fornecedores")
+        editar_for.geometry("1360x768")
+        editar_for.configure(bg="DodgerBlue")
+        editar_for.resizable(False, False)
         
-        def voltar_inicial_tela_editr_for():
-            tela_editar_for.destroy()
+        def voltar_inicial_edit_for():
+            editar_for.destroy()
             return
 
         def inserir():
@@ -763,7 +763,7 @@ def logar():
         style.theme_use("default")
 
         # Frame da Treeview
-        tree_editfor_frame = Frame(tela_editar_for, padx=1, pady=5, bg="DodgerBlue")
+        tree_editfor_frame = Frame(editar_for, padx=1, pady=5, bg="DodgerBlue")
         tree_editfor_frame.place(x=0, y=0)
 
         # ScrollBar
@@ -783,57 +783,60 @@ def logar():
         view_for()
 
 
-        lbl_nome_for = Label(tela_editar_for, text="Nome:", bg="DodgerBlue")
+        lbl_nome_for = Label(editar_for, text="Nome:", bg="DodgerBlue")
         lbl_nome_for.place(x=1010,y=10)
 
-        lbl_CNPJ_for = Label(tela_editar_for, text="CNPJ", bg="DodgerBlue")
+        lbl_CNPJ_for = Label(editar_for, text="CNPJ", bg="DodgerBlue")
         lbl_CNPJ_for.place(x=1010,y=40)
 
-        lbl_telefone_for = Label(tela_editar_for, text="Telefone:", bg="DodgerBlue")
+        lbl_telefone_for = Label(editar_for, text="Telefone:", bg="DodgerBlue")
         lbl_telefone_for.place(x=1010,y=70)
 
-        lbl_endereco_for = Label(tela_editar_for, text="Endereço", bg="DodgerBlue")
+        lbl_endereco_for = Label(editar_for, text="Endereço", bg="DodgerBlue")
         lbl_endereco_for.place(x=1010,y=100)
 
-        lbl_fornece_for = Label(tela_editar_for, text="Produto Fornecido:", bg="DodgerBlue")
+        lbl_fornece_for = Label(editar_for, text="Produto Fornecido:", bg="DodgerBlue")
         lbl_fornece_for.place(x=1010,y=130)
 
-        lbl_confere_for = Label(tela_editar_for, text="", bg="DodgerBlue")
+        lbl_confere_for = Label(editar_for, text="", bg="DodgerBlue")
         lbl_confere_for.place(x=1010,y=130)
 
-        ent_confere_for = Entry(tela_editar_for)
+        ent_confere_for = Entry(editar_for)
         ent_confere_for.place(x=1100,y=130)
         
-        ent_nome_for = Entry(tela_editar_for)
+        ent_nome_for = Entry(editar_for)
         ent_nome_for.place(x=1100,y=10)
 
-        ent_CNPJ_for = Entry(tela_editar_for)
+        ent_CNPJ_for = Entry(editar_for)
         ent_CNPJ_for.place(x=1100,y=40)
         
-        ent_telefone_for = Entry(tela_editar_for)
+        ent_telefone_for = Entry(editar_for)
         ent_telefone_for.place(x=1100,y=70)
 
-        ent_endereco_for = Entry(tela_editar_for)
+        ent_endereco_for = Entry(editar_for)
         ent_endereco_for.place(x=1100,y=100)
         
-        ent_fornece_for = Entry(tela_editar_for)
+        ent_fornece_for = Entry(editar_for)
         ent_fornece_for.place(x=1100,y=130)
 
-        ent_pesquisar = Entry(tela_editar_for)
+        ent_pesquisar = Entry(editar_for)
         ent_pesquisar.place(x=950,y=500)
         
 
-        btn_inserir_for = Button(tela_editar_for, text="Salvar", command=inserir)
+        btn_inserir_for = Button(editar_for, text="Salvar", command=inserir)
         btn_inserir_for.place(x=1100,y=200)
 
-        btn_deletar_for = Button(tela_editar_for, text="Excluir", command=excluir)
+        btn_deletar_for = Button(editar_for, text="Excluir", command=excluir)
         btn_deletar_for.place(x=1170,y=200)
 
-        btn_pesquisar_for = Button(tela_editar_for, text="Pesquisar", command=pesquisar)
+        btn_pesquisar_for = Button(editar_for, text="Pesquisar", command=pesquisar)
         btn_pesquisar_for.place(x=1100, y=500)
 
-        btn_show = Button(tela_editar_for, text="Mostrar todos", command=view_for)
+        btn_show = Button(editar_for, text="Mostrar todos", command=view_for)
         btn_show.place(x=1000,y=600)
+
+        btn_voltar_edit_for = Button(editar_for, text="Voltar a tela inicial", command=voltar_inicial_edit_for, bg='Red')
+        btn_voltar_edit_for.place(x=1180, y=660)
 
 
     def edit_pedi():
