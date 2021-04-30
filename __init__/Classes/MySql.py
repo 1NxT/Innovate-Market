@@ -1,8 +1,5 @@
 import sqlite3
-class MySql():
-    def __init__(self):
-        self.conectar()
-        
+class MySql: 
     def conectar(self):
         banco = sqlite3.connect('Innovate-Market-main\__init__\data.db')
         cursor = banco.cursor()
