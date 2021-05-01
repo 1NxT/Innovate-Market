@@ -9,4 +9,4 @@ class Gerenciar :
         self.telageren.geometry("1360x760")
         self.telageren.configure(bg="DodgerBlue")
         self.telageren.resizable(False, False)
-        self.telageren.iconbitmap('Innovate-Market-main\__init__\Imagens\logo.ico')
+        self.telageren.iconbitmap('__init__\Imagens\logo.ico')
