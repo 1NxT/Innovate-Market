@@ -1,9 +1,10 @@
 from tkinter import *
 from Classes.Logar import Logar
+
 class Principal(Frame):
     def __init__(self):
         self.tk = Tk()
-        self.img = PhotoImage(file="Innovate-Market-main\__init__\Imagens\Logo.png")
+        self.img = PhotoImage(file="__init__\Imagens\Logo.png")
         self.geometry()
         self.elementos()
         self.tk.mainloop()
@@ -17,15 +18,14 @@ class Principal(Frame):
         self.tk.geometry("600x600")
         self.tk.configure(bg="DodgerBlue")
         self.tk.resizable(False, False)
-        self.tk.iconbitmap('Innovate-Market-main\__init__\Imagens\logo.ico')
+        self.tk.iconbitmap('__init__\Imagens\logo.ico')
 
     def chamarLogar(self):
         Logar().login(self.ent_login.get(), self.ent_senha.get())
 
     def elementos(self):
+        # LABELS 1° TELA
         self.lbl_login = Label(self.tk, text="Login: ",font="arial 18", bg="DodgerBlue", width=6)
-
-
         self.lbl_login.place(x=150, y=295)
 
         self.lbl_senha = Label(self.tk, text="Senha: ", font="arial 18", bg="DodgerBlue")
@@ -52,5 +52,3 @@ class Principal(Frame):
 
         self.btn_sair = Button(self.tk, text="Sair", command=self.iExit, width=15, bg="firebrick")
         self.btn_sair.place(x=430, y=550)
-        
-        
