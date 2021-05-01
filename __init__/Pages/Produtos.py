@@ -1,5 +1,6 @@
 from tkinter import *
-class produtos:
+
+class Produtos:
     def __init__(self):
         self.telaprodutos = Toplevel()
         self.geometry()
@@ -9,4 +10,4 @@ class produtos:
         self.telaprodutos.geometry("1360x760")
         self.telaprodutos.configure(bg="DodgerBlue")
         self.telaprodutos.resizable(False, False)
-        self.telaprodutos.iconbitmap('Innovate-Market-main\__init__\Imagens\logo.ico')
+        self.telaprodutos.iconbitmap('__init__\Imagens\logo.ico')
