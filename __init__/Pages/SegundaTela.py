@@ -1,6 +1,6 @@
 from tkinter import *
 from Pages.Caixa import *
-from Pages.Fornecedor import *
+from Pages.Fornecedores import *
 from Pages.Gerenciar import *
 from Pages.Lucros import *
 from Pages.Pedidos import *
@@ -12,13 +12,13 @@ class SegundaTela(Frame):
         Frame.__init__(self, master=None)
         self.tela2 = Toplevel()
         self.geometry()
-        self.imgbtn2 = PhotoImage(file="Innovate-Market-main\__init__\Imagens\produtos.png")
-        self.imgbtn3 = PhotoImage(file="Innovate-Market-main\__init__\Imagens\pedidos.png")
-        self.imgbtn4 = PhotoImage(file="Innovate-Market-main\__init__\Imagens\ornecedor.png")
-        self.imgbtn5 = PhotoImage(file="Innovate-Market-main\__init__\Imagens\lucro.png")
-        self.imgbtn6 = PhotoImage(file="Innovate-Market-main\__init__\Imagens\promocoes.png")
-        self.imgbtn7 = PhotoImage(file="Innovate-Market-main\__init__\Imagens\gerente.png")
-        self.imgbtn9 = PhotoImage(file="Innovate-Market-main\__init__\Imagens\caixa.png")
+        self.imgbtn2 = PhotoImage(file="__init__\Imagens\produtos.png")
+        self.imgbtn3 = PhotoImage(file="__init__\Imagens\pedidos.png")
+        self.imgbtn4 = PhotoImage(file="__init__\Imagens\Fornecedor.png")
+        self.imgbtn5 = PhotoImage(file="__init__\Imagens\lucro.png")
+        self.imgbtn6 = PhotoImage(file="__init__\Imagens\promocoes.png")
+        self.imgbtn7 = PhotoImage(file="__init__\Imagens\gerente.png")
+        self.imgbtn9 = PhotoImage(file="__init__\Imagens\caixa.png")
         self.elementos()
 
     def iExit2(self):
@@ -31,7 +31,7 @@ class SegundaTela(Frame):
         self.tela2.geometry("1360x768")
         self.tela2.configure(bg="DodgerBlue")
         self.tela2.resizable(False, False)
-        self.tela2.iconbitmap('Innovate-Market-main\__init__\Imagens\logo.ico')
+        self.tela2.iconbitmap('__init__\Imagens\logo.ico')
 
     def elementos(self):
         #Texto botões
