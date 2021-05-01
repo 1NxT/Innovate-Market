@@ -9,4 +9,4 @@ class Lucros:
         self.telalucro.geometry("1360x760")
         self.telalucro.configure(bg="DodgerBlue")
         self.telalucro.resizable(False, False)
-        self.telalucro.iconbitmap('Innovate-Market-main\__init__\Imagens\logo.ico')
+        self.telalucro.iconbitmap('__init__\Imagens\logo.ico')
