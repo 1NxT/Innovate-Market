@@ -8,7 +8,7 @@ class Caixa(Frame):
         self.telacaixa = Toplevel()
         self.geometry()
 
-        self.imgcaixa = PhotoImage(file="Innovate-Market-main\__init__\Imagens\Logo_Caixa.png")
+        self.imgcaixa = PhotoImage(file="__init__\Imagens\Logo_Caixa.png")
         self.options = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
         self.itemVariable = StringVar()
         self.itemVariable.set(self.options[0])
@@ -22,7 +22,7 @@ class Caixa(Frame):
         self.telacaixa.geometry("1360x760")
         self.telacaixa.configure(bg="DodgerBlue")
         self.telacaixa.resizable(False, False)
-        self.telacaixa.iconbitmap('Innovate-Market-main\__init__\Imagens\logo.ico')
+        self.telacaixa.iconbitmap('__init__\Imagens\logo.ico')
 
     def voltar_inicial_caixa(self):
         self.telacaixa.destroy()
@@ -99,4 +99,3 @@ class Caixa(Frame):
 
         lbl_total_item = Label(self.telacaixa, text="Total do item:", font="arial 24",bg="DodgerBlue")
         lbl_total_item.place(x=830,y=200)
-        
