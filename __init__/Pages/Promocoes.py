@@ -1,4 +1,5 @@
 from tkinter import *
+
 class Promocoes:
     def __init__(self):
         self.telap = Toplevel()
@@ -9,4 +10,4 @@ class Promocoes:
         self.telap.geometry("1360x760")
         self.telap.configure(bg="DodgerBlue")
         self.telap.resizable(False, False)
-        self.telap,iconbitmap('Innovate-Market-main\__init__\Imagens\logo.ico')
+        self.telap,iconbitmap('__init__\Imagens\logo.ico')
