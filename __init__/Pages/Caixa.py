@@ -50,7 +50,7 @@ class Caixa(Frame):
 
         scroll.config(command=tree_caixa.yview)
         
-        # Colunas da Treeview Caixa
+        # Colunas da Treeview no Caixa
         tree_caixa.heading('#1', text="N° Item", anchor=CENTER)
         tree_caixa.heading('#2', text="Descrição", anchor=CENTER)
         tree_caixa.heading('#3', text="Preço", anchor=CENTER)
@@ -77,10 +77,11 @@ class Caixa(Frame):
         btn_excluir = Button(self.telacaixa, text="Excluir", font="arial 18")
         btn_excluir.place(x=1000,y=400)
 
+        #Entry do caixa
         ent_cod_barras = Entry(self.telacaixa, font="arial 18")
         ent_cod_barras.place(x=830, y=60)
 
-        
+        #Label do caixa
         lbl_subtotal = Label(self.telacaixa,text="SUB TOTAL:", font="arial 24",fg="black",bg="DodgerBlue")
         lbl_subtotal.place(x=0,y=527)
 
