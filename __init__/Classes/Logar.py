@@ -12,13 +12,11 @@ class Logar(Frame):
     def login(self, user, password):
         
 
-        self.cursor.execute("SELECT * FROM usuarios WHERE login = ?", (user, ))
+        self.cursor.execute("SELECT * FROM usuarios WHERE login = ? AND senha = ?", (user, password, ))
         resultado1 = self.cursor.fetchone()
-        self.cursor.execute("SELECT * FROM usuarios WHERE senha = ?", (password, ))
-        resultado2 = self.cursor.fetchone()
 
         
-        if resultado1 and resultado2 != None:
+        if resultado1 != None:
             SegundaTela()
         else:
             print("Ta troll!")        
