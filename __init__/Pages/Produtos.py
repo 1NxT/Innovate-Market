@@ -6,6 +6,7 @@ from Classes.Mostrar import *
 
 class Produtos(Frame):
     def __init__(self):
+        self.dicti = {}
         Frame.__init__(self, master=None)
         self.telaprodutos = Toplevel()
         self.geometry()
@@ -42,7 +43,13 @@ class Produtos(Frame):
         
     
     def chamaPesquisar(self):
-        resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "produtos", "id_produto")
+        #nome_produto, preco, fornecedor, id_produto
+        
+        self.dicti["nome_produto"] = self.ent_pesquisar.get()
+        self.dicti["preco"] = self.ent_pesquisar.get()
+        self.dicti["fornecedor"] = self.ent_pesquisar.get()
+        self.dicti["id_produto"] = self.ent_pesquisar.get()
+        resultado = Pesquisar().pesquisar(self.dicti, "produtos", "id_produto")
 
         
         if resultado != None:
