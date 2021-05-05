@@ -1,63 +1,89 @@
 from tkinter import *
 import tkinter.ttk as ttk
+from Classes.MySql import *
+from Classes.Pesquisar import *
+from Classes.Mostrar import *
 
-class Fornecedor(Frame):
+
+class Fornecedor:
     def __init__(self):
-        Frame.__init__(self, master=None)
         self.telaforne = Toplevel()
         self.geometry()
-
-
+        
         self.elementos()
 
     def geometry(self):
         self.telaforne.title("Fornecedor")
         self.telaforne.geometry("1360x760")
         self.telaforne.configure(bg="DodgerBlue")
-        self.telaforne.resizable(False, False)    
+        self.telaforne.resizable(False, False)
         self.telaforne.iconbitmap('__init__\Imagens\logo.ico')
-
+        
     def voltar_inicial_forne(self):
         self.telaforne.destroy()
         return
-
-    def elementos(self):
-        btn_telainicial_forne = Button(self.telaforne, text="Voltar Para Tela Inicial", command=self.voltar_inicial_forne,bg="red")
-        btn_telainicial_forne.place(x=1100, y=700)
     
+    def clear_entry(self):
+        self.ent_pesquisar.delete(0, END)
+        self.ent_pesquisar.insert(0, "")
+    
+    def view_tree(self):
+        resultado = Mostrar().mostrar(self, "fornecedor", "nome")
+        
+        if resultado != None:
+            self.tree_forne.delete(*self.tree_forne.get_children())
+            
+            for i in resultado:
+                self.tree_forne.insert("","end",values=i)
+        else:
+            print("Error!")
+        
+    '''   
+    def chamaPesquisar(self):
+        resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "fornecedor")
 
-        style = ttk.Style()
-        style.theme_use("default")
+        
+        if resultado != None:
+            self.tree_forne.delete(*self.tree_forne.get_children())
+            
+            for i in resultado:
+                self.tree_forne.insert("","end",values=i)
+        else:
+            print("Error: Nenhum valor saiu da Classe")
+            '''
+    
+    def elementos(self):
+        self.btn_telainicial_forne = Button(self.telaforne, text="Voltar Para Tela Inicial", command=self.voltar_inicial_forne, bg="red")
+        self.btn_telainicial_forne.place(x=1100, y=700)
+        
+        self.style = ttk.Style()
+        self.style.theme_use("default")
 
         # Frame da Treeview
-        tree_forne_frame = Frame(self.telaforne, padx=1, pady=5, bg="DodgerBlue")
-        tree_forne_frame.place(x=0, y=0)
+        self.tree_forne_frame = Frame(self.telaforne, padx=1, pady=5, bg="DodgerBlue")
+        self.tree_forne_frame.place(x=0, y=0)
 
         # ScrollBar
-        scroll = ttk.Scrollbar(tree_forne_frame)
-        scroll.pack(side=RIGHT, fill=Y, padx=0)
+        self.scroll = ttk.Scrollbar(self.tree_forne_frame)
+        self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        tree_forne = ttk.Treeview(tree_forne_frame, column=("1","2","3","4","5"), show='headings', height=35, yscrollcommand=scroll.set)
-        tree_forne.pack()
+        self.tree_forne = ttk.Treeview(self.tree_forne_frame, column=("1","2","3","4","5"), show='headings', height=35, yscrollcommand=self.scroll.set)
+        self.tree_forne.pack()
 
-        scroll.config(command=tree_forne.yview)
+        self.scroll.config(command=self.tree_forne.yview)
 
-        tree_forne.heading('#1', text="Nome", anchor=CENTER)
-        tree_forne.heading('#2', text="CNPJ", anchor=CENTER)
-        tree_forne.heading('#3', text="Telefone", anchor=CENTER)
-        tree_forne.heading('#4', text="Endereco", anchor=CENTER)
-        tree_forne.heading('#5',text="Produto Fornecido", anchor=CENTER)
-        
+        self.tree_forne.heading('#1', text="Nome", anchor=CENTER)
+        self.tree_forne.heading('#2', text="CNPJ", anchor=CENTER)
+        self.tree_forne.heading('#3', text="Telefone", anchor=CENTER)
+        self.tree_forne.heading('#4', text="Endereco", anchor=CENTER)
+        self.tree_forne.heading('#5',text="Produto Fornecido", anchor=CENTER)
+        self.view_tree()
 
-        ent_pesquisar = Entry(self.telaforne)
-        ent_pesquisar.place(x=1100, y=20)
+        self.ent_pesquisar = Entry(self.telaforne)
+        self.ent_pesquisar.place(x=1100, y=20)
 
-        btn_pesquisar_pedi = Button(self.telaforne, text="Pesquisar")
-        btn_pesquisar_pedi.place(x=1000, y=20)
+        self.btn_pesquisar_pedi = Button(self.telaforne, text="Pesquisar")#, command=self.chamaPesquisar)
+        self.btn_pesquisar_pedi.place(x=1000, y=20)
 
-        btn_show = Button(self.telaforne, text="Mostrar todos")
-        btn_show.place(x=1200,y=100)
-
-    
-
-
+        self.btn_show = Button(self.telaforne, text="Mostrar todos", command=lambda:[self.view_tree(), self.clear_entry()])
+        self.btn_show.place(x=1200,y=100)
