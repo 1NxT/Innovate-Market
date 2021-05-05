@@ -7,6 +7,7 @@ from Classes.Mostrar import *
 
 class Fornecedor:
     def __init__(self):
+        self.dicti = {}
         self.telaforne = Toplevel()
         self.geometry()
         
@@ -38,19 +39,21 @@ class Fornecedor:
         else:
             print("Error!")
         
-    '''   
     def chamaPesquisar(self):
-        resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "fornecedor")
-
+        self.dicti["nome"] = self.ent_pesquisar.get()
+        self.dicti["CNPJ"] = self.ent_pesquisar.get()
+        self.dicti["telefone"] = self.ent_pesquisar.get()
+        self.dicti["endereco"] = self.ent_pesquisar.get()
+        self.dicti["produto_fornecido"] = self.ent_pesquisar.get()
         
+        resultado = Pesquisar().pesquisar(self.dicti, "fornecedor", "nome")
+
         if resultado != None:
             self.tree_forne.delete(*self.tree_forne.get_children())
-            
             for i in resultado:
                 self.tree_forne.insert("","end",values=i)
         else:
             print("Error: Nenhum valor saiu da Classe")
-            '''
     
     def elementos(self):
         self.btn_telainicial_forne = Button(self.telaforne, text="Voltar Para Tela Inicial", command=self.voltar_inicial_forne, bg="red")
@@ -82,7 +85,7 @@ class Fornecedor:
         self.ent_pesquisar = Entry(self.telaforne)
         self.ent_pesquisar.place(x=1100, y=20)
 
-        self.btn_pesquisar_pedi = Button(self.telaforne, text="Pesquisar")#, command=self.chamaPesquisar)
+        self.btn_pesquisar_pedi = Button(self.telaforne, text="Pesquisar", command=self.chamaPesquisar)
         self.btn_pesquisar_pedi.place(x=1000, y=20)
 
         self.btn_show = Button(self.telaforne, text="Mostrar todos", command=lambda:[self.view_tree(), self.clear_entry()])
