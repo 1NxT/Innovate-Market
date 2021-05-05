@@ -1,5 +1,7 @@
 from tkinter import *
+import time
 from Classes.Logar import Logar
+from Pages.SegundaTela import *
 
 class Principal(Frame):
     def __init__(self):
@@ -8,6 +10,7 @@ class Principal(Frame):
         self.geometry()
         self.elementos()
         self.tk.mainloop()
+        
 
     def iExit(self):
         self.tk.destroy()
@@ -19,9 +22,16 @@ class Principal(Frame):
         self.tk.configure(bg="DodgerBlue")
         self.tk.resizable(False, False)
         self.tk.iconbitmap('__init__\Imagens\logo.ico')
+        
 
     def chamarLogar(self):
-        Logar().login(self.ent_login.get(), self.ent_senha.get())
+        resultado1 = Logar().login(self.ent_login.get(), self.ent_senha.get())
+        
+        if resultado1 != None:
+            SegundaTela()
+        else:
+            self.lbl_dados["text"] = "Dados de usuário ou senha incorretos!"
+            
 
     def elementos(self):
         # LABELS 1° TELA
