@@ -15,8 +15,4 @@ class Logar(Frame):
         self.cursor.execute("SELECT * FROM usuarios WHERE login = ? AND senha = ?", (user, password, ))
         resultado1 = self.cursor.fetchone()
 
-        
-        if resultado1 != None:
-            SegundaTela()
-        else:
-            print("Ta troll!")        
+        return resultado1   
