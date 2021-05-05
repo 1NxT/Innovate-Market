@@ -1,4 +1,8 @@
 from tkinter import *
+import tkinter.ttk as ttk
+from Classes.Pesquisar import *
+from Classes.Mostrar import *
+
 class Gerenciar :
     def __init__(self):
         self.telageren = Toplevel()
@@ -16,52 +20,78 @@ class Gerenciar :
     def tela_inicial_gerenciar(self):
             cadastro_usuario.destroy()
             return
+        
+    def view_tree(self):
+        resultado = Mostrar().mostrar(self, "usuarios", "login")
+        
+        if resultado != None:
+            self.tree_gere.delete(*self.tree_gere.get_children())
+            
+            for i in resultado:
+                self.tree_gere.insert("","end",values=i)
+        else:
+            print("Error!")
+    
+    # Função para procurar por dados na Treeview        
+    def chamaPesquisar(self):
+        resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "usuarios")
+
+        if resultado != None:
+            self.tree_gere.delete(*self.tree_gere.get_children())
+            
+            for i in resultado:
+                self.tree_gere.insert("","end",values=i)
+        else:
+            print("Error: Nenhum valor saiu da Classe")
 
     def elementos(self):
 
-        btn_sair_gere = Button(self.telageren,text="Voltar para a tela inicial", font="arial 12",bg="red",command=self.tela_inicial_gerenciar)
-        btn_sair_gere.place(x=1100,y=700)
+        self.btn_sair_gere = Button(self.telageren,text="Voltar para a tela inicial", font="arial 12",bg="red",command=self.tela_inicial_gerenciar)
+        self.btn_sair_gere.place(x=1100,y=700)
 
         # Estilo da Treeview
-        style = ttk.Style()
-        style.theme_use("default")
+        self.style = ttk.Style()
+        self.style.theme_use("default")
 
         # Frame da Treeview
-        tree_gere_frame = Frame(self.telageren, padx=1, pady=5, bg="DodgerBlue")
-        tree_gere_frame.place(x=0, y=0)
+        self.tree_gere_frame = Frame(self.telageren, padx=1, pady=5, bg="DodgerBlue")
+        self.tree_gere_frame.place(x=0, y=0)
 
         # ScrollBar
-        scroll = ttk.Scrollbar(tree_gere_frame)
-        scroll.pack(side=RIGHT, fill=Y, padx=0)
+        self.scroll = ttk.Scrollbar(self.tree_gere_frame)
+        self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        tree_gere = ttk.Treeview(tree_gere_frame, columns=("1","2"), show="headings",height=35, yscrollcommand=scroll.set)
-        tree_gere.pack()
+        self.tree_gere = ttk.Treeview(self.tree_gere_frame, columns=("1","2"), show="headings",height=35, yscrollcommand=self.scroll.set)
+        self.tree_gere.pack()
 
-        scroll.config(command=tree_gere.yview)
+        self.scroll.config(command=self.tree_gere.yview)
 
-        tree_gere.heading('#1',text="Nome De Usuario", anchor=CENTER)
-        tree_gere.heading('#2',text="Senha Do Usuario", anchor=CENTER)
+        self.tree_gere.heading('#1',text="Nome De Usuario", anchor=CENTER)
+        self.tree_gere.heading('#2',text="Senha Do Usuario", anchor=CENTER)
+        self.view_tree()
         
 
-        lbl_nome = Label(self.telageren,text="Nome Do Usuario: ",font="arial 12")
-        lbl_nome.place(x=400,y=100,relwidth=0.17)
+        self.lbl_nome = Label(self.telageren,text="Nome Do Usuario: ",font="arial 12")
+        self.lbl_nome.place(x=400,y=100,relwidth=0.17)
 
-        ent_nome = Entry(self.telageren,bg="lightgrey")
-        ent_nome.place(x=700,y=100,relwidth=0.24)
+        self.ent_nome = Entry(self.telageren,bg="lightgrey")
+        self.ent_nome.place(x=700,y=100,relwidth=0.24)
+        
+        self.ent_pesquisar = Entry(self.telageren,bg="lightgrey")
+        self.ent_pesquisar.place(x=700,y=600)
     
-        lbl_senha= Label(self.telageren,text="Senha: ",font="arial 12")
-        lbl_senha.place(x=500,y=200,relwidth=0.07)
+        self.lbl_senha= Label(self.telageren,text="Senha: ",font="arial 12")
+        self.lbl_senha.place(x=500,y=200,relwidth=0.07)
 
-        ent_senha = Entry(self.telageren,bg="lightgrey")
-        ent_senha.place(x=700,y=200,relwidth=0.24)
+        self.ent_senha = Entry(self.telageren,bg="lightgrey")
+        self.ent_senha.place(x=700,y=200,relwidth=0.24)
 
-        lbl_erro = Label(self.telageren,text="", font="arial 12 ", fg="green", bg="DodgerBlue")
-        lbl_erro.place(x=500,y=300,relwidth=0.17)
+        self.lbl_erro = Label(self.telageren,text="", font="arial 12 ", fg="green", bg="DodgerBlue")
+        self.lbl_erro.place(x=500,y=300,relwidth=0.17)
         
-        btn_enviar = Button(self.telageren,text="Salvar Dados", font="arial 12")
-        btn_enviar.place(x=500,y=400,relwidth=0.24)
+        self.btn_enviar = Button(self.telageren,text="Salvar Dados", font="arial 12")
+        self.btn_enviar.place(x=500,y=400,relwidth=0.24)
 
 
-        btn_excluir = Button(self.telageren,text="Excluir", font="arial 12")
-        btn_excluir.place(x=500,y=500,relwidth=0.24)
-
+        self.btn_excluir = Button(self.telageren,text="Excluir", font="arial 12")
+        self.btn_excluir.place(x=500,y=500,relwidth=0.24)
