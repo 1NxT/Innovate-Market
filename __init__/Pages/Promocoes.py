@@ -5,7 +5,7 @@ from Classes.Mostrar import *
 
 class Promocoes:
     def __init__(self):
-        self.telap = Toplevel()
+        self.telapromo = Toplevel()
         self.geometry()
 
         self.elementos()
