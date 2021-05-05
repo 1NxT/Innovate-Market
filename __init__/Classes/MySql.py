@@ -1,4 +1,5 @@
 import sqlite3
+
 class MySql: 
     def conectar(self):
         banco = sqlite3.connect('__init__\data.db')
