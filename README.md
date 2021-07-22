@@ -10,3 +10,7 @@
 <h4 align="center"> 
 	🚧  Innovate-Market 🚀 Em construção...  🚧
 </h4>
+
+<a href="https://github.com/1NxT/Innovate-Market/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/1NxT/Innovate-Market?style=for-the-badge"></a>
+<a href="https://github.com/1NxT/Innovate-Market/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/1NxT/Innovate-Market?style=for-the-badge"></a>
+<a href="https://github.com/1NxT/Innovate-Market/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/1NxT/Innovate-Market?style=for-the-badge"></a>
