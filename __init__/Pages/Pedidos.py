@@ -20,7 +20,7 @@ class Pedidos(Frame):
         self.telapedi.iconbitmap('__init__\Imagens\logo.ico')
 
     def voltar_inicial_pedi(self):
-            telapedi.destroy()
+            self.telapedi.destroy()
             return
         
     def clear_entry(self):

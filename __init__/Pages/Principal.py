@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import time
 from Classes.Logar import Logar
 from Pages.SegundaTela import *
@@ -13,7 +14,10 @@ class Principal(Frame):
         
 
     def iExit(self):
-        self.tk.destroy()
+        self.result = messagebox.askquestion(
+            'AVISO', 'Tem certeza que deseja sair?', icon="warning")
+        if self.result == "yes":
+            self.tk.destroy()
         return
 
     def geometry(self):
