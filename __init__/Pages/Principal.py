@@ -32,7 +32,8 @@ class Principal(Frame):
         resultado1 = Logar().login(self.ent_login.get(), self.ent_senha.get())
         
         if resultado1 != None:
-            SegundaTela()
+            SegundaTela(resultado1)
+            
         else:
             self.lbl_dados["text"] = "Dados de usuário ou senha incorretos!"
             

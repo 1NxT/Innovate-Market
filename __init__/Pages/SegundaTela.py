@@ -8,10 +8,14 @@ from Pages.Produtos import *
 from Pages.Promocoes import *
 
 class SegundaTela(Frame):
-    def __init__(self):
+    def __init__(self, resultado):
+        print(resultado)
+        if resultado[1] == "1":
+            print(resultado[1])
+        elif resultado[1] == '2':
+            print(resultado[1])
         Frame.__init__(self, master=None)
         self.tela2 = Toplevel()
-        self.geometry()
         self.imgbtn2 = PhotoImage(file="__init__\Imagens\produtos.png")
         self.imgbtn3 = PhotoImage(file="__init__\Imagens\pedidos.png")
         self.imgbtn4 = PhotoImage(file="__init__\Imagens\Fornecedor.png")
@@ -19,12 +23,17 @@ class SegundaTela(Frame):
         self.imgbtn6 = PhotoImage(file="__init__\Imagens\promocoes.png")
         self.imgbtn7 = PhotoImage(file="__init__\Imagens\gerente.png")
         self.imgbtn9 = PhotoImage(file="__init__\Imagens\caixa.png")
+        self.geometry()
         self.elementos()
 
     def iExit2(self):
         self.tela2.destroy()
         return
 
+    
+        
+            
+        
 
     def geometry(self):
         self.tela2.title("Tela Inicial")

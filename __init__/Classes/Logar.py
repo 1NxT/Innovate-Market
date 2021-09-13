@@ -12,7 +12,8 @@ class Logar(Frame):
     def login(self, user, password):
         
 
-        self.cursor.execute("SELECT * FROM usuarios WHERE login = ? AND senha = ?", (user, password, ))
+        self.cursor.execute("SELECT * FROM user WHERE CPF = ? AND password = ?", (user, password, ))
         resultado1 = self.cursor.fetchone()
+        
 
         return resultado1   
