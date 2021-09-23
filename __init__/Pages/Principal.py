@@ -20,6 +20,7 @@ class Principal(Frame):
             self.tk.destroy()
         return
 
+
     def geometry(self):
         self.tk.title("Tela de login")
         self.tk.geometry("600x600")
