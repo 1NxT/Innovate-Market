@@ -44,7 +44,7 @@ class Caixa(Frame):
     
     # Função para procurar por dados na Treeview        
     def chamaPesquisar(self):
-        resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "caixa")
+        resultado = Pesquisar.pesquisar(self.ent_pesquisar.get(), "caixa")
 
         if resultado != None:
             self.tree_caixa.delete(*self.tree_caixa.get_children())

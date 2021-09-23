@@ -1,5 +1,5 @@
 from tkinter import *
-import tkinter.messagebox as tkMessageBox
+from tkinter import messagebox
 import time
 from Classes.Logar import Logar
 from Pages.SegundaTela import *
@@ -14,10 +14,12 @@ class Principal(Frame):
         
 
     def iExit(self):
-        result=tkMessageBox.askquestion('AVISO','Tem certeza que deseja sair?', icon="warning")
-        if result== "yes":
+        self.result = messagebox.askquestion(
+            'AVISO', 'Tem certeza que deseja sair?', icon="warning")
+        if self.result == "yes":
             self.tk.destroy()
-        exit
+        return
+
 
     def geometry(self):
         self.tk.title("Tela de login")
@@ -31,7 +33,8 @@ class Principal(Frame):
         resultado1 = Logar().login(self.ent_login.get(), self.ent_senha.get())
         
         if resultado1 != None:
-            SegundaTela()
+            SegundaTela(resultado1)
+            
         else:
             self.lbl_dados["text"] = "Dados de usuário ou senha incorretos!"
             

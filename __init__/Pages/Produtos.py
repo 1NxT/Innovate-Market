@@ -31,7 +31,7 @@ class Produtos(Frame):
         self.ent_pesquisar.insert(0, "")
     
     def view_tree(self):
-        resultado = Mostrar().mostrar(self, "produtos", "id_produto")
+        resultado = Mostrar().mostrar(self, "produtos", "ID")
         
         if resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
@@ -43,13 +43,13 @@ class Produtos(Frame):
         
     
     def chamaPesquisar(self):
-        #nome_produto, preco, fornecedor, id_produto
+        #nome, preco, fornecedor, id
         
-        self.dicti["nome_produto"] = self.ent_pesquisar.get()
+        self.dicti["nome"] = self.ent_pesquisar.get()
         self.dicti["preco"] = self.ent_pesquisar.get()
         self.dicti["fornecedor"] = self.ent_pesquisar.get()
-        self.dicti["id_produto"] = self.ent_pesquisar.get()
-        resultado = Pesquisar().pesquisar(self.dicti, "produtos", "id_produto")
+        self.dicti["id"] = self.ent_pesquisar.get()
+        resultado = Pesquisar().pesquisar(self.dicti, "produtos", "ID")
 
         
         if resultado != None:

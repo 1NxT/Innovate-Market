@@ -31,7 +31,11 @@ class Gerenciar :
                 self.tree_gere.insert("","end",values=i)
         else:
             print("Error!")
-    
+
+    def tela_inicial_gerenciar(self):
+        self.telageren.destroy()
+        return
+
     # Função para procurar por dados na Treeview        
     def chamaPesquisar(self):
         resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "usuarios")
