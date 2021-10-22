@@ -28,7 +28,7 @@ class SegundaTela(Frame):
         return
 
     #Method Create Button
-    def __criarBtncaixa(self):
+    def __criarButtonCaixa(self):
         self.btn_caixa = Button(self.tela2, text="Caixa", width=15, height=2, command=Caixa)
         self.btn_caixa.grid(row=2, column=8)
 
@@ -37,103 +37,128 @@ class SegundaTela(Frame):
         self.btn_img9 = Button(self.tela2, image=self.imgbtn9, width=140,height=140, bg="DodgerBlue", command=Caixa, relief="flat")
         self.btn_img9.grid(row=1, column=8)
 
+    def __criarButtonProdutos(self):
+        self.btn_produtos = Button(self.tela2, text='Produtos', width=15, height=2, command=Produtos)
+        self.btn_produtos.grid(row=2, column=2)
+
+    def __criarButtonProdutosImagem(self):
+        self.imgbtn2 = PhotoImage(file="__init__\Imagens\produtos.png")
+        self.btn_img2 = Button(self.tela2, image=self.imgbtn2,  width=140,height=140, bg="DodgerBlue", command=Produtos, relief="flat")
+        self.btn_img2.grid(row=1, column=2)
+
+    def __criarButtonPedidos(self):
+        self.btn_pedidos = Button(self.tela2, text='Pedidos', width=15, height=2, command=Pedidos)
+        self.btn_pedidos.grid(row=2, column=3)
+    
+    def __criarButtonPedidosImagem(self):
+        self.imgbtn3 = PhotoImage(file="__init__\Imagens\pedidos.png")
+        self.btn_img3 = Button(self.tela2, image=self.imgbtn3,  width=140,height=140, bg="DodgerBlue", command=Pedidos, relief="flat")
+        self.btn_img3.grid(row=1, column=3)
+
+    def __criarButtonFornecedores(self):
+        self.btn_fornecedores = Button(self.tela2, text='Fornecedores', width=15, height=2, command=Fornecedor)
+        self.btn_fornecedores.grid(row=2, column=4)
+    
+    def __criarButtonFornecedoresImagem(self):
+        self.imgbtn4 = PhotoImage(file="__init__\Imagens\Fornecedor.png")
+        self.btn_img4 = Button(self.tela2, image=self.imgbtn4,  width=140,height=140, bg="DodgerBlue", command=Fornecedor, relief="flat")
+        self.btn_img4.grid(row=1, column=4)
+
+    def __criarButtonLucros(self):
+        self.btn_lucro = Button(self.tela2, text='Lucro', width=15, height=2, command=Lucros)
+        self.btn_lucro.grid(row=2, column=5)
+
+    def __criarButtonLucrosImagem(self):
+        self.imgbtn5 = PhotoImage(file="__init__\Imagens\lucro.png")
+        self.btn_img5 = Button(self.tela2, image=self.imgbtn5,  width=140, height=140,bg="DodgerBlue", command=Lucros, relief="flat")
+        self.btn_img5.grid(row=1, column=5)
+
+    def __criarButtonPromocao(self):
+        self.btn_promocao = Button(self.tela2, text='Promocoes',width=15, height=2, command=Promocoes)
+        self.btn_promocao.grid(row=2, column=6)
+
+    def __criarButtonPromocaoImagem(self):
+        self.imgbtn6 = PhotoImage(file="__init__\Imagens\promocoes.png")
+        self.btn_img6 = Button(self.tela2, image=self.imgbtn6,  width=140,height=140, bg="DodgerBlue", command=Promocoes, relief="flat")
+        self.btn_img6.grid(row=1, column=6)
+
+    def __criarButtonGerenciar(self):
+        self.btn_gerenciar = Button(self.tela2, text='Gerenciar Usuários',width=15, height=2, command=Gerenciar)
+        self.btn_gerenciar.grid(row=2, column=7)
+
+    def __criarButtonGerenciarImagem(self):
+        self.imgbtn7 = PhotoImage(file="__init__\Imagens\gerente.png")
+        self.btn_img7 = Button(self.tela2, image=self.imgbtn7,  width=140, height=140,bg="DodgerBlue", command=Gerenciar, relief="flat")
+        self.btn_img7.grid(row=1, column=7)
+
     def __criarBtnVoltar(self):
         self.btn_voltar = Button(self.tela2, text="Logout", width=20,command=self.iExit2, bg="firebrick")
         self.btn_voltar.place(x=1150, y=700)
+
+
 
     #Validar permissão
     def ValidarPermissao(self, permision):
         self.permision = permision
         if self.permision == "1":
             #Controle
+            self.__criarButtonCaixa()
             self.__criarButtonCaixaImagem()
-            self.__criarBtncaixa()
 
             self.__criarBtnVoltar()
 
         elif self.permision == "2":
             #Administrador
-            self.imgbtn2 = PhotoImage(file="__init__\Imagens\produtos.png")
-            self.imgbtn3 = PhotoImage(file="__init__\Imagens\pedidos.png")
-            self.imgbtn4 = PhotoImage(file="__init__\Imagens\Fornecedor.png")
-
+            
+            self.__criarButtonCaixa()
             self.__criarButtonCaixaImagem()
-            self.__criarBtncaixa()
 
-            self.btn_produtos = Button(self.tela2, text='Produtos', width=15, height=2, command=Produtos)
-            self.btn_produtos.grid(row=2, column=2)
+            self.__criarButtonProdutos()
+            self.__criarButtonProdutosImagem()
 
-            self.btn_pedidos = Button(self.tela2, text='Pedidos', width=15, height=2, command=Pedidos)
-            self.btn_pedidos.grid(row=2, column=3)
+            self.__criarButtonPedidos()
+            self.__criarButtonPedidosImagem()
 
-            self.btn_fornecedores = Button(self.tela2, text='Fornecedores', width=15, height=2, command=Fornecedor)
-            self.btn_fornecedores.grid(row=2, column=4)
+            self.__criarButtonFornecedores()
+            self.__criarButtonFornecedoresImagem()
 
-            self.btn_img2 = Button(self.tela2, image=self.imgbtn2,  width=140,height=140, bg="DodgerBlue", command=Produtos, relief="flat")
-            self.btn_img2.grid(row=1, column=2)
-
-            self.btn_img3 = Button(self.tela2, image=self.imgbtn3,  width=140,height=140, bg="DodgerBlue", command=Pedidos, relief="flat")
-            self.btn_img3.grid(row=1, column=3)
-
-            self.btn_img4 = Button(self.tela2, image=self.imgbtn4,  width=140,height=140, bg="DodgerBlue", command=Fornecedor, relief="flat")
-            self.btn_img4.grid(row=1, column=4)
-
-            self.btn_voltar = Button(self.tela2, text="Logout", width=20, command=self.iExit2, bg="firebrick")
-            self.btn_voltar.place(x=1150, y=700)
+            self.__criarBtnVoltar()
             pass
         elif self.permision == "3":
-            self.imgbtn2 = PhotoImage(file="__init__\Imagens\produtos.png")
-            self.imgbtn3 = PhotoImage(file="__init__\Imagens\pedidos.png")
-            self.imgbtn4 = PhotoImage(file="__init__\Imagens\Fornecedor.png")
-            self.imgbtn5 = PhotoImage(file="__init__\Imagens\lucro.png")
-            self.imgbtn6 = PhotoImage(file="__init__\Imagens\promocoes.png")
-            self.imgbtn7 = PhotoImage(file="__init__\Imagens\gerente.png")
-           
-            self.__criarBtncaixa()
+            
+            
 
-            self.btn_produtos = Button(self.tela2, text='Produtos',width=15, height=2, command=Produtos)
-            self.btn_produtos.grid(row=2, column=2)
+            
+            self.__criarButtonProdutos()
+            self.__criarButtonProdutosImagem()
 
-            self.btn_pedidos = Button(self.tela2, text='Pedidos', width=15,height=2, command=Pedidos)
-            self.btn_pedidos.grid(row=2, column=3)
+            self.__criarButtonPedidos()
+            self.__criarButtonPedidosImagem()
 
-            self.btn_fornecedores = Button(self.tela2, text='Fornecedores', width=15, height=2, command=Fornecedor)
-            self.btn_fornecedores.grid(row=2, column=4)
+            self.__criarButtonFornecedores()
+            self.__criarButtonFornecedoresImagem()
 
-            self.btn_lucro = Button(self.tela2, text='Lucro', width=15, height=2, command=Lucros)
-            self.btn_lucro.grid(row=2, column=5)
-            self.btn_promocao = Button(self.tela2, text='Promocoes',width=15, height=2, command=Promocoes)
-            self.btn_promocao.grid(row=2, column=6)
+            self.__criarButtonLucros()
+            self.__criarButtonLucrosImagem()
+            
+            self.__criarButtonPromocao()
+            self.__criarButtonPromocaoImagem()
 
-            self.btn_gerenciar = Button(self.tela2, text='Gerenciar Usuários',width=15, height=2, command=Gerenciar)
-            self.btn_gerenciar.grid(row=2, column=7)
+            self.__criarButtonGerenciar()
+            self.__criarButtonGerenciarImagem()
+            
 
-            self.btn_voltar = Button(self.tela2, text="Logout", width=20,command=self.iExit2, bg="firebrick")
-            self.btn_voltar.place(x=1150, y=700)
+            self.__criarBtnVoltar()
 
-            self.btn_img9 = Button(self.tela2, image=self.imgbtn9, width=140, height=140,bg="DodgerBlue", command=Caixa, relief="flat")
-            self.btn_img9.grid(row=1, column=8)
+            
 
-            self.btn_img2 = Button(self.tela2, image=self.imgbtn2,  width=140, height=140,bg="DodgerBlue", command=Produtos, relief="flat")
-            self.btn_img2.grid(row=1, column=2)
+            
 
-            self.btn_img3 = Button(self.tela2, image=self.imgbtn3,  width=140, height=140,bg="DodgerBlue", command=Pedidos, relief="flat")
-            self.btn_img3.grid(row=1, column=3)
+            
 
-            self.btn_img4 = Button(self.tela2, image=self.imgbtn4,  width=140, height=140,bg="DodgerBlue", command=Fornecedor, relief="flat")
-            self.btn_img4.grid(row=1, column=4)
+            
 
-            self.btn_img5 = Button(self.tela2, image=self.imgbtn5,  width=140, height=140,bg="DodgerBlue", command=Lucros, relief="flat")
-            self.btn_img5.grid(row=1, column=5)
-
-            self.btn_img6 = Button(self.tela2, image=self.imgbtn6,  width=140,height=140, bg="DodgerBlue", command=Promocoes, relief="flat")
-            self.btn_img6.grid(row=1, column=6)
-
-            self.btn_img7 = Button(self.tela2, image=self.imgbtn7,  width=140, height=140,bg="DodgerBlue", command=Gerenciar, relief="flat")
-            self.btn_img7.grid(row=1, column=7)
-
-            self.btn_voltar = Button(self.tela2, text="Logout", width=20, command=self.iExit2, bg="firebrick")
-            self.btn_voltar.place(x=1150, y=700)
+            self.__criarBtnVoltar()
             pass
         
 
