@@ -73,11 +73,11 @@ class SegundaTela(Frame):
         self.btn_img5 = Button(self.tela2, image=self.imgbtn5,  width=140, height=140,bg="DodgerBlue", command=Lucros, relief="flat")
         self.btn_img5.grid(row=1, column=5)
 
-    def __criarButtonPromocao(self):
-        self.btn_promocao = Button(self.tela2, text='Promocoes',width=15, height=2, command=Promocoes)
-        self.btn_promocao.grid(row=2, column=6)
+    def __criarButtonCupons(self):
+        self.btn_cupons = Button(self.tela2, text='Cupons',width=15, height=2, command=Promocoes)
+        self.btn_cupons.grid(row=2, column=6)
 
-    def __criarButtonPromocaoImagem(self):
+    def __criarButtonCuponsImagem(self):
         self.imgbtn6 = PhotoImage(file="__init__\Imagens\promocoes.png")
         self.btn_img6 = Button(self.tela2, image=self.imgbtn6,  width=140,height=140, bg="DodgerBlue", command=Promocoes, relief="flat")
         self.btn_img6.grid(row=1, column=6)
@@ -123,11 +123,10 @@ class SegundaTela(Frame):
             self.__criarButtonFornecedoresImagem()
 
             self.__criarBtnVoltar()
-            pass
+            
         elif self.permision == "3":
-            
-            
-
+            self.__criarButtonCaixa()
+            self.__criarButtonCaixaImagem()
             
             self.__criarButtonProdutos()
             self.__criarButtonProdutosImagem()
@@ -141,26 +140,14 @@ class SegundaTela(Frame):
             self.__criarButtonLucros()
             self.__criarButtonLucrosImagem()
             
-            self.__criarButtonPromocao()
-            self.__criarButtonPromocaoImagem()
+            self.__criarButtonCupons()
+            self.__criarButtonCuponsImagem()
 
             self.__criarButtonGerenciar()
             self.__criarButtonGerenciarImagem()
             
 
             self.__criarBtnVoltar()
-
-            
-
-            
-
-            
-
-            
-
-            self.__criarBtnVoltar()
-            pass
-        
 
     def geometry(self):
         self.tela2.title("Tela Inicial")
