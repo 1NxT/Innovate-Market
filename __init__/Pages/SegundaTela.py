@@ -21,38 +21,44 @@ class SegundaTela(Frame):
         self.imgbtn7 = PhotoImage(file="__init__\Imagens\gerente.png")
         self.imgbtn9 = PhotoImage(file="__init__\Imagens\caixa.png")
         self.geometry()
-        self.config(resultado[2])
+        self.ValidarPermissao(resultado[2])
 
     def iExit2(self):
         self.tela2.destroy()
         return
 
-    
-    def config(self, permision):
+    #Method Create Button
+    def __criarBtncaixa(self):
+        self.btn_caixa = Button(self.tela2, text="Caixa", width=15, height=2, command=Caixa)
+        self.btn_caixa.grid(row=2, column=8)
+
+    def __criarButtonCaixaImagem(self):
+        self.imgbtn9 = PhotoImage(file="__init__\Imagens\caixa.png")
+        self.btn_img9 = Button(self.tela2, image=self.imgbtn9, width=140,height=140, bg="DodgerBlue", command=Caixa, relief="flat")
+        self.btn_img9.grid(row=1, column=8)
+
+    def __criarBtnVoltar(self):
+        self.btn_voltar = Button(self.tela2, text="Logout", width=20,command=self.iExit2, bg="firebrick")
+        self.btn_voltar.place(x=1150, y=700)
+
+    #Validar permissão
+    def ValidarPermissao(self, permision):
         self.permision = permision
         if self.permision == "1":
             #Controle
-            self.imgbtn9 = PhotoImage(file="__init__\Imagens\caixa.png")
-            self.btn_img9 = Button(self.tela2, image=self.imgbtn9, width=140,height=140, bg="DodgerBlue", command=Caixa, relief="flat")
-            self.btn_img9.grid(row=1, column=8)
-            self.btn_caixa = Button(self.tela2, text="Caixa", width=15, height=2, command=Caixa)
-            self.btn_caixa.grid(row=2, column=8)
+            self.__criarButtonCaixaImagem()
+            self.__criarBtncaixa()
 
+            self.__criarBtnVoltar()
 
-            self.btn_voltar = Button(self.tela2, text="Logout", width=20,command=self.iExit2, bg="firebrick")
-            self.btn_voltar.place(x=1150, y=700)
-            pass
         elif self.permision == "2":
             #Administrador
             self.imgbtn2 = PhotoImage(file="__init__\Imagens\produtos.png")
             self.imgbtn3 = PhotoImage(file="__init__\Imagens\pedidos.png")
             self.imgbtn4 = PhotoImage(file="__init__\Imagens\Fornecedor.png")
 
-            self.imgbtn9 = PhotoImage(file="__init__\Imagens\caixa.png")
-            self.btn_img9 = Button(self.tela2, image=self.imgbtn9, width=140,height=140, bg="DodgerBlue", command=Caixa, relief="flat")
-            self.btn_img9.grid(row=1, column=8)
-            self.btn_caixa = Button(self.tela2, text="Caixa", width=15, height=2, command=Caixa)
-            self.btn_caixa.grid(row=2, column=8)
+            self.__criarButtonCaixaImagem()
+            self.__criarBtncaixa()
 
             self.btn_produtos = Button(self.tela2, text='Produtos', width=15, height=2, command=Produtos)
             self.btn_produtos.grid(row=2, column=2)
@@ -82,9 +88,8 @@ class SegundaTela(Frame):
             self.imgbtn5 = PhotoImage(file="__init__\Imagens\lucro.png")
             self.imgbtn6 = PhotoImage(file="__init__\Imagens\promocoes.png")
             self.imgbtn7 = PhotoImage(file="__init__\Imagens\gerente.png")
-            self.imgbtn9 = PhotoImage(file="__init__\Imagens\caixa.png")
-            self.btn_caixa = Button(self.tela2, text="Caixa", width=15,height=2, command=Caixa)
-            self.btn_caixa.grid(row=2, column=8)
+           
+            self.__criarBtncaixa()
 
             self.btn_produtos = Button(self.tela2, text='Produtos',width=15, height=2, command=Produtos)
             self.btn_produtos.grid(row=2, column=2)
@@ -105,6 +110,7 @@ class SegundaTela(Frame):
 
             self.btn_voltar = Button(self.tela2, text="Logout", width=20,command=self.iExit2, bg="firebrick")
             self.btn_voltar.place(x=1150, y=700)
+
             self.btn_img9 = Button(self.tela2, image=self.imgbtn9, width=140, height=140,bg="DodgerBlue", command=Caixa, relief="flat")
             self.btn_img9.grid(row=1, column=8)
 
