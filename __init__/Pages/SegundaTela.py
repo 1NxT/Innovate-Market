@@ -105,6 +105,9 @@ class SegundaTela(Frame):
             self.__criarButtonCaixa()
             self.__criarButtonCaixaImagem()
 
+            self.__criarButtonProdutos()
+            self.__criarButtonProdutosImagem()
+
             self.__criarBtnVoltar()
 
         elif self.permision == "2":
@@ -122,8 +125,16 @@ class SegundaTela(Frame):
             self.__criarButtonFornecedores()
             self.__criarButtonFornecedoresImagem()
 
+            self.__criarButtonLucros()
+            self.__criarButtonLucrosImagem()
+
+            self.__criarButtonCupons()
+            self.__criarButtonCuponsImagem()
+
+            self.__criarButtonGerenciar()
+            self.__criarButtonGerenciarImagem()
+
             self.__criarBtnVoltar()
-            
         elif self.permision == "3":
             self.__criarButtonCaixa()
             self.__criarButtonCaixaImagem()
