@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter.ttk as ttk
 from Classes.MySql import *
+from Classes.Config import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
 
@@ -18,7 +19,8 @@ class Fornecedor:
         self.telaforne.geometry("1360x760")
         self.telaforne.configure(bg="DodgerBlue")
         self.telaforne.resizable(False, False)
-        self.telaforne.iconbitmap('__init__\Imagens\logo.ico')
+        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.telaforne.iconbitmap(self.__iconImagemPath)
         
     def voltar_inicial_forne(self):
         self.telaforne.destroy()

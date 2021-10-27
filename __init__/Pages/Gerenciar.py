@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
+from Classes.Config import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
 
@@ -15,7 +16,8 @@ class Gerenciar :
         self.telageren.geometry("1360x760")
         self.telageren.configure(bg="DodgerBlue")
         self.telageren.resizable(False, False)
-        self.telageren.iconbitmap('__init__\Imagens\logo.ico')
+        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.telageren.iconbitmap(self.__iconImagemPath)
 
     def tela_inicial_gerenciar(self):
             cadastro_usuario.destroy()
@@ -31,7 +33,11 @@ class Gerenciar :
                 self.tree_gere.insert("","end",values=i)
         else:
             print("Error!")
-    
+
+    def tela_inicial_gerenciar(self):
+        self.telageren.destroy()
+        return
+
     # Função para procurar por dados na Treeview        
     def chamaPesquisar(self):
         resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "usuarios")

@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
+from Classes.Config import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
 
@@ -24,7 +25,8 @@ class Caixa(Frame):
         self.telacaixa.geometry("1360x760")
         self.telacaixa.configure(bg="DodgerBlue")
         self.telacaixa.resizable(False, False)
-        self.telacaixa.iconbitmap('__init__\Imagens\logo.ico')
+        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.telacaixa.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_caixa(self):
         self.telacaixa.destroy()
@@ -44,7 +46,7 @@ class Caixa(Frame):
     
     # Função para procurar por dados na Treeview        
     def chamaPesquisar(self):
-        resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "caixa")
+        resultado = Pesquisar.pesquisar(self.ent_pesquisar.get(), "caixa")
 
         if resultado != None:
             self.tree_caixa.delete(*self.tree_caixa.get_children())

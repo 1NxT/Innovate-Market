@@ -1,34 +1,43 @@
 from tkinter import *
 import time
+from Classes.Config import *
 from Classes.Logar import Logar
+from Classes.Config import *
 from Pages.SegundaTela import *
 
 class Principal(Frame):
     def __init__(self):
         self.tk = Tk()
-        self.img = PhotoImage(file="__init__\Imagens\Logo.png")
+        self.icon = Config().images() / "Logo.png"
+        self.img = PhotoImage(file=self.icon)
         self.geometry()
         self.elementos()
         self.tk.mainloop()
         
 
     def iExit(self):
-        self.tk.destroy()
+        self.result = messagebox.askquestion(
+            'AVISO', 'Tem certeza que deseja sair?', icon="warning")
+        if self.result == "yes":
+            self.tk.destroy()
         return
+
 
     def geometry(self):
         self.tk.title("Tela de login")
         self.tk.geometry("600x600")
         self.tk.configure(bg="DodgerBlue")
         self.tk.resizable(False, False)
-        self.tk.iconbitmap('__init__\Imagens\logo.ico')
+        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.tk.iconbitmap(self.__iconImagemPath)
         
 
     def chamarLogar(self):
         resultado1 = Logar().login(self.ent_login.get(), self.ent_senha.get())
         
         if resultado1 != None:
-            SegundaTela()
+            SegundaTela(resultado1)
+            
         else:
             self.lbl_dados["text"] = "Dados de usuário ou senha incorretos!"
             
