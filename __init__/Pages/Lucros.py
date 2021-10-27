@@ -1,7 +1,7 @@
 from tkinter import *
-from Classes.Config import *
 import seaborn as sns
 import matplotlib.pyplot as plt
+from Pages.common.Config import *
 
 class Lucros:
     def __init__(self):
@@ -15,7 +15,7 @@ class Lucros:
         self.telalucro.geometry("1360x760")
         self.telalucro.configure(bg="DodgerBlue")
         self.telalucro.resizable(False, False)
-        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.__iconImagemPath = imagespath / "logo.ico"
         self.telalucro.iconbitmap(self.__iconImagemPath)
         
     def voltar_inicial_lucros(self):

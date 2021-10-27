@@ -1,10 +1,9 @@
 from tkinter import *
 import tkinter.ttk as ttk
 from Classes.MySql import *
-from Classes.Config import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
-
+from Pages.common.Config import *
 
 class Fornecedor:
     def __init__(self):
@@ -19,7 +18,7 @@ class Fornecedor:
         self.telaforne.geometry("1360x760")
         self.telaforne.configure(bg="DodgerBlue")
         self.telaforne.resizable(False, False)
-        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.__iconImagemPath = imagespath / "logo.ico"
         self.telaforne.iconbitmap(self.__iconImagemPath)
         
     def voltar_inicial_forne(self):

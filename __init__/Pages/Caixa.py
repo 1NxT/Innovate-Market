@@ -1,8 +1,8 @@
 from tkinter import *
 import tkinter.ttk as ttk
-from Classes.Config import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
+from Pages.common.Config import *
 
 
 class Caixa(Frame):
@@ -25,7 +25,7 @@ class Caixa(Frame):
         self.telacaixa.geometry("1360x760")
         self.telacaixa.configure(bg="DodgerBlue")
         self.telacaixa.resizable(False, False)
-        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.__iconImagemPath = imagespath / "logo.ico"
         self.telacaixa.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_caixa(self):

@@ -1,8 +1,8 @@
 from tkinter import *
-from Classes.Config import *
 from Classes.MySql import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
+from Pages.common.Config import *
 
 class Promocoes:
     def __init__(self):
@@ -16,7 +16,7 @@ class Promocoes:
         self.telapromo.geometry("1360x760")
         self.telapromo.configure(bg="DodgerBlue")
         self.telapromo.resizable(False, False)
-        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.__iconImagemPath = imagespath / "logo.ico"
         self.telapromo.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_promocoes(self):

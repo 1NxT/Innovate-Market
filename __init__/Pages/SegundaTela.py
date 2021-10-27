@@ -1,5 +1,5 @@
 from tkinter import *
-from Classes.Config import *
+from tkinter import messagebox
 from Pages.Caixa import *
 from Pages.Fornecedores import *
 from Pages.Gerenciar import *
@@ -7,6 +7,7 @@ from Pages.Lucros import *
 from Pages.Pedidos import *
 from Pages.Produtos import *
 from Pages.Promocoes import *
+from Pages.common.Config import *
 
 class SegundaTela(Frame):
     def __init__(self, resultado):
@@ -23,7 +24,7 @@ class SegundaTela(Frame):
         self.tela2.geometry("1360x768")
         self.tela2.configure(bg="DodgerBlue")
         self.tela2.resizable(False, False)
-        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.__iconImagemPath = imagespath / "logo.ico"
         self.tela2.iconbitmap(self.__iconImagemPath)
 
     #Methods Create Buttons
@@ -32,7 +33,7 @@ class SegundaTela(Frame):
         self.__btn_caixa.grid(row=2, column=8)
 
     def __criarButtonCaixaImagem(self):
-        self.__caixaImagemPath = Config().images() / "caixa.png"
+        self.__caixaImagemPath = imagespath / "caixa.png"
         self.__caixaImagem = PhotoImage(file=self.__caixaImagemPath)
         self.__btn_CaixaImagem = Button(self.tela2, image=self.__caixaImagem, width=140,height=140, bg="DodgerBlue", command=Caixa, relief="flat")
         self.__btn_CaixaImagem.grid(row=1, column=8)
@@ -42,7 +43,7 @@ class SegundaTela(Frame):
         self.__btn_produtos.grid(row=2, column=2)
 
     def __criarButtonProdutosImagem(self):
-        self.__produtosImagemPath = Config().images() / "produtos.png"
+        self.__produtosImagemPath = imagespath / "produtos.png"
         self.__produtosImagem = PhotoImage(file=self.__produtosImagemPath)
         self.__btn_produtosImagem = Button(self.tela2, image=self.__produtosImagem,  width=140,height=140, bg="DodgerBlue", command=Produtos, relief="flat")
         self.__btn_produtosImagem.grid(row=1, column=2)
@@ -52,7 +53,7 @@ class SegundaTela(Frame):
         self.__btn_pedidos.grid(row=2, column=3)
     
     def __criarButtonPedidosImagem(self):
-        self.__pedidosImagemPath = Config().images() / "pedidos.png"
+        self.__pedidosImagemPath = imagespath / "pedidos.png"
         self.__pedidosImagem = PhotoImage(file=self.__pedidosImagemPath)
         self.__btn_pedidosImagem = Button(self.tela2, image=self.__pedidosImagem,  width=140,height=140, bg="DodgerBlue", command=Pedidos, relief="flat")
         self.__btn_pedidosImagem.grid(row=1, column=3)
@@ -62,7 +63,7 @@ class SegundaTela(Frame):
         self.__btn_fornecedores.grid(row=2, column=4)
     
     def __criarButtonFornecedoresImagem(self):
-        self.__fornecedorImagemPath = Config().images() / "Fornecedor.png"
+        self.__fornecedorImagemPath = imagespath / "Fornecedor.png"
         self.__fornecedorImagem = PhotoImage(file=self.__fornecedorImagemPath)
         self.__btn_fornecedorImagem = Button(self.tela2, image=self.__fornecedorImagem,  width=140,height=140, bg="DodgerBlue", command=Fornecedor, relief="flat")
         self.__btn_fornecedorImagem.grid(row=1, column=4)
@@ -72,7 +73,7 @@ class SegundaTela(Frame):
         self.__btn_lucro.grid(row=2, column=5)
 
     def __criarButtonLucrosImagem(self):
-        self.__lucroImagemPath = Config().images() / "lucro.png"
+        self.__lucroImagemPath = imagespath / "lucro.png"
         self.__lucroImagem = PhotoImage(file=self.__lucroImagemPath)
         self.__btn_lucroImagem = Button(self.tela2, image=self.__lucroImagem,  width=140, height=140,bg="DodgerBlue", command=Lucros, relief="flat")
         self.__btn_lucroImagem.grid(row=1, column=5)
@@ -82,7 +83,7 @@ class SegundaTela(Frame):
         self.__btn_Promocoes.grid(row=2, column=6)
 
     def __criarButtonPromocoesImagem(self):
-        self.__promocoesImagemPath = Config().images() / "promocoes.png"
+        self.__promocoesImagemPath = imagespath / "promocoes.png"
         self.__promocoesImagem = PhotoImage(file=self.__promocoesImagemPath)
         self.__btn_promocoesImagem = Button(self.tela2, image=self.__promocoesImagem,  width=140,height=140, bg="DodgerBlue", command=Promocoes, relief="flat")
         self.__btn_promocoesImagem.grid(row=1, column=6)
@@ -92,7 +93,7 @@ class SegundaTela(Frame):
         self.btn_gerenciar.grid(row=2, column=7)
 
     def __criarButtonGerenciarImagem(self):
-        self.__gerenteImagemPath = Config().images() / "gerente.png"
+        self.__gerenteImagemPath = imagespath / "gerente.png"
         self.__gerenteImagem = PhotoImage(file=self.__gerenteImagemPath)
         self.__btn_gerenteImagem = Button(self.tela2, image=self.__gerenteImagem,  width=140, height=140,bg="DodgerBlue", command=Gerenciar, relief="flat")
         self.__btn_gerenteImagem.grid(row=1, column=7)

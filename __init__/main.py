@@ -6,4 +6,5 @@ from Classes.MySql import *
 from Pages.Principal import *
 
 
+
 tela = Principal()

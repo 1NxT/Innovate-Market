@@ -1,14 +1,14 @@
 from tkinter import *
+from tkinter import messagebox
 import time
-from Classes.Config import *
 from Classes.Logar import Logar
-from Classes.Config import *
 from Pages.SegundaTela import *
+from Pages.common.Config import *
 
 class Principal(Frame):
     def __init__(self):
         self.tk = Tk()
-        self.icon = Config().images() / "Logo.png"
+        self.icon = imagespath / "Logo.png"
         self.img = PhotoImage(file=self.icon)
         self.geometry()
         self.elementos()
@@ -28,7 +28,7 @@ class Principal(Frame):
         self.tk.geometry("600x600")
         self.tk.configure(bg="DodgerBlue")
         self.tk.resizable(False, False)
-        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.__iconImagemPath = imagespath / "logo.ico"
         self.tk.iconbitmap(self.__iconImagemPath)
         
 
