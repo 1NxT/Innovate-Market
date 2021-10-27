@@ -1,4 +1,5 @@
 from tkinter import *
+from Classes.Config import *
 from Classes.MySql import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
@@ -15,7 +16,8 @@ class Promocoes:
         self.telapromo.geometry("1360x760")
         self.telapromo.configure(bg="DodgerBlue")
         self.telapromo.resizable(False, False)
-        self.telapromo.iconbitmap('__init__\Imagens\logo.ico')
+        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.telapromo.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_promocoes(self):
         self.telapromo.destroy()

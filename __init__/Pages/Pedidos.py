@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
+from Classes.Config import *
 from Classes.MySql import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
@@ -17,7 +18,8 @@ class Pedidos(Frame):
         self.telapedi.geometry("1360x760")
         self.telapedi.configure(bg="DodgerBlue")
         self.telapedi.resizable(False, False)
-        self.telapedi.iconbitmap('__init__\Imagens\logo.ico')
+        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.telapedi.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_pedi(self):
             self.telapedi.destroy()

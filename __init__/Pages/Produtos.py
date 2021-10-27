@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
+from Classes.Config import *
 from Classes.MySql import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
@@ -20,7 +21,8 @@ class Produtos(Frame):
         self.telaprodutos.geometry("1360x760")
         self.telaprodutos.configure(bg="DodgerBlue")
         self.telaprodutos.resizable(False, False)
-        self.telaprodutos.iconbitmap('__init__\Imagens\logo.ico')
+        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.telaprodutos.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_pro(self):
         self.telaprodutos.destroy()

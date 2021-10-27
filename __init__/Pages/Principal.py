@@ -1,13 +1,15 @@
 from tkinter import *
-from tkinter import messagebox
 import time
+from Classes.Config import *
 from Classes.Logar import Logar
+from Classes.Config import *
 from Pages.SegundaTela import *
 
 class Principal(Frame):
     def __init__(self):
         self.tk = Tk()
-        self.img = PhotoImage(file="__init__\Imagens\Logo.png")
+        self.icon = Config().images() / "Logo.png"
+        self.img = PhotoImage(file=self.icon)
         self.geometry()
         self.elementos()
         self.tk.mainloop()
@@ -26,7 +28,8 @@ class Principal(Frame):
         self.tk.geometry("600x600")
         self.tk.configure(bg="DodgerBlue")
         self.tk.resizable(False, False)
-        self.tk.iconbitmap('__init__\Imagens\logo.ico')
+        self.__iconImagemPath = Config().images() / "logo.ico"
+        self.tk.iconbitmap(self.__iconImagemPath)
         
 
     def chamarLogar(self):
