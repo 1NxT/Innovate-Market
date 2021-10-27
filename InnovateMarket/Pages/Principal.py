@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import time
-from Classes.Logar import Logar
+from Classes.UsuarioDB import UsuarioDB
 from Pages.SegundaTela import *
 from Pages.common.Config import *
 
@@ -12,8 +12,7 @@ class Principal(Frame):
         self.img = PhotoImage(file=self.icon)
         self.geometry()
         self.elementos()
-        self.tk.mainloop()
-        
+        self.tk.mainloop()   
 
     def iExit(self):
         self.result = messagebox.askquestion(
@@ -21,7 +20,6 @@ class Principal(Frame):
         if self.result == "yes":
             self.tk.destroy()
         return
-
 
     def geometry(self):
         self.tk.title("Tela de login")
@@ -31,17 +29,14 @@ class Principal(Frame):
         self.__iconImagemPath = imagespath / "logo.ico"
         self.tk.iconbitmap(self.__iconImagemPath)
         
-
     def chamarLogar(self):
-        resultado1 = Logar().login(self.ent_login.get(), self.ent_senha.get())
+        usuario = UsuarioDB().pegarUsuario(self.ent_login.get())
         
-        if resultado1 != None:
-            SegundaTela(resultado1)
-            
+        if usuario != None and usuario.verificarSenha(self.ent_senha.get()):
+            SegundaTela(usuario) 
         else:
             self.lbl_dados["text"] = "Dados de usuário ou senha incorretos!"
             
-
     def elementos(self):
         # LABELS 1° TELA
         self.lbl_login = Label(self.tk, text="Login: ",font="arial 18", bg="DodgerBlue", width=6)

@@ -8,12 +8,13 @@ from Pages.Pedidos import *
 from Pages.Produtos import *
 from Pages.Promocoes import *
 from Pages.common.Config import *
+from Classes.Usuario import Cargo
 
 class SegundaTela(Frame):
-    def __init__(self, resultado):
+    def __init__(self, usuario):
         Frame.__init__(self, master=None)
         self.tela2 = Toplevel()
-        self.__ValidarPermissao(resultado[2])
+        self.CarregarTela(usuario.cargo)
 
     def iExit2(self):
         self.tela2.destroy()
@@ -102,20 +103,10 @@ class SegundaTela(Frame):
         self.btn_voltar = Button(self.tela2, text="Logout", width=20,command=self.iExit2, bg="firebrick")
         self.btn_voltar.place(x=1150, y=700)
 
-    def __ValidarPermissao(self, permision):
-        self.__permision = permision
-        if self.__permision == "1":
-            self.CarregarTela("Caixa")
-        elif self.__permision == "2" or self.__permision == "3":
-            self.CarregarTela("Administrador")
-        else:
-            messagebox.showwarning('ERROR', 'Sua permissão não foi encontrada!', icon="warning")
-
     #Validar permissão
     def CarregarTela(self, cargo):
-        self.__cargo = cargo
         self.__geometry()
-        if self.__cargo == "Caixa":
+        if cargo == Cargo.CAIXA:
             self.__criarButtonCaixa()
             self.__criarButtonCaixaImagem()
 
@@ -124,7 +115,7 @@ class SegundaTela(Frame):
 
             self.__criarBtnVoltar()
 
-        elif self.__cargo == "Administrador":
+        elif cargo == Cargo.ADMINISTRADOR:
             self.__criarButtonCaixa()
             self.__criarButtonCaixaImagem()
 
