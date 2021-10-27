@@ -24,7 +24,7 @@ class Gerenciar :
             return
         
     def view_tree(self):
-        resultado = Mostrar().mostrar(self, "usuarios", "login")
+        resultado = Mostrar().mostrar(self, "user", "CPF")
         
         if resultado != None:
             self.tree_gere.delete(*self.tree_gere.get_children())

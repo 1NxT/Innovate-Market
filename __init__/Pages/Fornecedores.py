@@ -30,7 +30,7 @@ class Fornecedor:
         self.ent_pesquisar.insert(0, "")
     
     def view_tree(self):
-        resultado = Mostrar().mostrar(self, "fornecedor", "nome")
+        resultado = Mostrar().mostrar(self, "fornecedores", "CNPJ")
         
         if resultado != None:
             self.tree_forne.delete(*self.tree_forne.get_children())

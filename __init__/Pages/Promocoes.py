@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.ttk as ttk
 from Classes.MySql import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
@@ -30,7 +31,7 @@ class Promocoes:
     
     
     def view_tree(self):
-        resultado = Mostrar().mostrar(self, "promocoes", "nome_produto")
+        resultado = Mostrar().mostrar(self, "cupons", "ID")
         
         if resultado != None:
             self.tree_promo.delete(*self.tree_promo.get_children())

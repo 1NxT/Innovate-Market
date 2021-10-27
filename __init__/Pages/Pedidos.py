@@ -30,7 +30,7 @@ class Pedidos(Frame):
         self.ent_pesquisar.insert(0, "")
         
     def view_tree(self):
-        resultado = Mostrar().mostrar(self, "pedidos", "id_pedido")
+        resultado = Mostrar().mostrar(self, "pedidos", "ID")
         
         if resultado != None:
             self.tree_pedi.delete(*self.tree_pedi.get_children())

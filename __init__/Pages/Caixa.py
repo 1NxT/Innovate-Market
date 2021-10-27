@@ -10,8 +10,8 @@ class Caixa(Frame):
         Frame.__init__(self, master=None)
         self.telacaixa = Toplevel()
         self.geometry()
-
-        self.imgcaixa = PhotoImage(file="__init__\Imagens\Logo_Caixa.png")
+        self.imagecaixapath = imagespath /  "Logo.png"
+        self.imgcaixa = PhotoImage(file=self.imagecaixapath)
         self.options = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
         self.itemVariable = StringVar()
         self.itemVariable.set(self.options[0])
@@ -34,7 +34,7 @@ class Caixa(Frame):
     
     # Função para aparecer os dados na Treeview
     def view_tree(self):
-        resultado = Mostrar().mostrar(self, "caixa", "id_produto")
+        resultado = Mostrar().mostrar(self, "caixa", "ID")
         
         if resultado != None:
             self.tree_caixa.delete(*self.tree_caixa.get_children())
