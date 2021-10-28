@@ -39,7 +39,7 @@ class SegundaTela(Frame):
     def __criarButtonCaixaImagem(self):
         self.__caixaImagemPath = imagespath / "caixa.png"
         self.__caixaImagem = PhotoImage(file=self.__caixaImagemPath)
-        self.__btn_CaixaImagem = Button(self.tela2, image=self.__caixaImagem, width=140, bg="DodgerBlue", command=Caixa, relief="flat", borderwidth=0)
+        self.__btn_CaixaImagem = Button(self.tela2, image=self.__caixaImagem, width=140,  command=Caixa, relief="flat", borderwidth=0)
         self.__btn_CaixaImagem.place(x=1117, y=70)
 
     def __criarButtonProdutosImagem(self):
@@ -53,7 +53,7 @@ class SegundaTela(Frame):
     def __criarButtonPedidosImagem(self):
         self.__pedidosImagemPath = imagespath / "pedidos.png"
         self.__pedidosImagem = PhotoImage(file=self.__pedidosImagemPath)
-        self.__btn_pedidosImagem = Button(self.tela2, image=self.__pedidosImagem,  width=140, bg="DodgerBlue", command=Pedidos, relief="flat", borderwidth=0)
+        self.__btn_pedidosImagem = Button(self.tela2, image=self.__pedidosImagem,  width=140,  command=Pedidos, relief="flat", borderwidth=0)
         self.__btn_pedidosImagem.place(x=60, y=400)
 
 
@@ -61,7 +61,7 @@ class SegundaTela(Frame):
     def __criarButtonFornecedoresImagem(self):
         self.__fornecedorImagemPath = imagespath / "Fornecedor.png"
         self.__fornecedorImagem = PhotoImage(file=self.__fornecedorImagemPath)
-        self.__btn_fornecedorImagem = Button(self.tela2, image=self.__fornecedorImagem,  width=140, bg="DodgerBlue", command=Fornecedor, relief="flat", borderwidth=0)
+        self.__btn_fornecedorImagem = Button(self.tela2, image=self.__fornecedorImagem,  width=140,  command=Fornecedor, relief="flat", borderwidth=0)
         self.__btn_fornecedorImagem.place(x=370, y=70)
 
 
@@ -69,7 +69,7 @@ class SegundaTela(Frame):
     def __criarButtonLucrosImagem(self):
         self.__lucroImagemPath = imagespath / "lucro.png"
         self.__lucroImagem = PhotoImage(file=self.__lucroImagemPath)
-        self.__btn_lucroImagem = Button(self.tela2, image=self.__lucroImagem,  width=140,bg="DodgerBlue", command=Lucros, relief="flat", borderwidth=0)
+        self.__btn_lucroImagem = Button(self.tela2, image=self.__lucroImagem,  width=140, command=Lucros, relief="flat", borderwidth=0)
         self.__btn_lucroImagem.place(x=370, y=400)
 
 
@@ -77,7 +77,7 @@ class SegundaTela(Frame):
     def __criarButtonPromocoesImagem(self):
         self.__promocoesImagemPath = imagespath / "promocoes.png"
         self.__promocoesImagem = PhotoImage(file=self.__promocoesImagemPath)
-        self.__btn_promocoesImagem = Button(self.tela2, image=self.__promocoesImagem,  width=140, bg="DodgerBlue", command=Promocoes, relief="flat", borderwidth=0)
+        self.__btn_promocoesImagem = Button(self.tela2, image=self.__promocoesImagem,  width=140,  command=Promocoes, relief="flat", borderwidth=0)
         self.__btn_promocoesImagem.place(x=745, y=70)
 
 
@@ -85,7 +85,7 @@ class SegundaTela(Frame):
     def __criarButtonGerenciarImagem(self):
         self.__gerenteImagemPath = imagespath / "gerente.png"
         self.__gerenteImagem = PhotoImage(file=self.__gerenteImagemPath)
-        self.__btn_gerenteImagem = Button(self.tela2, image=self.__gerenteImagem,  width=140,bg="DodgerBlue", command=Gerenciar, relief="flat", borderwidth=0)
+        self.__btn_gerenteImagem = Button(self.tela2, image=self.__gerenteImagem,  width=140, command=Gerenciar, relief="flat", borderwidth=0)
         self.__btn_gerenteImagem.place(x=745, y=400)
 
     def __criarBtnVoltar(self):
@@ -164,24 +164,24 @@ class SegundaTela(Frame):
 
         #Imagens Botões
 
-        self.btn_img9 = Button(self.tela2, image=self.imgbtn9, width=140, height=140,bg="DodgerBlue", command=Caixa, relief="flat", borderwidth=0)
+        self.btn_img9 = Button(self.tela2, image=self.imgbtn9, width=140, height=140, command=Caixa, relief="flat", borderwidth=0)
         self.btn_img9.grid(row=1, column=8)
 
-        self.btn_img2 = Button(self.tela2, image=self.imgbtn2,  width=140, height=140,bg="DodgerBlue", command=Produtos, relief="flat", borderwidth=0)
+        self.btn_img2 = Button(self.tela2, image=self.imgbtn2,  width=140, height=140, command=Produtos, relief="flat", borderwidth=0)
         self.btn_img2.grid(row=1, column=2)
 
-        self.btn_img3 = Button(self.tela2, image=self.imgbtn3,  width=140, height=140,bg="DodgerBlue", command=Pedidos, relief="flat", borderwidth=0)
+        self.btn_img3 = Button(self.tela2, image=self.imgbtn3,  width=140, height=140, command=Pedidos, relief="flat", borderwidth=0)
         self.btn_img3.grid(row=1, column=3)
 
-        self.btn_img4 = Button(self.tela2, image=self.imgbtn4,  width=140, height=140,bg="DodgerBlue", command=Fornecedor, relief="flat", borderwidth=0)
+        self.btn_img4 = Button(self.tela2, image=self.imgbtn4,  width=140, height=140, command=Fornecedor, relief="flat", borderwidth=0)
         self.btn_img4.grid(row=1, column=4)
 
-        self.btn_img5 = Button(self.tela2, image=self.imgbtn5,  width=140, height=140,bg="DodgerBlue", command=Lucros, relief="flat", borderwidth=0)
+        self.btn_img5 = Button(self.tela2, image=self.imgbtn5,  width=140, height=140, command=Lucros, relief="flat", borderwidth=0)
         self.btn_img5.grid(row=1, column=5)
 
-        self.btn_img6 = Button(self.tela2, image=self.imgbtn6,  width=140,height=140, bg="DodgerBlue", command=Promocoes, relief="flat", borderwidth=0)
+        self.btn_img6 = Button(self.tela2, image=self.imgbtn6,  width=140,height=140,  command=Promocoes, relief="flat", borderwidth=0)
         self.btn_img6.grid(row=1, column=6)
 
-        self.btn_img7 = Button(self.tela2, image=self.imgbtn7,  width=140, height=140,bg="DodgerBlue", command=Gerenciar, relief="flat", borderwidth=0)
+        self.btn_img7 = Button(self.tela2, image=self.imgbtn7,  width=140, height=140, command=Gerenciar, relief="flat", borderwidth=0)
         self.btn_img7.grid(row=1, column=7)
  """
