@@ -16,12 +16,12 @@ class Gerenciar :
         self.telageren.geometry("1360x760")
         self.telageren.configure(bg="DodgerBlue")
         self.telageren.resizable(False, False)
-        self.__iconImagemPath = imagespath / "logo.ico"
-        self.telageren.iconbitmap(self.__iconImagemPath)
+        # self.__iconImagemPath = imagespath / "logo.ico"
+        # self.telageren.iconbitmap(self.__iconImagemPath)
 
-    def tela_inicial_gerenciar(self):
-            cadastro_usuario.destroy()
-            return
+    # def tela_inicial_gerenciar(self):
+    #         cadastro_usuario.destroy()
+    #         return
         
     def view_tree(self):
         resultado = Mostrar().mostrar(self, "user", "CPF")
