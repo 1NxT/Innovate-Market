@@ -15,8 +15,8 @@ class Lucros:
         self.telalucro.geometry("1360x760")
         self.telalucro.configure(bg="DodgerBlue")
         self.telalucro.resizable(False, False)
-        self.__iconImagemPath = imagespath / "logo.ico"
-        self.telalucro.iconbitmap(self.__iconImagemPath)
+        # self.__iconImagemPath = imagespath / "logo.ico"
+        # self.telalucro.iconbitmap(self.__iconImagemPath)
         
     def voltar_inicial_lucros(self):
         self.telalucro.destroy()
@@ -29,5 +29,5 @@ class Lucros:
         self.lbl_lucro= Label(self.telalucro, text="Lucros:", font="arial 18", bg="DodgerBlue", width=13)
         self.lbl_lucro.place(x=1,y=1 )
         
-        self.sns.lineplot(data=variavel_dos_dados)
+        # self.sns.lineplot(data=variavel_dos_dados)
         #self.plt.show()
