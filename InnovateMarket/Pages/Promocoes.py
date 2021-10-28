@@ -17,8 +17,8 @@ class Promocoes:
         self.telapromo.geometry("1360x760")
         self.telapromo.configure(bg="DodgerBlue")
         self.telapromo.resizable(False, False)
-        self.__iconImagemPath = imagespath / "logo.ico"
-        self.telapromo.iconbitmap(self.__iconImagemPath)
+        # self.__iconImagemPath = imagespath / "logo.ico"
+        # self.telapromo.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_promocoes(self):
         self.telapromo.destroy()
