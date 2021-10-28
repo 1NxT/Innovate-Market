@@ -18,8 +18,8 @@ class Pedidos(Frame):
         self.telapedi.geometry("1360x760")
         self.telapedi.configure(bg="DodgerBlue")
         self.telapedi.resizable(False, False)
-        self.__iconImagemPath = imagespath / "logo.ico"
-        self.telapedi.iconbitmap(self.__iconImagemPath)
+        # self.__iconImagemPath = imagespath / "logo.ico"
+        # self.telapedi.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_pedi(self):
             self.telapedi.destroy()
