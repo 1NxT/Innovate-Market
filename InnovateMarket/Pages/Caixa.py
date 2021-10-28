@@ -25,8 +25,8 @@ class Caixa(Frame):
         self.telacaixa.geometry("1360x760")
         self.telacaixa.configure(bg="DodgerBlue")
         self.telacaixa.resizable(False, False)
-        self.__iconImagemPath = imagespath / "logo.ico"
-        self.telacaixa.iconbitmap(self.__iconImagemPath)
+        # self.__iconImagemPath = imagespath / "logo.ico"
+        # self.telacaixa.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_caixa(self):
         self.telacaixa.destroy()
