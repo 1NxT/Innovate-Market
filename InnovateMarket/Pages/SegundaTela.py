@@ -86,7 +86,7 @@ class SegundaTela(Frame):
         self.__gerenteImagemPath = imagespath / "gerente.png"
         self.__gerenteImagem = PhotoImage(file=self.__gerenteImagemPath)
         self.__btn_gerenteImagem = Button(self.tela2, image=self.__gerenteImagem,  width=140,bg="DodgerBlue", command=Gerenciar, relief="flat", borderwidth=0)
-        self.__btn_promocoesImagem.place(x=745, y=400)
+        self.__btn_gerenteImagem.place(x=745, y=400)
 
     def __criarBtnVoltar(self):
         self.__btn_voltarImagePath = imagespath / "sairdosbuttons.png"
