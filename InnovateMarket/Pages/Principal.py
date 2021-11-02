@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import time
+from tkinter import font
 from Classes.UsuarioDB import UsuarioDB
 from Pages.SegundaTela import *
 from Pages.common.Config import *
@@ -8,11 +9,12 @@ from Pages.common.Config import *
 class Principal(Frame):
     def __init__(self):
         self.tk = Tk()
-        self.icon = imagespath / "Logo.png"
-        self.img = PhotoImage(file=self.icon)
+        self.tk.attributes("-fullscreen", True)
+        self.logo = imagespath / "Logo.png"
+        self.img = PhotoImage(file=self.logo)
         self.geometry()
         self.elementos()
-        self.tk.mainloop()   
+        self.tk.mainloop()
 
     def iExit(self):
         self.result = messagebox.askquestion(
@@ -24,19 +26,19 @@ class Principal(Frame):
     def geometry(self):
         self.tk.title("Tela de login")
         self.tk.geometry("1360x768")
-        #self.tk.configure(bg="#00d4ff")
                
         self.tk.resizable(False, False)
-        #self.__iconImagemPath = imagespath / "logo.ico"
-        #self.tk.iconbitmap(self.__iconImagemPath)
+        self.__iconImagemPath = imagespath / "logo.ico"
+        self.tk.iconbitmap(self.__iconImagemPath)
         
     def chamarLogar(self):
         usuario = UsuarioDB().pegarUsuario(self.ent_login.get())
         
         if usuario != None and usuario.verificarSenha(self.ent_senha.get()):
-            SegundaTela(usuario) 
+            SegundaTela(usuario)
+
         else:
-            self.lbl_dados["text"] = "Dados de usuário ou senha incorretos!"
+            self.lbl_dados["text"] = "Dados de senha incorretos!"
         
     def elementos(self):
         # LABELS 1° TELA
@@ -45,12 +47,14 @@ class Principal(Frame):
 
         self.lblimgbg = Label(self.tk, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
+
+        self.lbl_dados = Label(self.tk, text="", bg="GhostWhite", font="Arial 18", fg="red")
+        self.lbl_dados.place(x=720, y=525)
         
 
         #ENTRYS 1° TELA
         self.ent_login = Entry(self.tk, font=("arial", 28), width=20)
         self.ent_login.place(x=720, y=280)
-
 
         self.ent_senha = Entry(self.tk, font=("arial", 28), width=20, show="*")
         self.ent_senha.place(x=720, y=475)
@@ -58,9 +62,9 @@ class Principal(Frame):
         self.__buttonEntrarImagemPath = imagespath / "Entrar.png"
         self.__buttonEntrarImagem = PhotoImage(file=self.__buttonEntrarImagemPath)
         self.btn_entrar = Button(self.tk, text="Entrar",  image=self.__buttonEntrarImagem, command=self.chamarLogar, borderwidth = 0)
-        self.btn_entrar.place(x=720, y=540)
+        self.btn_entrar.place(x=720, y=600)
 
         self.__buttonSairImagemPath = imagespath / "Sair.png"
         self.__buttonSairImagem = PhotoImage(file=self.__buttonSairImagemPath)
         self.btn_sair = Button(self.tk, text="Sair", image=self.__buttonSairImagem, command=self.iExit, borderwidth = 0)
-        self.btn_sair.place(x=990, y=540)
+        self.btn_sair.place(x=990, y=600)
