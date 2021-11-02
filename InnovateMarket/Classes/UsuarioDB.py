@@ -8,10 +8,13 @@ class UsuarioDB():
         self.cursor = cursor
 
     def pegarUsuario(self, cpf) -> Usuario:
-        self.cursor.execute("SELECT * FROM user WHERE CPF = ?", (cpf))
-        resultado1 = self.cursor.fetchone()
-
-        if resultado1 == None:
+        if not cpf:
             return None
         else:
-            return Usuario(resultado1[0], resultado1[1], Cargo(resultado1[2]), resultado1[3], resultado1[4])
+            self.cursor.execute("SELECT * FROM user WHERE CPF = ?", (cpf))
+            resultado1 = self.cursor.fetchone()
+
+            if resultado1 == None:
+                return None
+            else:
+                return Usuario(resultado1[0], resultado1[1], Cargo(resultado1[2]), resultado1[3], resultado1[4])

@@ -33,12 +33,14 @@ class Principal(Frame):
         
     def chamarLogar(self):
         usuario = UsuarioDB().pegarUsuario(self.ent_login.get())
-        
-        if usuario != None and usuario.verificarSenha(self.ent_senha.get()):
-            SegundaTela(usuario)
-
+        self.lbl_dadosUsuario["text"] = ""
+        self.lbl_dadosSenha["text"] = ""
+        if usuario == None:
+            self.lbl_dadosUsuario["text"] = "Dados de usuario incorretos!"
+        elif usuario.verificarSenha(self.ent_senha.get()):
+            self.lbl_dadosSenha["text"] = "Dados de senha incorretos!"
         else:
-            self.lbl_dados["text"] = "Dados de senha incorretos!"
+            SegundaTela(usuario)
         
     def elementos(self):
         # LABELS 1° TELA
@@ -48,8 +50,11 @@ class Principal(Frame):
         self.lblimgbg = Label(self.tk, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
 
-        self.lbl_dados = Label(self.tk, text="", bg="GhostWhite", font="Arial 18", fg="red")
-        self.lbl_dados.place(x=720, y=525)
+        self.lbl_dadosUsuario = Label(self.tk, text="", bg="GhostWhite", font="Arial 18", fg="red")
+        self.lbl_dadosUsuario.place(x=720, y=330)
+
+        self.lbl_dadosSenha = Label(self.tk, text="", bg="GhostWhite", font="Arial 18", fg="red")
+        self.lbl_dadosSenha.place(x=720, y=525)
         
 
         #ENTRYS 1° TELA

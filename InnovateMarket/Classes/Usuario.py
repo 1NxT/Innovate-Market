@@ -12,8 +12,14 @@ class Usuario:
         self.cargo = cargo 
         self.nome = nome
     
-    def verificarSenha(self,password) -> bool:
-        if self.password == password:
+    def verificarSenha(self, Userpassword) -> bool:
+        if self.password != Userpassword:
+            print("Falso")
+            print(self.password)
+            print(Userpassword)
             return True
         else:
+            print("True")
+            print(self.password)
+            print(Userpassword)
             return False
