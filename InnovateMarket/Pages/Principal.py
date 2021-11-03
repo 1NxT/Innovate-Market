@@ -29,14 +29,13 @@ class Principal(Frame):
                
         self.tk.resizable(False, False)
         self.__iconImagemPath = imagespath / "logo.ico"
-        self.tk.iconbitmap(self.__iconImagemPath)
+        #self.tk.iconbitmap(self.__iconImagemPath)
         
     def chamarLogar(self):
-        usuario = UsuarioDB().pegarUsuario(self.ent_login.get())
+        usuario = UsuarioDB().pegarUsuario(str(self.ent_login.get()))
 
         self.lbl_dadosUsuario["text"] = ""
         self.lbl_dadosUsuario["text"] = ""
-        print(self.ent_senha.get())
         if usuario == None:
             self.lbl_dadosUsuario["text"] = "Dados de usuário incorretos!"
 

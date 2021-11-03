@@ -21,7 +21,7 @@ class Produtos(Frame):
         self.telaprodutos.configure(bg="DodgerBlue")
         self.telaprodutos.resizable(False, False)
         self.__iconImagemPath = imagespath / "logo.ico"
-        self.telaprodutos.iconbitmap(self.__iconImagemPath)
+        #self.telaprodutos.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_pro(self):
         self.telaprodutos.destroy()

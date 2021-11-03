@@ -22,7 +22,8 @@ class Gerenciar :
     # def tela_inicial_gerenciar(self):
     #         cadastro_usuario.destroy()
     #         return
-        
+    
+    
     def view_tree(self):
         resultado = Mostrar().mostrar(self, "user", "CPF")
         

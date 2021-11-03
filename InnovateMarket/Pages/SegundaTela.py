@@ -27,7 +27,7 @@ class SegundaTela(Frame):
         self.tela2.geometry("1360x768")
         self.tela2.resizable(False, False)
         self.__iconImagemPath = imagespath / "logo.ico"
-        self.tela2.iconbitmap(self.__iconImagemPath)
+        #self.tela2.iconbitmap(self.__iconImagemPath)
 
     def elementos(self):
         self.pathBg = imagespath / "Tela de menu.png"
