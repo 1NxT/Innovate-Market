@@ -33,11 +33,13 @@ class Principal(Frame):
         
     def chamarLogar(self):
         usuario = UsuarioDB().pegarUsuario(self.ent_login.get())
+
         self.lbl_dadosUsuario["text"] = ""
         self.lbl_dadosUsuario["text"] = ""
         print(self.ent_senha.get())
         if usuario == None:
             self.lbl_dadosUsuario["text"] = "Dados de usuário incorretos!"
+
         if not self.ent_senha.get():
             self.lbl_dadosSenha["text"] = "Dados de senha incorretos!"
         elif usuario.verificarSenha(self.ent_senha.get()):
