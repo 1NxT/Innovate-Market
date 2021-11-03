@@ -30,14 +30,16 @@ class Produtos(Frame):
     def clear_entry(self):
         self.ent_pesquisar.delete(0, END)
         self.ent_pesquisar.insert(0, "")
+        
     
     def view_tree(self):
         resultado = Mostrar().mostrar(self, "produtos", "ID")
         
         if resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
-            
+            print(resultado)
             for i in resultado:
+                
                 self.tree_pro.insert("","end",values=i)
         else:
             print("Error!")
@@ -84,16 +86,17 @@ class Produtos(Frame):
         self.scroll = ttk.Scrollbar(self.tree_pro_frame)
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        self.tree_pro = ttk.Treeview(self.tree_pro_frame, column=("Nome","Fornecedor", "Preco","Codigo de Barras"), show='headings', height=35, yscrollcommand=self.scroll.set)
+        self.tree_pro = ttk.Treeview(self.tree_pro_frame, column=("Código de barras","Preço", "Nome","Fornecedor"), show='headings', height=35, yscrollcommand=self.scroll.set)
         
         self.tree_pro.pack()
 
         self.scroll.config(command=self.tree_pro.yview)
 
-        self.tree_pro.heading('#1', text="Nome", anchor=CENTER)
-        self.tree_pro.heading('#2', text="Preco", anchor=CENTER)
-        self.tree_pro.heading('#3', text="Fornecedor", anchor=CENTER)
-        self.tree_pro.heading('#4', text="Codigo de Barras", anchor=CENTER)
+        self.tree_pro.heading('#1', text="Código de barras", anchor=CENTER)
+        self.tree_pro.heading('#2', text="Preço", anchor=CENTER)
+        self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
+        self.tree_pro.heading('#4', text="Fornecedor", anchor=CENTER)
+        
         self.view_tree()
         
         # ENTRYS TELA PRODUTOS
