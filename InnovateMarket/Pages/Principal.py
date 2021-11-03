@@ -33,10 +33,8 @@ class Principal(Frame):
         
     def chamarLogar(self):
         usuario = UsuarioDB().pegarUsuario(self.ent_login.get())
-        self.lbl_dadosUsuario["text"] = ""
-        self.lbl_dadosSenha["text"] = ""
         if usuario == None:
-            self.lbl_dadosUsuario["text"] = "Dados de usuario incorretos!"
+            self.lbl_dadosUsuario["text"] = "Dados de usuário incorretos!"
         elif usuario.verificarSenha(self.ent_senha.get()):
             self.lbl_dadosSenha["text"] = "Dados de senha incorretos!"
         else:
@@ -67,7 +65,7 @@ class Principal(Frame):
         self.__buttonEntrarImagemPath = imagespath / "Entrar.png"
         self.__buttonEntrarImagem = PhotoImage(file=self.__buttonEntrarImagemPath)
         self.btn_entrar = Button(self.tk, text="Entrar",  image=self.__buttonEntrarImagem, command=self.chamarLogar, borderwidth = 0)
-        self.btn_entrar.place(x=720, y=600)
+        self.btn_entrar.place(x=730, y=600)
 
         self.__buttonSairImagemPath = imagespath / "Sair.png"
         self.__buttonSairImagem = PhotoImage(file=self.__buttonSairImagemPath)
