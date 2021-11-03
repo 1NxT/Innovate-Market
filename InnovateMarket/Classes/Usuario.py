@@ -14,12 +14,6 @@ class Usuario:
     
     def verificarSenha(self, Userpassword) -> bool:
         if self.password != Userpassword:
-            print("Falso")
-            print(self.password)
-            print(Userpassword)
             return True
         else:
-            print("True")
-            print(self.password)
-            print(Userpassword)
             return False

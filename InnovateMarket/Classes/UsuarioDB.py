@@ -13,7 +13,7 @@ class UsuarioDB():
         else:
             self.cursor.execute("SELECT * FROM user WHERE CPF = ?", (cpf))
             resultado1 = self.cursor.fetchone()
-
+            #verificação de user
             if resultado1 == None:
                 return None
             else:
