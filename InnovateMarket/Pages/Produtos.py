@@ -64,10 +64,11 @@ class Produtos(Frame):
     def elementos(self):
         self.pathBg = imagespath / "produtos_bg.png"
         self.__bg = PhotoImage(file =self.pathBg)
+
         self.lblimgbg = Label(self.telaprodutos, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
 
-        self.btn_telainicial = imagespath / "button1.png"
+        self.btn_telainicial = imagespath / "voltar.png"
         self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
         self.btn_telainicial_pro = Button(self.telaprodutos, command=self.voltar_inicial_pro, image=self.btn_voltartelainicial, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
         self.btn_telainicial_pro.place(x=1000, y=660)
@@ -100,8 +101,12 @@ class Produtos(Frame):
         self.ent_pesquisar.place(x=886, y=130)
         
         # BUTTONS TELA PRODUTOS
-        self.btn_pesquisar_pro = Button(self.telaprodutos, text="Pesquisar", command=self.chamaPesquisar, width=16)
-        self.btn_pesquisar_pro.place(x=1220, y=132)
+        self.img_pesquisar = imagespath / "pesquisar.png"
+        self.btn_pesquisar = PhotoImage(file =self.img_pesquisar)
+        self.btn_pesquisar_pro = Button(self.telaprodutos, image=self.btn_pesquisar, command=self.chamaPesquisar, relief="flat", borderwidth=0, width=110, height=50)
+        self.btn_pesquisar_pro.place(x=1225, y=120)
 
-        self.btn_show = Button(self.telaprodutos, text="Mostrar todos", command=lambda:[self.view_tree(), self.clear_entry()])
-        self.btn_show.place(x=1000,y=50)
+        self.img_mostrar = imagespath / "Mostrar.png"
+        self.btn_mostrar = PhotoImage(file =self.img_mostrar)
+        self.btn_show = Button(self.telaprodutos, command=lambda:[self.view_tree(), self.clear_entry()], image=self.btn_mostrar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show.place(x=980, y=180)
