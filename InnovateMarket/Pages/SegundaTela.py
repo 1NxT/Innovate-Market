@@ -17,6 +17,7 @@ class SegundaTela(Frame):
         self.tela2.attributes("-fullscreen", True)
         self.elementos()
         self.CarregarTela(usuario.cargo)
+        
 
     def iExit2(self):
         self.tela2.destroy()

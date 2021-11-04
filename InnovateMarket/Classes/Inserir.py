@@ -7,4 +7,5 @@ class Inserir():
 
     def salvar(self, tabela, valores):
         self.cursor.execute("INSERT INTO {} VALUES ({})".format(tabela, ", ".join(value for value in valores.values())))
-        
+        self.cursor.close()
+

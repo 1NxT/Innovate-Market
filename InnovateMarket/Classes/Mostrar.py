@@ -11,4 +11,5 @@ class Mostrar():
         
         self.cursor.execute(f"SELECT * FROM {tabela} ORDER BY {coluna} ASC")
         resultado = self.cursor.fetchall()
+        self.cursor.close()
         return resultado
