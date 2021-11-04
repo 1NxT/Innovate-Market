@@ -8,17 +8,16 @@ from Pages.common.Config import *
 class Promocoes:
     def __init__(self):
         self.telapromo = Toplevel()
+        self.telapromo.attributes("-fullscreen", True)
         self.geometry()
-
         self.elementos()
 
     def geometry(self):
         self.telapromo.title("Promoçoes")
         self.telapromo.geometry("1360x760")
-        self.telapromo.configure(bg="DodgerBlue")
         self.telapromo.resizable(False, False)
-        # self.__iconImagemPath = imagespath / "logo.ico"
-        # self.telapromo.iconbitmap(self.__iconImagemPath)
+        self.__iconImagemPath = imagespath / "logo.ico"
+        self.telapromo.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_promocoes(self):
         self.telapromo.destroy()
@@ -56,23 +55,29 @@ class Promocoes:
 
 
     def elementos(self):
+        self.pathBg = imagespath / "promocoes_bg.png"
+        self.__bg = PhotoImage(file =self.pathBg)
+        self.lblimgbg = Label(self.telapromo, image=self.__bg)
+        self.lblimgbg.place(x=0, y=0)
 
-        self.btn_telainicial_promo = Button(self.telapromo, text="Voltar Para Tela Inicial",bg="red", command=self.voltar_inicial_promocoes)
-        self.btn_telainicial_promo.place(x=1100, y=550)
+        self.btn_telainicial = imagespath / "voltar.png"
+        self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
+        self.btn_telainicial_promo = Button(self.telapromo, image= self.btn_voltartelainicial, command=self.voltar_inicial_promocoes, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
+        self.btn_telainicial_promo.place(x=980, y=660)
         
         # Estilo da Treeview
         self.style = ttk.Style()
         self.style.theme_use("default")
 
         # Frame da Treeview
-        self.tree_promo_frame = Frame(self.telapromo, padx=1, pady=5, bg="DodgerBlue")
+        self.tree_promo_frame = Frame(self.telapromo, padx=0, pady=1, bg="Lightgrey")
         self.tree_promo_frame.place(x=0, y=0)
 
         # ScrollBar
         self.scroll = ttk.Scrollbar(self.tree_promo_frame)
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        self.tree_promo = ttk.Treeview(self.tree_promo_frame,column=("1","2","3","4"), show='headings', height=35, yscrollcommand=self.scroll.set)
+        self.tree_promo = ttk.Treeview(self.tree_promo_frame,column=("1","2","3","4"), show='headings', height=37, yscrollcommand=self.scroll.set)
         self.tree_promo.pack()
 
         self.scroll.config(command=self.tree_promo.yview)
@@ -84,11 +89,30 @@ class Promocoes:
         self.view_tree()
 
 
-        self.ent_pesquisar = Entry(self.telapromo)
-        self.ent_pesquisar.place(x=1100, y=20)
+        self.ent_pesquisar = Entry(self.telapromo, width=25, font="Arial 18")
+        self.ent_pesquisar.place(x=886, y=160)
 
-        self.btn_pesquisar_pedi = Button(self.telapromo, text="Pesquisar")
-        self.btn_pesquisar_pedi.place(x=1000, y=20)
+        self.img_pesquisar = imagespath / "pesquisar.png"
+        self.btn_pesquisar = PhotoImage(file =self.img_pesquisar)
+        self.btn_pesquisar_pedi = Button(self.telapromo, image=self.btn_pesquisar, command=self.chamaPesquisar, relief="flat", borderwidth=0, width=110, height=50)
+        self.btn_pesquisar_pedi.place(x=1225, y=150)
 
-        self.btn_show = Button(self.telapromo, text="Mostrar todos")
-        self.btn_show.place(x=1200,y=100)
+        self.img_mostrar = imagespath / "Mostrar.png"
+        self.btn_mostrar = PhotoImage(file =self.img_mostrar)
+        self.btn_show = Button(self.telapromo, command=lambda:[self.view_tree(), self.clear_entry()], image=self.btn_mostrar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show.place(x=980,y=210)
+
+        self.img_adicionar = imagespath / "adicionar.png"
+        self.btn_adicionar = PhotoImage(file =self.img_adicionar)
+        self.btn_show = Button(self.telapromo, command=lambda:[self.view_tree()], image=self.btn_adicionar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show.place(x=980, y=330)
+
+        self.img_editar = imagespath / "editar.png"
+        self.btn_editar = PhotoImage(file =self.img_editar)
+        self.btn_show = Button(self.telapromo, command=lambda:[self.view_tree()], image=self.btn_editar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show.place(x=980, y=400)
+
+        self.img_deletar = imagespath / "deletar.png"
+        self.btn_deletar = PhotoImage(file =self.img_deletar)
+        self.btn_show = Button(self.telapromo, command=lambda:[self.view_tree()], image=self.btn_deletar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show.place(x=980, y=467)
