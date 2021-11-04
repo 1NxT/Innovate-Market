@@ -98,15 +98,30 @@ class Produtos(Frame):
         
         # ENTRYS TELA PRODUTOS
         self.ent_pesquisar = Entry(self.telaprodutos, width=25, font="Arial 18")
-        self.ent_pesquisar.place(x=886, y=130)
+        self.ent_pesquisar.place(x=886, y=160)
         
         # BUTTONS TELA PRODUTOS
         self.img_pesquisar = imagespath / "pesquisar.png"
         self.btn_pesquisar = PhotoImage(file =self.img_pesquisar)
         self.btn_pesquisar_pro = Button(self.telaprodutos, image=self.btn_pesquisar, command=self.chamaPesquisar, relief="flat", borderwidth=0, width=110, height=50)
-        self.btn_pesquisar_pro.place(x=1225, y=120)
+        self.btn_pesquisar_pro.place(x=1225, y=150)
 
         self.img_mostrar = imagespath / "Mostrar.png"
         self.btn_mostrar = PhotoImage(file =self.img_mostrar)
         self.btn_show = Button(self.telaprodutos, command=lambda:[self.view_tree(), self.clear_entry()], image=self.btn_mostrar, relief="flat", borderwidth=0, bg="lightgrey")
-        self.btn_show.place(x=980, y=180)
+        self.btn_show.place(x=980, y=210)
+
+        self.img_adicionar = imagespath / "adicionar.png"
+        self.btn_adicionar = PhotoImage(file =self.img_adicionar)
+        self.btn_show = Button(self.telaprodutos, command=lambda:[self.view_tree(), self.clear_entry()], image=self.btn_adicionar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show.place(x=980, y=310)
+
+        self.img_editar = imagespath / "editar.png"
+        self.btn_editar = PhotoImage(file =self.img_editar)
+        self.btn_show = Button(self.telaprodutos, command=lambda:[self.view_tree(), self.clear_entry()], image=self.btn_editar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show.place(x=980, y=380)
+
+        self.img_deletar = imagespath / "deletar.png"
+        self.btn_deletar = PhotoImage(file =self.img_deletar)
+        self.btn_show = Button(self.telaprodutos, command=lambda:[self.view_tree(), self.clear_entry()], image=self.btn_deletar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show.place(x=980, y=447)
