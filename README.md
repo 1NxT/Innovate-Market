@@ -22,7 +22,7 @@ Os tópicos abaixo guiaram você como usar o aplicativo
 
 # Como instalar 
 
-* Primeiramente verifique se você tem o pthon instalado(necessário ser uma versão igual ou superior a 3.8+). 
+* Primeiramente verifique se você tem o python instalado(necessário ser uma versão igual ou superior a 3.8+). 
 
 * Segundamente instale o pip seguindo as instruções desse <a href="https://phoenixnap.com/kb/install-pip-windows"> link</a>. 
 
