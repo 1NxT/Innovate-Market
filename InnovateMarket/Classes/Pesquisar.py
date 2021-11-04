@@ -14,7 +14,9 @@ class Pesquisar():
         else:
             self.cursor.execute(f"SELECT * FROM {tabela} WHERE {keys[0]} LIKE '%{pesquisa[keys[0]]}%' OR {keys[1]} LIKE '%{pesquisa[keys[1]]}%' OR {keys[2]} LIKE '%{pesquisa[keys[2]]}%' OR {keys[3]} LIKE '%{pesquisa[keys[3]]}%' ORDER BY {coluna}")  
         
-        resultado = self.cursor.fetchall()     
+        resultado = self.cursor.fetchall()  
+        self.cursor.close()
+   
         return resultado  
         
         

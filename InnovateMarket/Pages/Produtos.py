@@ -4,6 +4,7 @@ import tkinter.ttk as ttk
 from Classes.MySql import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
+from Classes.Deletar import *
 from Pages.common.Config import *
 
 class Produtos(Frame):
@@ -33,16 +34,27 @@ class Produtos(Frame):
         
     
     def view_tree(self):
-        resultado = Mostrar().mostrar(self, "produtos", "ID")
+        self.resultado = Mostrar().mostrar(self, "produtos", "ID")
         
-        if resultado != None:
+        if self.resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
+<<<<<<< HEAD
             
             for i in resultado:
+=======
+            for i in self.resultado:
+>>>>>>> b0531ecd4e312c433f2d4d5be2545219aecbb749
                 
                 self.tree_pro.insert("","end",values=i)
         else:
             print("Error!")
+
+    def deletarElement(self):
+        self.selected_item = self.tree_pro.selection()[0]
+        self.tree_pro.delete(self.selected_item)
+        Deletar.deletar("produtos", "ID", self.values[0])
+        self.view_tree()
+
         
     
     def chamaPesquisar(self):
@@ -62,6 +74,14 @@ class Produtos(Frame):
                 self.tree_pro.insert("","end",values=i)
         else:
             print("Error: Nenhum valor saiu da Classe")
+
+    def mostarElemento(self):
+        self.currItem = self.tree_pro.focus()
+        self.values = self.tree_pro.item(self.currItem)['values']
+        self.tree_pro.delete(self.currItem)
+        Deletar().deletar("produtos", "ID", self.values[0])
+        self.tree_pro.bind('<ButtonRelease-1>', self.currItem)
+
 
     def elementos(self):
         self.pathBg = imagespath / "produtos_bg.png"
@@ -126,5 +146,5 @@ class Produtos(Frame):
 
         self.img_deletar = imagespath / "deletar.png"
         self.btn_deletar = PhotoImage(file =self.img_deletar)
-        self.btn_show = Button(self.telaprodutos, command=lambda:[self.view_tree()], image=self.btn_deletar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show = Button(self.telaprodutos, command=self.mostarElemento, image=self.btn_deletar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_show.place(x=980, y=467)
