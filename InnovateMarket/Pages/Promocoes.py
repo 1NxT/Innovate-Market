@@ -17,7 +17,7 @@ class Promocoes:
         self.telapromo.geometry("1360x760")
         self.telapromo.resizable(False, False)
         self.__iconImagemPath = imagespath / "logo.ico"
-        self.telapromo.iconbitmap(self.__iconImagemPath)
+        #self.telapromo.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_promocoes(self):
         self.telapromo.destroy()
@@ -94,8 +94,8 @@ class Promocoes:
 
         self.img_pesquisar = imagespath / "pesquisar.png"
         self.btn_pesquisar = PhotoImage(file =self.img_pesquisar)
-        self.btn_pesquisar_pedi = Button(self.telapromo, image=self.btn_pesquisar, command=self.chamaPesquisar, relief="flat", borderwidth=0, width=110, height=50)
-        self.btn_pesquisar_pedi.place(x=1225, y=150)
+        self.btn_pesquisar_promo = Button(self.telapromo, image=self.btn_pesquisar, command=self.chamaPesquisar, relief="flat", borderwidth=0, width=110, height=50)
+        self.btn_pesquisar_promo.place(x=1225, y=150)
 
         self.img_mostrar = imagespath / "Mostrar.png"
         self.btn_mostrar = PhotoImage(file =self.img_mostrar)

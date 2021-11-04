@@ -37,7 +37,7 @@ class Produtos(Frame):
         
         if resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
-            print(resultado)
+            
             for i in resultado:
                 
                 self.tree_pro.insert("","end",values=i)

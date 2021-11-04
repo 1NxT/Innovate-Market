@@ -20,7 +20,7 @@ class Fornecedor:
         self.telaforne.configure(bg="DodgerBlue")
         self.telaforne.resizable(False, False)
         self.__iconImagemPath = imagespath / "logo.ico"
-        self.telaforne.iconbitmap(self.__iconImagemPath)
+        #self.telaforne.iconbitmap(self.__iconImagemPath)
         
     def voltar_inicial_forne(self):
         self.telaforne.destroy()
