@@ -14,7 +14,7 @@ class SegundaTela(Frame):
     def __init__(self, usuario):
         Frame.__init__(self, master=None)
         self.tela2 = Toplevel()
-        self.tela2.attributes("-fullscreen", True)
+        #self.tela2.attributes("-fullscreen", True)
         self.elementos()
         self.CarregarTela(usuario.cargo)
         

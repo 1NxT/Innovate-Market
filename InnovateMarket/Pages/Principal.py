@@ -9,7 +9,7 @@ from Pages.common.Config import *
 class Principal(Frame):
     def __init__(self):
         self.tk = Tk()
-        self.tk.attributes("-fullscreen", True)
+        #self.tk.attributes("-fullscreen", True)
         self.logo = imagespath / "Logo.png"
         self.img = PhotoImage(file=self.logo)
         self.geometry()

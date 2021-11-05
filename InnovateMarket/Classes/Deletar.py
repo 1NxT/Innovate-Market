@@ -5,8 +5,7 @@ class Deletar():
         self.cursor = MySql().conectar()
 
     def deletar(self, tabela: str, coluna: str, valor: int):
-        print(tabela, coluna, valor)
-        self.cursor.execute("DELETE FROM produtos WHERE ID = 1;")
+        self.cursor.execute(f"DELETE FROM {tabela} WHERE {coluna} = {valor};")
         self.cursor.execute("commit;")
     
         

@@ -1,10 +1,12 @@
 from tkinter import *
 from tkinter import font
 import tkinter.ttk as ttk
+from tkinter import messagebox
 from Classes.MySql import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
 from Classes.Deletar import *
+from Classes.ValuesDB import *
 from Pages.Editar.Editar_produtos import *
 from Pages.Adicionar.Adicionar_pedi import *
 from Pages.common.Config import *
@@ -14,7 +16,7 @@ class Produtos(Frame):
         self.dicti = {}
         Frame.__init__(self, master=None)
         self.telaprodutos = Toplevel()
-        self.telaprodutos.attributes("-fullscreen", True)
+        #self.telaprodutos.attributes("-fullscreen", True)
         self.geometry()
         self.elementos()
 
@@ -74,16 +76,19 @@ class Produtos(Frame):
 
     def deleteElemento(self):
         self.currItem = self.tree_pro.focus()
-        self.values = self.tree_pro.item(self.currItem)['values']
+        self.values =  ValuesDB().carregarValues(self.tree_pro.item(self.currItem)['values'])
         self.tree_pro.delete(self.currItem)
-        Deletar().deletar("produtos", "ID", self.values[0])
+        Deletar().deletar("produtos", "ID", self.values.id)
         self.tree_pro.bind('<ButtonRelease-1>', self.currItem)
 
 
     def edit_pro(self):
-        self.selected = self.tree_pro.focus()
-        self.values = self.tree_pro.item(self.selected, 'values')
-        Editar_produtos(self.values)
+        if not self.tree_pro.focus():
+            messagebox.showwarning(title="ERROR!", message="Selecione uma opção para editar", parent=self.telaprodutos)
+        else:
+            self.currItem = self.tree_pro.focus()
+            self.values =  ValuesDB().carregarValues(self.tree_pro.item(self.currItem)['values'])
+            Editar_produtos(self.values)
 
 
     def elementos(self):

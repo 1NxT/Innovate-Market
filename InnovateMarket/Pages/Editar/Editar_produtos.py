@@ -20,10 +20,10 @@ class Editar_produtos(Frame):
         self.ent_nome.delete(0, END)
         self.ent_forne.delete(0, END)
         # Insert values on Entrys
-        self.ent_cod.insert(0, self.values[0])
-        self.ent_preco.insert(0, self.values[1])
-        self.ent_nome.insert(0, self.values[2])
-        self.ent_forne.insert(0, self.values[3])
+        self.ent_cod.insert(0, self.values.id)
+        self.ent_preco.insert(0, self.values.preco)
+        self.ent_nome.insert(0, self.values.nome)
+        self.ent_forne.insert(0, self.values.fornecedor)
 
     def voltar_inicial_pro(self):
         self.edit_produtos.destroy()
