@@ -1,4 +1,4 @@
-from Pages.Adicionar.Adicionar_pedi import *
+#from Pages.Adicionar.Adicionar_pedi import *
 from tkinter import *
 import tkinter.ttk as ttk
 from Classes.MySql import *

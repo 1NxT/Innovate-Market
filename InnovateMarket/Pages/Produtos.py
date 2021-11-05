@@ -8,7 +8,7 @@ from Classes.Mostrar import *
 from Classes.Deletar import *
 from Classes.ValuesDB import *
 from Pages.Editar.Editar_produtos import *
-from Pages.Adicionar.Adicionar_pedi import *
+from Pages.Adicionar.Adicionar_pro import *
 from Pages.common.Config import *
 
 class Produtos(Frame):
@@ -16,14 +16,14 @@ class Produtos(Frame):
         self.dicti = {}
         Frame.__init__(self, master=None)
         self.telaprodutos = Toplevel()
-        #self.telaprodutos.attributes("-fullscreen", True)
+        self.telaprodutos.attributes("-fullscreen", True)
         self.geometry()
         self.elementos()
 
     def geometry(self):
         self.telaprodutos.title("Produtos")
         self.telaprodutos.geometry("1360x768")
-        self.telaprodutos.configure(bg="DodgerBlue")
+        self.telaprodutos.configure(bg="Lightgrey")
         self.telaprodutos.resizable(False, False)
         self.__iconImagemPath = imagespath / "logo.ico"
         #self.telaprodutos.iconbitmap(self.__iconImagemPath)
@@ -144,7 +144,7 @@ class Produtos(Frame):
 
         self.img_adicionar = imagespath / "adicionar.png"
         self.btn_adicionar = PhotoImage(file =self.img_adicionar)
-        self.btn_show = Button(self.telaprodutos, command=Adicionar_pedi, image=self.btn_adicionar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show = Button(self.telaprodutos, command=Adicionar_pro, image=self.btn_adicionar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_show.place(x=980, y=330)
 
         self.img_editar = imagespath / "editar.png"
