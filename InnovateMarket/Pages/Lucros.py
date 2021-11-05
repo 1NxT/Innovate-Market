@@ -1,6 +1,6 @@
 from tkinter import *
-import seaborn as sns
-import matplotlib.pyplot as plt
+#import seaborn as sns
+#import matplotlib.pyplot as plt
 from Pages.common.Config import *
 
 class Lucros:
