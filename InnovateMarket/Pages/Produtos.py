@@ -38,12 +38,7 @@ class Produtos(Frame):
         
         if self.resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
-<<<<<<< HEAD
-            
-            for i in resultado:
-=======
             for i in self.resultado:
->>>>>>> b0531ecd4e312c433f2d4d5be2545219aecbb749
                 
                 self.tree_pro.insert("","end",values=i)
         else:
@@ -75,7 +70,7 @@ class Produtos(Frame):
         else:
             print("Error: Nenhum valor saiu da Classe")
 
-    def mostarElemento(self):
+    def deleteElemento(self):
         self.currItem = self.tree_pro.focus()
         self.values = self.tree_pro.item(self.currItem)['values']
         self.tree_pro.delete(self.currItem)
@@ -146,5 +141,5 @@ class Produtos(Frame):
 
         self.img_deletar = imagespath / "deletar.png"
         self.btn_deletar = PhotoImage(file =self.img_deletar)
-        self.btn_show = Button(self.telaprodutos, command=self.mostarElemento, image=self.btn_deletar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show = Button(self.telaprodutos, command=self.deleteElemento(), image=self.btn_deletar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_show.place(x=980, y=467)
