@@ -5,6 +5,7 @@ from Classes.MySql import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
 from Classes.Deletar import *
+from Pages.Adicionar.Adicionar_pedi import *
 from Pages.common.Config import *
 
 class Produtos(Frame):
@@ -38,12 +39,7 @@ class Produtos(Frame):
         
         if self.resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
-<<<<<<< HEAD
-            
-            for i in resultado:
-=======
             for i in self.resultado:
->>>>>>> b0531ecd4e312c433f2d4d5be2545219aecbb749
                 
                 self.tree_pro.insert("","end",values=i)
         else:
@@ -136,7 +132,7 @@ class Produtos(Frame):
 
         self.img_adicionar = imagespath / "adicionar.png"
         self.btn_adicionar = PhotoImage(file =self.img_adicionar)
-        self.btn_show = Button(self.telaprodutos, command=lambda:[self.view_tree()], image=self.btn_adicionar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show = Button(self.telaprodutos, command=Adicionar_pedi, image=self.btn_adicionar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_show.place(x=980, y=330)
 
         self.img_editar = imagespath / "editar.png"
