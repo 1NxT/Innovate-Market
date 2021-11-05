@@ -3,6 +3,7 @@ import tkinter.ttk as ttk
 from Pages.common.Config import *
 from Classes.MySql import *
 from Classes.Mostrar import *
+from Classes.Inserir import *
 
 class Adicionar_pedi(Frame):
     def __init__(self):
@@ -34,11 +35,13 @@ class Adicionar_pedi(Frame):
         self.adicionar_pedi.destroy()
         return
     def adicionar_pedido(self):
-        dicti = {}
-        self.dicti["ID"] = self.ent_pesquisar.get()
-        self.dicti["preco"] = self.ent_pesquisar.get()
-        self.dicti["nome"] = self.ent_pesquisar.get()
-        self.dicti["fornecedor"] = self.ent_pesquisar.get()
+        self.dicti = {}
+        self.dicti["ID"] = self.ent_produtos.get()
+        self.dicti["preco"] = self.ent_preco.get()
+        self.dicti["nome"] = self.ent_valor.get()
+        self.dicti["fornecedor"] = self.ent_fornecedor.get()
+        Inserir().salvar("produtos", self.dicti)
+        self.view_tree()
 
     def elementos(self):
         
@@ -66,6 +69,11 @@ class Adicionar_pedi(Frame):
 
         self.ent_fornecedor = Entry(self.adicionar_pedi, width=25, font="Arial 18")
         self.ent_fornecedor.place(x=886, y=520)
+
+        self.img_adicionar = imagespath / "adicionar.png"
+        self.btn_adicionar = PhotoImage(file =self.img_adicionar)
+        self.btn_adicionar_pedi = Button(self.adicionar_pedi, image=self.btn_adicionar, relief="flat", borderwidth=0, bg="lightgrey", command=self.adicionar_pedido)
+        self.btn_adicionar_pedi.place(x=980, y=580)
 
         self.style = ttk.Style()
         self.style.theme_use("default")
