@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.ttk as ttk
 from Pages.common.Config import *
 from Classes.MySql import *
 from Classes.Mostrar import *
