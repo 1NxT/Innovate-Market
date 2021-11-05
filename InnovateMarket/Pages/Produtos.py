@@ -5,6 +5,7 @@ from Classes.MySql import *
 from Classes.Pesquisar import *
 from Classes.Mostrar import *
 from Classes.Deletar import *
+from Pages.Editar.Editar_produtos import *
 from Pages.Adicionar.Adicionar_pedi import *
 from Pages.common.Config import *
 
@@ -16,10 +17,10 @@ class Produtos(Frame):
         self.telaprodutos.attributes("-fullscreen", True)
         self.geometry()
         self.elementos()
-        
+
     def geometry(self):
         self.telaprodutos.title("Produtos")
-        self.telaprodutos.geometry("1360x760")
+        self.telaprodutos.geometry("1360x768")
         self.telaprodutos.configure(bg="DodgerBlue")
         self.telaprodutos.resizable(False, False)
         self.__iconImagemPath = imagespath / "logo.ico"
@@ -28,19 +29,19 @@ class Produtos(Frame):
     def voltar_inicial_pro(self):
         self.telaprodutos.destroy()
         return
-    
+
     def clear_entry(self):
         self.ent_pesquisar.delete(0, END)
         self.ent_pesquisar.insert(0, "")
-        
-    
+
+
     def view_tree(self):
         self.resultado = Mostrar().mostrar(self, "produtos", "ID")
-        
+
         if self.resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
             for i in self.resultado:
-                
+
                 self.tree_pro.insert("","end",values=i)
         else:
             print("Error!")
@@ -51,21 +52,21 @@ class Produtos(Frame):
         Deletar.deletar("produtos", "ID", self.values[0])
         self.view_tree()
 
-        
-    
+
+
     def chamaPesquisar(self):
         #nome, preco, fornecedor, id
-        
+
         self.dicti["nome"] = self.ent_pesquisar.get()
         self.dicti["preco"] = self.ent_pesquisar.get()
         self.dicti["fornecedor"] = self.ent_pesquisar.get()
         self.dicti["id"] = self.ent_pesquisar.get()
         resultado = Pesquisar().pesquisar(self.dicti, "produtos", "ID")
 
-        
+
         if resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
-            
+
             for i in resultado:
                 self.tree_pro.insert("","end",values=i)
         else:
@@ -77,6 +78,12 @@ class Produtos(Frame):
         self.tree_pro.delete(self.currItem)
         Deletar().deletar("produtos", "ID", self.values[0])
         self.tree_pro.bind('<ButtonRelease-1>', self.currItem)
+
+
+    def edit_pro(self):
+        self.selected = self.tree_pro.focus()
+        self.values = self.tree_pro.item(self.selected, 'values')
+        Editar_produtos(self.values)
 
 
     def elementos(self):
@@ -95,15 +102,15 @@ class Produtos(Frame):
         self.style.theme_use("default")
 
         # Frame da Treeview Produtos
-        self.tree_pro_frame = Frame(self.telaprodutos, padx=0, pady=0, bg="lightgrey")
+        self.tree_pro_frame = Frame(self.telaprodutos, padx=0, pady=1, bg="lightgrey")
         self.tree_pro_frame.place(x=0, y=0)
 
         # ScrollBar
         self.scroll = ttk.Scrollbar(self.tree_pro_frame)
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        self.tree_pro = ttk.Treeview(self.tree_pro_frame, column=("Código de barras","Preço", "Nome","Fornecedor"), show='headings', height=35, yscrollcommand=self.scroll.set)
-        
+        self.tree_pro = ttk.Treeview(self.tree_pro_frame, column=("Código de barras","Preço", "Nome","Fornecedor"), show='headings', height=37, yscrollcommand=self.scroll.set)
+
         self.tree_pro.pack()
 
         self.scroll.config(command=self.tree_pro.yview)
@@ -112,13 +119,13 @@ class Produtos(Frame):
         self.tree_pro.heading('#2', text="Preço", anchor=CENTER)
         self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
         self.tree_pro.heading('#4', text="Fornecedor", anchor=CENTER)
-        
+
         self.view_tree()
-        
+
         # ENTRYS TELA PRODUTOS
         self.ent_pesquisar = Entry(self.telaprodutos, width=25, font="Arial 18")
         self.ent_pesquisar.place(x=886, y=160)
-        
+
         # BUTTONS TELA PRODUTOS
         self.img_pesquisar = imagespath / "pesquisar.png"
         self.btn_pesquisar = PhotoImage(file =self.img_pesquisar)
@@ -137,10 +144,10 @@ class Produtos(Frame):
 
         self.img_editar = imagespath / "editar.png"
         self.btn_editar = PhotoImage(file =self.img_editar)
-        self.btn_show = Button(self.telaprodutos, command=lambda:[self.view_tree()], image=self.btn_editar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show = Button(self.telaprodutos, command=self.edit_pro, image=self.btn_editar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_show.place(x=980, y=400)
 
         self.img_deletar = imagespath / "deletar.png"
         self.btn_deletar = PhotoImage(file =self.img_deletar)
-        self.btn_show = Button(self.telaprodutos, command=self.deleteElemento(), image=self.btn_deletar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show = Button(self.telaprodutos, command=self.deleteElemento, image=self.btn_deletar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_show.place(x=980, y=467)

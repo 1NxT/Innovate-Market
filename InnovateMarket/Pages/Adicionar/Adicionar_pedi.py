@@ -25,7 +25,7 @@ class Adicionar_pedi(Frame):
 
     def geometry(self):
         self.adicionar_pedi.title("Adicionar Pedidos")
-        self.adicionar_pedi.geometry("1360x760")
+        self.adicionar_pedi.geometry("1360x768")
         self.adicionar_pedi.resizable(False, False)
         # self.__iconImagemPath = imagespath / "logo.ico"
         # self.telapedi.iconbitmap(self.__iconImagemPath)
