@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.ttk as ttk
 from Pages.common.Config import *
 from Classes.MySql import *
 
@@ -48,6 +49,12 @@ class Adicionar_pedi(Frame):
         self.ent_num_pedi = Entry(self.adicionar_pedi, width=25, font="Arial 18")
         self.ent_num_pedi.place(x=886, y=520)
 
+        self.img_adicionar = imagespath / "adicionar.png"
+        self.btn_adicionar = PhotoImage(file =self.img_adicionar)
+        self.btn_adicionar_pedi = Button(self.adicionar_pedi, image=self.btn_adicionar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_adicionar_pedi.place(x=980, y=580)
+
+
          # Estilo da Treeview
         self.style = ttk.Style()
         self.style.theme_use("default")
@@ -69,4 +76,4 @@ class Adicionar_pedi(Frame):
         self.tree_pedi.heading('#2', text="Cliente", anchor=CENTER)
         self.tree_pedi.heading('#3', text="Valor Total", anchor=CENTER)
         self.tree_pedi.heading('#4', text="Numero do Pedido", anchor=CENTER)
-        self.view_tree()
+        
