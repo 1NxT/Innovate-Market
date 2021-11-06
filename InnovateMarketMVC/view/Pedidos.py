@@ -1,7 +1,7 @@
 #from Pages.Adicionar.Adicionar_pedi import *
 from tkinter import *
 import tkinter.ttk as ttk
-from controller.Controller import *
+from controller.Controller import pedidosControler
 
 from model.Config import *
 
@@ -24,32 +24,32 @@ class Pedidos(Frame):
             self.telapedi.destroy()
             return
         
-    # def clear_entry(self):
-    #     self.ent_pesquisar.delete(0, END)
-    #     self.ent_pesquisar.insert(0, "")
+    def clear_entry(self):
+        self.ent_pesquisar.delete(0, END)
+        self.ent_pesquisar.insert(0, "")
         
-    # def view_tree(self):
-    #     resultado = Mostrar().mostrar(self, "pedidos", "ID")
+    def view_tree(self):
+        resultado = pedidosControler().mostarPedido()
         
-    #     if resultado != None:
-    #         self.tree_pedi.delete(*self.tree_pedi.get_children())
+        if resultado != None:
+            self.tree_pedi.delete(*self.tree_pedi.get_children())
             
-    #         for i in resultado:
-    #             self.tree_pedi.insert("","end",values=i)
-    #     else:
-    #         print("Error!")
+            for i in resultado:
+                self.tree_pedi.insert("","end",values=i)
+        else:
+            print("Error!")
     
-    # # Função para procurar por dados na Treeview        
-    # def chamaPesquisar(self):
-    #     resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "pedidos", "id_pedido")
+    # Função para procurar por dados na Treeview        
+    def chamaPesquisar(self):
+        resultado = pedidosControler().pesquisarPedido(self.ent_pesquisar.get())
 
-    #     if resultado != None:
-    #         self.tree_pedi.delete(*self.tree_pedi.get_children())
+        if resultado != None:
+            self.tree_pedi.delete(*self.tree_pedi.get_children())
             
-    #         for i in resultado:
-    #             self.tree_pedi.insert("","end",values=i)
-    #     else:
-    #         print("Error: Nenhum valor saiu da Classe") 
+            for i in resultado:
+                self.tree_pedi.insert("","end",values=i)
+        else:
+            print("Error: Nenhum valor saiu da Classe") 
 
     def elementos(self):
 

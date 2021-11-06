@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
-from controller.Controller import *
+from controller.Controller import gerenciarControler
 from model.Config import *
 
 class Gerenciar :
@@ -18,37 +18,37 @@ class Gerenciar :
         # self.__iconImagemPath = imagespath / "logo.ico"
         # self.telageren.iconbitmap(self.__iconImagemPath)
 
-    # def tela_inicial_gerenciar(self):
-    #         cadastro_usuario.destroy()
-    #         return
+    def tela_inicial_gerenciar(self):
+            cadastro_usuario.destroy()
+            return
     
     
-    # def view_tree(self):
-    #     resultado = Mostrar().mostrar(self, "user", "CPF")
+    def view_tree(self):
+        resultado = gerenciarControler().mostarGerenciar()
         
-    #     if resultado != None:
-    #         self.tree_gere.delete(*self.tree_gere.get_children())
+        if resultado != None:
+            self.tree_gere.delete(*self.tree_gere.get_children())
             
-    #         for i in resultado:
-    #             self.tree_gere.insert("","end",values=i)
-    #     else:
-    #         print("Error!")
+            for i in resultado:
+                self.tree_gere.insert("","end",values=i)
+        else:
+            print("Error!")
 
-    # def tela_inicial_gerenciar(self):
-    #     self.telageren.destroy()
-    #     return
+    def tela_inicial_gerenciar(self):
+        self.telageren.destroy()
+        return
 
-    # # Função para procurar por dados na Treeview        
-    # def chamaPesquisar(self):
-    #     resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "usuarios")
+    # Função para procurar por dados na Treeview        
+    def chamaPesquisar(self):
+        resultado = gerenciarControler().pesquisarGerenciar(self.ent_pesquisar.get())
 
-    #     if resultado != None:
-    #         self.tree_gere.delete(*self.tree_gere.get_children())
+        if resultado != None:
+            self.tree_gere.delete(*self.tree_gere.get_children())
             
-    #         for i in resultado:
-    #             self.tree_gere.insert("","end",values=i)
-    #     else:
-    #         print("Error: Nenhum valor saiu da Classe")
+            for i in resultado:
+                self.tree_gere.insert("","end",values=i)
+        else:
+            print("Error: Nenhum valor saiu da Classe")
 
     def elementos(self):
 

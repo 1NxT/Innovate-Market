@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
-from controller.Controller import pesquisarControler
-from controller.Controller import mostarControler
+from controller.Controller import fornecedorControler
 from model.Config import *
 
 class Fornecedor:
@@ -30,7 +29,7 @@ class Fornecedor:
         self.ent_pesquisar.insert(0, "")
     
     def view_tree(self):
-        resultado = mostarControler().mostarFornecedor()
+        resultado = fornecedorControler().mostarFornecedor()
         
         if resultado != None:
             self.tree_forne.delete(*self.tree_forne.get_children())
@@ -46,7 +45,7 @@ class Fornecedor:
         self.dicti["telefone"] = self.ent_pesquisar.get()
         self.dicti["endereco"] = self.ent_pesquisar.get()
         self.dicti["produto_fornecido"] = self.ent_pesquisar.get()
-        resultado = pesquisarControler().pesquisarFornecedor(self.dicti)
+        resultado = fornecedorControler().pesquisarFornecedor(self.dicti)
 
         if resultado != None:
             self.tree_forne.delete(*self.tree_forne.get_children())
@@ -86,7 +85,7 @@ class Fornecedor:
         self.tree_forne.heading('#1', text="Nome", anchor=CENTER)
         self.tree_forne.heading('#2', text="CNPJ", anchor=CENTER)
         self.tree_forne.heading('#3', text="Telefone", anchor=CENTER)
-        self.tree_forne.heading('#4', text="Endereco", anchor=CENTER)
+        self.tree_forne.heading('#4', text="Endereço", anchor=CENTER)
         self.tree_forne.heading('#5',text="Produto Fornecido", anchor=CENTER)
         self.view_tree()
 

@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
-from controller.Controller import *
-
+from controller.Controller import promocoesControler
 from model.Config import *
 
 class Promocoes:
@@ -23,34 +22,34 @@ class Promocoes:
         return
     
     
-    # def clear_entry(self):
-    #     self.ent_pesquisar.delete(0, END)
-    #     self.ent_pesquisar.insert(0, "")
+    def clear_entry(self):
+        self.ent_pesquisar.delete(0, END)
+        self.ent_pesquisar.insert(0, "")
     
     
-    # def view_tree(self):
-    #     resultado = Mostrar().mostrar(self, "cupons", "ID")
+    def view_tree(self):
+        resultado = promocoesControler().mostarPromocoes()
         
-    #     if resultado != None:
-    #         self.tree_promo.delete(*self.tree_promo.get_children())
+        if resultado != None:
+            self.tree_promo.delete(*self.tree_promo.get_children())
             
-    #         for i in resultado:
-    #             self.tree_promo.insert("","end",values=i)
-    #     else:
-    #         print("Error!")
+            for i in resultado:
+                self.tree_promo.insert("","end",values=i)
+        else:
+            print("Error!")
         
     
-    # def chamaPesquisar(self):
-    #     resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "promocoes", "nome_produto")
+    def chamaPesquisar(self):
+        resultado = promocoesControler().pesquisarPromocoes()
 
         
-    #     if resultado != None:
-    #         self.tree_promo.delete(*self.tree_promo.get_children())
+        if resultado != None:
+            self.tree_promo.delete(*self.tree_promo.get_children())
             
-    #         for i in resultado:
-    #             self.tree_promo.insert("","end",values=i)
-    #     else:
-    #         print("Error: Nenhum valor saiu da Classe")
+            for i in resultado:
+                self.tree_promo.insert("","end",values=i)
+        else:
+            print("Error: Nenhum valor saiu da Classe")
 
 
     def elementos(self):

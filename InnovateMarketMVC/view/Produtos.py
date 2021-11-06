@@ -2,10 +2,7 @@ from tkinter import *
 from tkinter import font
 import tkinter.ttk as ttk
 from tkinter import messagebox
-from controller.Controller import pesquisarControler
-from controller.Controller import mostarControler
-from controller.Controller import valuesControler
-from controller.Controller import deletarControler
+from controller.Controller import produtosControler
 from view.Editar.Editar_produtos import *
 from view.Adicionar.Adicionar_pro import *
 from model.Config import *
@@ -37,7 +34,7 @@ class Produtos(Frame):
 
 
     def view_tree(self):
-        self.resultado = mostarControler().mostarProdutos()
+        self.resultado = produtosControler().mostarProdutos()
 
         if self.resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
@@ -54,7 +51,7 @@ class Produtos(Frame):
         self.dicti["preco"] = self.ent_pesquisar.get()
         self.dicti["fornecedor"] = self.ent_pesquisar.get()
         self.dicti["id"] = self.ent_pesquisar.get()
-        resultado = pesquisarControler().pesquisarProdutos(self.dicti)
+        resultado = produtosControler().pesquisarProdutos(self.dicti)
 
 
         if resultado != None:
@@ -67,7 +64,8 @@ class Produtos(Frame):
 
     def deleteElemento(self):
         self.currItem = self.tree_pro.focus()
-        self.values =  valuesControler().valuesProdutos(self.tree_pro.item(self.currItem)['values'])
+        self.values = produtosControler().valuesProdutos(
+            self.tree_pro.item(self.currItem)['values'])
         self.tree_pro.delete(self.currItem)
         deletarControler().deletarProduto(self.values.id)
         self.tree_pro.bind('<ButtonRelease-1>', self.currItem)
@@ -78,7 +76,7 @@ class Produtos(Frame):
             messagebox.showwarning(title="ERROR!", message="Selecione uma opção para editar", parent=self.telaprodutos)
         else:
             self.currItem = self.tree_pro.focus()
-            self.values =  valuesControler().valuesProdutos(self.tree_pro.item(self.currItem)['values'])
+            self.values = produtosControler().valuesProdutos(self.tree_pro.item(self.currItem)['values'])
             Editar_produtos(self.values)
 
 

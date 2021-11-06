@@ -31,29 +31,29 @@ class Caixa(Frame):
         self.telacaixa.destroy()
         return
     
-    # # Função para aparecer os dados na Treeview
-    # def view_tree(self):
-    #     resultado = Mostrar().mostrar(self, "caixa", "ID")
+    # Função para aparecer os dados na Treeview
+    def view_tree(self):
+        resultado = caixaControler().mostarCaixa()
         
-    #     if resultado != None:
-    #         self.tree_caixa.delete(*self.tree_caixa.get_children())
+        if resultado != None:
+            self.tree_caixa.delete(*self.tree_caixa.get_children())
             
-    #         for i in resultado:
-    #             self.tree_caixa.insert("","end",values=i)
-    #     else:
-    #         print("Error!")
+            for i in resultado:
+                self.tree_caixa.insert("","end",values=i)
+        else:
+            print("Error!")
     
-    # # Função para procurar por dados na Treeview        
-    # def chamaPesquisar(self):
-    #     resultado = Pesquisar.pesquisar(self.ent_pesquisar.get(), "caixa")
+    # Função para procurar por dados na Treeview        
+    def chamaPesquisar(self):
+        resultado = caixaControler().pesquisarPromocoes(self.ent_pesquisar.get())
 
-    #     if resultado != None:
-    #         self.tree_caixa.delete(*self.tree_caixa.get_children())
+        if resultado != None:
+            self.tree_caixa.delete(*self.tree_caixa.get_children())
             
-    #         for i in resultado:
-    #             self.tree_caixa.insert("","end",values=i)
-    #     else:
-    #         print("Error: Nenhum valor saiu da Classe")
+            for i in resultado:
+                self.tree_caixa.insert("","end",values=i)
+        else:
+            print("Error: Nenhum valor saiu da Classe")
         
     
     # LABELS, ENTRYS, BUTTONS e ETC da tela:

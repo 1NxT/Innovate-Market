@@ -1,13 +1,15 @@
 from tkinter import *
 import tkinter.ttk as ttk
 from typing import ValuesView
-from controller.Controller import *
+from view.Produtos import *
+from controller.Controller import produtosControler
 
 from model.Config import *
 
 class Editar_produtos(Frame):
     def __init__(self, values):
         self.values = values
+        self.id = self.values.id
         Frame.__init__(self, master=None)
         self.edit_produtos = Toplevel()
         self.edit_produtos.attributes("-fullscreen", True)
@@ -25,9 +27,14 @@ class Editar_produtos(Frame):
         self.ent_nome.insert(0, self.values.nome)
         self.ent_forne.insert(0, self.values.fornecedor)
 
-    def voltar_inicial_pro(self):
+    def updateProduto(self):
+        self.values.nome = self.ent_nome.get()
+        self.values.preco = self.ent_preco.get()
+        self.values.fornecedor = self.ent_forne.get()
+        self.values.id = self.ent_cod.get()
+        produtosControler().atualizarProdutos(self.values, self.id)
         self.edit_produtos.destroy()
-        return
+        return 
 
     # def select_record(self, values):
     #     # Clear Entrys
@@ -47,7 +54,7 @@ class Editar_produtos(Frame):
     #     self.select_record()
 
     def view_tree(self):
-        self.resultado = mostarControler().mostarProdutos()
+        self.resultado = produtosControler().mostarProdutos()
 
         if self.resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
@@ -65,15 +72,15 @@ class Editar_produtos(Frame):
         self.edit_produtos.iconbitmap(self.__iconImagemPath)
 
     def elementos(self):
-        self.pathBg = imagespath / "produtos_bg.png"
+        self.pathBg = imagespath / "editProdutos_bg.png"
         self.__bg = PhotoImage(file =self.pathBg)
         self.lblimgbg = Label(self.edit_produtos, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
 
-        self.btn_telainicial = imagespath / "voltar.png"
-        self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
-        self.btn_telainicial_pro = Button(self.edit_produtos, command=self.voltar_inicial_pro, image=self.btn_voltartelainicial, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
-        self.btn_telainicial_pro.place(x=980, y=660)
+        self.btn_salvarPath = imagespath / "Salvar.png"
+        self.btn_salvar = PhotoImage(file=self.btn_salvarPath)
+        self.btn_salvar_pro = Button(self.edit_produtos, command=self.updateProduto, image=self.btn_salvar, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
+        self.btn_salvar_pro.place(x=980, y=660)
 
         # Estilo da Treeview
         self.style = ttk.Style()
@@ -107,10 +114,10 @@ class Editar_produtos(Frame):
         self.ent_cod.place(x=886, y=160)
 
         self.ent_preco = Entry(self.edit_produtos, width=25, font="Arial 18")
-        self.ent_preco.place(x=886, y=200)
+        self.ent_preco.place(x=886, y=280)
 
         self.ent_nome = Entry(self.edit_produtos, width=25, font="Arial 18")
-        self.ent_nome.place(x=886, y=240)
+        self.ent_nome.place(x=886, y=400)
 
         self.ent_forne = Entry(self.edit_produtos, width=25, font="Arial 18")
-        self.ent_forne.place(x=886, y=280)
+        self.ent_forne.place(x=886, y=520)
