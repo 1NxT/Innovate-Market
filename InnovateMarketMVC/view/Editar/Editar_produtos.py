@@ -25,26 +25,10 @@ class Editar_produtos(Frame):
         self.ent_nome.insert(0, self.values.nome)
         self.ent_forne.insert(0, self.values.fornecedor)
 
-    def voltar_inicial_pro(self):
-        self.edit_produtos.destroy()
+    def Update_data(self):
+        self.tree_pro.item(self.currItem, text="", values=(self.ent_cod.get(), self.ent_preco.get(), self.ent_nome.get(), self.ent_forne.get()))
+        #self.edit_produtos.destroy()
         return
-
-    # def select_record(self, values):
-    #     # Clear Entrys
-    #     self.ent_cod.delete(0, END)
-    #     self.ent_preco.delete(0, END)
-    #     self.ent_nome.delete(0, END)
-    #     self.ent_forne.delete(0, END)
-    #     #Selection
-    #     self.values = values
-    #     # Insert values on Entrys
-    #     self.ent_cod.insert(0, self.values[0])
-    #     self.ent_preco.insert(0, self.values[1])
-    #     self.ent_nome.insert(0, self.values[2])
-    #     self.ent_forne.insert(0, self.values[3])
-
-    # def clicker(e):
-    #     self.select_record()
 
     def view_tree(self):
         self.resultado = mostarControler().mostarProdutos()
@@ -65,14 +49,14 @@ class Editar_produtos(Frame):
         self.edit_produtos.iconbitmap(self.__iconImagemPath)
 
     def elementos(self):
-        self.pathBg = imagespath / "produtos_bg.png"
+        self.pathBg = imagespath / "editProdutos_bg.png"
         self.__bg = PhotoImage(file =self.pathBg)
         self.lblimgbg = Label(self.edit_produtos, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
 
-        self.btn_telainicial = imagespath / "voltar.png"
+        self.btn_telainicial = imagespath / "Salvar.png"
         self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
-        self.btn_telainicial_pro = Button(self.edit_produtos, command=self.voltar_inicial_pro, image=self.btn_voltartelainicial, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
+        self.btn_telainicial_pro = Button(self.edit_produtos, command=self.Update_data, image=self.btn_voltartelainicial, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
         self.btn_telainicial_pro.place(x=980, y=660)
 
         # Estilo da Treeview
@@ -107,10 +91,10 @@ class Editar_produtos(Frame):
         self.ent_cod.place(x=886, y=160)
 
         self.ent_preco = Entry(self.edit_produtos, width=25, font="Arial 18")
-        self.ent_preco.place(x=886, y=200)
+        self.ent_preco.place(x=886, y=280)
 
         self.ent_nome = Entry(self.edit_produtos, width=25, font="Arial 18")
-        self.ent_nome.place(x=886, y=240)
+        self.ent_nome.place(x=886, y=400)
 
         self.ent_forne = Entry(self.edit_produtos, width=25, font="Arial 18")
-        self.ent_forne.place(x=886, y=280)
+        self.ent_forne.place(x=886, y=520)
