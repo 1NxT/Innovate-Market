@@ -36,23 +36,6 @@ class Editar_produtos(Frame):
         self.edit_produtos.destroy()
         return 
 
-    # def select_record(self, values):
-    #     # Clear Entrys
-    #     self.ent_cod.delete(0, END)
-    #     self.ent_preco.delete(0, END)
-    #     self.ent_nome.delete(0, END)
-    #     self.ent_forne.delete(0, END)
-    #     #Selection
-    #     self.values = values
-    #     # Insert values on Entrys
-    #     self.ent_cod.insert(0, self.values[0])
-    #     self.ent_preco.insert(0, self.values[1])
-    #     self.ent_nome.insert(0, self.values[2])
-    #     self.ent_forne.insert(0, self.values[3])
-
-    # def clicker(e):
-    #     self.select_record()
-
     def view_tree(self):
         self.resultado = produtosControler().mostarProdutos()
 
