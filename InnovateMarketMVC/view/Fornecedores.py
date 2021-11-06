@@ -1,9 +1,7 @@
 from tkinter import *
 import tkinter.ttk as ttk
-from Classes.MySql import *
-from Classes.Pesquisar import *
-from Classes.Mostrar import *
-from Pages.common.Config import *
+from controller.Controller import fornecedorControler
+from model.Config import *
 
 class Fornecedor:
     def __init__(self):
@@ -31,7 +29,7 @@ class Fornecedor:
         self.ent_pesquisar.insert(0, "")
     
     def view_tree(self):
-        resultado = Mostrar().mostrar(self, "fornecedores", "CNPJ")
+        resultado = fornecedorControler().mostarFornecedor()
         
         if resultado != None:
             self.tree_forne.delete(*self.tree_forne.get_children())
@@ -47,8 +45,7 @@ class Fornecedor:
         self.dicti["telefone"] = self.ent_pesquisar.get()
         self.dicti["endereco"] = self.ent_pesquisar.get()
         self.dicti["produto_fornecido"] = self.ent_pesquisar.get()
-        
-        resultado = Pesquisar().pesquisar(self.dicti, "fornecedor", "nome")
+        resultado = fornecedorControler().pesquisarFornecedor(self.dicti)
 
         if resultado != None:
             self.tree_forne.delete(*self.tree_forne.get_children())

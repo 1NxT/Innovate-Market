@@ -1,7 +1,7 @@
 from tkinter import *
 #import seaborn as sns
 #import matplotlib.pyplot as plt
-from Pages.common.Config import *
+from model.Config import *
 
 class Lucros:
     def __init__(self):

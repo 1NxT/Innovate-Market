@@ -1,10 +1,9 @@
 #from Pages.Adicionar.Adicionar_pedi import *
 from tkinter import *
 import tkinter.ttk as ttk
-from Classes.MySql import *
-from Classes.Pesquisar import *
-from Classes.Mostrar import *
-from Pages.common.Config import *
+from controller.Controller import pedidosControler
+
+from model.Config import *
 
 class Pedidos(Frame):
     def __init__(self):
@@ -30,7 +29,7 @@ class Pedidos(Frame):
         self.ent_pesquisar.insert(0, "")
         
     def view_tree(self):
-        resultado = Mostrar().mostrar(self, "pedidos", "ID")
+        resultado = pedidosControler().mostarPedido()
         
         if resultado != None:
             self.tree_pedi.delete(*self.tree_pedi.get_children())
@@ -42,7 +41,7 @@ class Pedidos(Frame):
     
     # Função para procurar por dados na Treeview        
     def chamaPesquisar(self):
-        resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "pedidos", "id_pedido")
+        resultado = pedidosControler().pesquisarPedido(self.ent_pesquisar.get())
 
         if resultado != None:
             self.tree_pedi.delete(*self.tree_pedi.get_children())

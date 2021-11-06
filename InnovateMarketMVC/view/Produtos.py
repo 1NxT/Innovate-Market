@@ -2,14 +2,10 @@ from tkinter import *
 from tkinter import font
 import tkinter.ttk as ttk
 from tkinter import messagebox
-from Classes.MySql import *
-from Classes.Pesquisar import *
-from Classes.Mostrar import *
-from Classes.Deletar import *
-from Classes.ValuesDB import *
-from Pages.Editar.Editar_produtos import *
-from Pages.Adicionar.Adicionar_pro import *
-from Pages.common.Config import *
+from controller.Controller import produtosControler
+from view.Editar.Editar_produtos import *
+from view.Adicionar.Adicionar_pro import *
+from model.Config import *
 
 class Produtos(Frame):
     def __init__(self):
@@ -38,7 +34,7 @@ class Produtos(Frame):
 
 
     def view_tree(self):
-        self.resultado = Mostrar().mostrar(self, "produtos", "ID")
+        self.resultado = produtosControler().mostarProdutos()
 
         if self.resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
@@ -48,14 +44,6 @@ class Produtos(Frame):
         else:
             print("Error!")
 
-    def deletarElement(self):
-        self.selected_item = self.tree_pro.selection()[0]
-        self.tree_pro.delete(self.selected_item)
-        Deletar.deletar("produtos", "ID", self.values[0])
-        self.view_tree()
-
-
-
     def chamaPesquisar(self):
         #nome, preco, fornecedor, id
 
@@ -63,7 +51,7 @@ class Produtos(Frame):
         self.dicti["preco"] = self.ent_pesquisar.get()
         self.dicti["fornecedor"] = self.ent_pesquisar.get()
         self.dicti["id"] = self.ent_pesquisar.get()
-        resultado = Pesquisar().pesquisar(self.dicti, "produtos", "ID")
+        resultado = produtosControler().pesquisarProdutos(self.dicti)
 
 
         if resultado != None:
@@ -76,9 +64,10 @@ class Produtos(Frame):
 
     def deleteElemento(self):
         self.currItem = self.tree_pro.focus()
-        self.values =  ValuesDB().carregarValues(self.tree_pro.item(self.currItem)['values'])
+        self.values = produtosControler().valuesProdutos(
+            self.tree_pro.item(self.currItem)['values'])
         self.tree_pro.delete(self.currItem)
-        Deletar().deletar("produtos", "ID", self.values.id)
+        produtosControler().deletarProduto(self.values.id)
         self.tree_pro.bind('<ButtonRelease-1>', self.currItem)
 
 
@@ -87,8 +76,8 @@ class Produtos(Frame):
             messagebox.showwarning(title="ERROR!", message="Selecione uma opção para editar", parent=self.telaprodutos)
         else:
             self.currItem = self.tree_pro.focus()
-            self.values =  ValuesDB().carregarValues(self.tree_pro.item(self.currItem)['values'])
-            Editar_produtos(self.values, self.currItem)
+            self.values = produtosControler().valuesProdutos(self.tree_pro.item(self.currItem)['values'])
+            Editar_produtos(self.values)
 
 
     def elementos(self):
