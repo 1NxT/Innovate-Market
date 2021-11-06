@@ -88,7 +88,7 @@ class Produtos(Frame):
         else:
             self.currItem = self.tree_pro.focus()
             self.values =  ValuesDB().carregarValues(self.tree_pro.item(self.currItem)['values'])
-            Editar_produtos(self.values)
+            Editar_produtos(self.values, self.currItem)
 
 
     def elementos(self):

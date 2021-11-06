@@ -88,7 +88,7 @@ class Fornecedor:
         self.tree_forne.heading('#1', text="Nome", anchor=CENTER)
         self.tree_forne.heading('#2', text="CNPJ", anchor=CENTER)
         self.tree_forne.heading('#3', text="Telefone", anchor=CENTER)
-        self.tree_forne.heading('#4', text="Endereco", anchor=CENTER)
+        self.tree_forne.heading('#4', text="Endereço", anchor=CENTER)
         self.tree_forne.heading('#5',text="Produto Fornecido", anchor=CENTER)
         self.view_tree()
 
