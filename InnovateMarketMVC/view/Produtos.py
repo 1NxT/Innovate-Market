@@ -67,7 +67,7 @@ class Produtos(Frame):
         self.values = produtosControler().valuesProdutos(
             self.tree_pro.item(self.currItem)['values'])
         self.tree_pro.delete(self.currItem)
-        deletarControler().deletarProduto(self.values.id)
+        produtosControler().deletarProduto(self.values.id)
         self.tree_pro.bind('<ButtonRelease-1>', self.currItem)
 
 
