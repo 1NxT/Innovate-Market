@@ -2,8 +2,10 @@ from tkinter import *
 from tkinter import font
 import tkinter.ttk as ttk
 from tkinter import messagebox
-from controller.Controller import *
-
+from controller.Controller import pesquisarControler
+from controller.Controller import mostarControler
+from controller.Controller import valuesControler
+from controller.Controller import deletarControler
 from view.Editar.Editar_produtos import *
 from view.Adicionar.Adicionar_pro import *
 from model.Config import *
@@ -34,58 +36,50 @@ class Produtos(Frame):
         self.ent_pesquisar.insert(0, "")
 
 
-    # def view_tree(self):
-    #     self.resultado = Mostrar().mostrar(self, "produtos", "ID")
+    def view_tree(self):
+        self.resultado = mostarControler().mostarProdutos()
 
-    #     if self.resultado != None:
-    #         self.tree_pro.delete(*self.tree_pro.get_children())
-    #         for i in self.resultado:
+        if self.resultado != None:
+            self.tree_pro.delete(*self.tree_pro.get_children())
+            for i in self.resultado:
 
-    #             self.tree_pro.insert("","end",values=i)
-    #     else:
-    #         print("Error!")
+                self.tree_pro.insert("","end",values=i)
+        else:
+            print("Error!")
 
-    # def deletarElement(self):
-    #     self.selected_item = self.tree_pro.selection()[0]
-    #     self.tree_pro.delete(self.selected_item)
-    #     Deletar.deletar("produtos", "ID", self.values[0])
-    #     self.view_tree()
+    def chamaPesquisar(self):
+        #nome, preco, fornecedor, id
 
-
-
-    # def chamaPesquisar(self):
-    #     #nome, preco, fornecedor, id
-
-    #     self.dicti["nome"] = self.ent_pesquisar.get()
-    #     self.dicti["preco"] = self.ent_pesquisar.get()
-    #     self.dicti["fornecedor"] = self.ent_pesquisar.get()
-    #     self.dicti["id"] = self.ent_pesquisar.get()
-    #     resultado = Pesquisar().pesquisar(self.dicti, "produtos", "ID")
+        self.dicti["nome"] = self.ent_pesquisar.get()
+        self.dicti["preco"] = self.ent_pesquisar.get()
+        self.dicti["fornecedor"] = self.ent_pesquisar.get()
+        self.dicti["id"] = self.ent_pesquisar.get()
+        resultado = pesquisarControler().pesquisarProdutos(self.dicti)
 
 
-    #     if resultado != None:
-    #         self.tree_pro.delete(*self.tree_pro.get_children())
+        if resultado != None:
+            self.tree_pro.delete(*self.tree_pro.get_children())
 
-    #         for i in resultado:
-    #             self.tree_pro.insert("","end",values=i)
-    #     else:
-    #         print("Error: Nenhum valor saiu da Classe")
+            for i in resultado:
+                self.tree_pro.insert("","end",values=i)
+        else:
+            print("Error: Nenhum valor saiu da Classe")
 
-    # def deleteElemento(self):
-    #     self.currItem = self.tree_pro.focus()
-    #     self.values =  ValuesDB().carregarValues(self.tree_pro.item(self.currItem)['values'])
-    #     self.tree_pro.delete(self.currItem)
-    #     Deletar().deletar("produtos", "ID", self.values.id)
-    #     self.tree_pro.bind('<ButtonRelease-1>', self.currItem)
+    def deleteElemento(self):
+        self.currItem = self.tree_pro.focus()
+        self.values =  valuesControler().valuesProdutos(self.tree_pro.item(self.currItem)['values'])
+        self.tree_pro.delete(self.currItem)
+        deletarControler().deletarProduto(self.values.id)
+        self.tree_pro.bind('<ButtonRelease-1>', self.currItem)
 
 
-    # def edit_pro(self):
-    #     if not self.tree_pro.focus():
-    #         messagebox.showwarning(title="ERROR!", message="Selecione uma opção para editar", parent=self.telaprodutos)
-    #     else:
-    #         self.currItem = self.tree_pro.focus()
-    #         self.values =  ValuesDB().carregarValues(self.tree_pro.item(self.currItem)['values'])
-    #         Editar_produtos(self.values)
+    def edit_pro(self):
+        if not self.tree_pro.focus():
+            messagebox.showwarning(title="ERROR!", message="Selecione uma opção para editar", parent=self.telaprodutos)
+        else:
+            self.currItem = self.tree_pro.focus()
+            self.values =  valuesControler().valuesProdutos(self.tree_pro.item(self.currItem)['values'])
+            Editar_produtos(self.values)
 
 
     def elementos(self):

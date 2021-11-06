@@ -16,6 +16,7 @@ class Usuario:
 
     def verificarSenha(self, Userpassword) -> bool:
         if self.password == Userpassword:
+            
             return True
         else:
             return False

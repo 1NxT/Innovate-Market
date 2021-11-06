@@ -10,11 +10,11 @@ class UsuarioDB():
             return None
         else:
             self.__cursor.execute("SELECT * FROM user WHERE CPF = ?", (cpf,))
-            resultado1 = self.cursor.fetchone()
+            resultado1 = self.__cursor.fetchone()
             DB().closeCursor()
 
             #verificação de user
             if resultado1 == None:
-                return False
+                return None
             else:
                 return Usuario(resultado1[0], resultado1[1], Cargo(resultado1[2]), resultado1[3], resultado1[4])

@@ -90,8 +90,7 @@ class SegundaTela(Frame):
     def __criarBtnVoltar(self):
         self.__btn_voltarImagePath = imagespath / "sairdosbuttons.png"
         self.__btn_voltarImage = PhotoImage(file=self.__btn_voltarImagePath)
-        self.btn_voltar = Button(self.tela2, command=self.iExit2,
-                                 image=self.__btn_voltarImage, relief="ridge", borderwidth=0)
+        self.btn_voltar = Button(self.tela2, command=self.iExit2,image=self.__btn_voltarImage, relief="ridge", borderwidth=0)
         self.btn_voltar.place(x=1150, y=660)
 
     #Validar permissão

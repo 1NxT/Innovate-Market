@@ -47,7 +47,7 @@ class Editar_produtos(Frame):
     #     self.select_record()
 
     def view_tree(self):
-        self.resultado = Mostrar().mostrar(self, "produtos", "ID")
+        self.resultado = mostarControler().mostarProdutos()
 
         if self.resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())

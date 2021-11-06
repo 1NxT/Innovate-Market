@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter.ttk as ttk
-from controller.Controller import *
+from controller.Controller import pesquisarControler
+from controller.Controller import mostarControler
 from model.Config import *
 
 class Fornecedor:
@@ -20,40 +21,39 @@ class Fornecedor:
         self.__iconImagemPath = imagespath / "logo.ico"
         #self.telaforne.iconbitmap(self.__iconImagemPath)
         
-    # def voltar_inicial_forne(self):
-    #     self.telaforne.destroy()
-    #     return
+    def voltar_inicial_forne(self):
+        self.telaforne.destroy()
+        return
     
-    # def clear_entry(self):
-    #     self.ent_pesquisar.delete(0, END)
-    #     self.ent_pesquisar.insert(0, "")
+    def clear_entry(self):
+        self.ent_pesquisar.delete(0, END)
+        self.ent_pesquisar.insert(0, "")
     
-    # def view_tree(self):
-    #     resultado = Mostrar().mostrar(self, "fornecedores", "CNPJ")
+    def view_tree(self):
+        resultado = mostarControler().mostarFornecedor()
         
-    #     if resultado != None:
-    #         self.tree_forne.delete(*self.tree_forne.get_children())
+        if resultado != None:
+            self.tree_forne.delete(*self.tree_forne.get_children())
             
-    #         for i in resultado:
-    #             self.tree_forne.insert("","end",values=i)
-    #     else:
-    #         print("Error!")
+            for i in resultado:
+                self.tree_forne.insert("","end",values=i)
+        else:
+            print("Error!")
         
-    # def chamaPesquisar(self):
-    #     self.dicti["nome"] = self.ent_pesquisar.get()
-    #     self.dicti["CNPJ"] = self.ent_pesquisar.get()
-    #     self.dicti["telefone"] = self.ent_pesquisar.get()
-    #     self.dicti["endereco"] = self.ent_pesquisar.get()
-    #     self.dicti["produto_fornecido"] = self.ent_pesquisar.get()
-        
-    #     resultado = Pesquisar().pesquisar(self.dicti, "fornecedor", "nome")
+    def chamaPesquisar(self):
+        self.dicti["nome"] = self.ent_pesquisar.get()
+        self.dicti["CNPJ"] = self.ent_pesquisar.get()
+        self.dicti["telefone"] = self.ent_pesquisar.get()
+        self.dicti["endereco"] = self.ent_pesquisar.get()
+        self.dicti["produto_fornecido"] = self.ent_pesquisar.get()
+        resultado = pesquisarControler().pesquisarFornecedor(self.dicti)
 
-    #     if resultado != None:
-    #         self.tree_forne.delete(*self.tree_forne.get_children())
-    #         for i in resultado:
-    #             self.tree_forne.insert("","end",values=i)
-    #     else:
-    #         print("Error: Nenhum valor saiu da Classe")
+        if resultado != None:
+            self.tree_forne.delete(*self.tree_forne.get_children())
+            for i in resultado:
+                self.tree_forne.insert("","end",values=i)
+        else:
+            print("Error: Nenhum valor saiu da Classe")
     
     def elementos(self):
         self.pathBg = imagespath / "fornecedor_bg.png"

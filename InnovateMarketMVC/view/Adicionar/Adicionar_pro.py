@@ -1,7 +1,8 @@
 from tkinter import *
 import tkinter.ttk as ttk
 from model.Config import *
-from controller.Controller import *
+from controller.Controller import mostarControler
+from controller.Controller import inserirControler
 
 
 class Adicionar_pro(Frame):
@@ -13,7 +14,7 @@ class Adicionar_pro(Frame):
         self.elementos()
 
     def view_tree(self):
-        self.resultado = Mostrar().mostrar(self, "produtos", "ID")
+        self.resultado = mostarControler().mostarProdutos()
 
         if self.resultado != None:
             self.tree_pro.delete(*self.tree_pro.get_children())
@@ -39,7 +40,9 @@ class Adicionar_pro(Frame):
         self.dicti["preco"] = self.ent_preco.get()
         self.dicti["nome"] = self.ent_valor.get()
         self.dicti["fornecedor"] = self.ent_fornecedor.get()
-        Inserir().salvar("produtos", self.dicti)
+        inserirControler().inserirProduto("produtos", self.dicti)
+        
+        
         self.view_tree()
 
     def elementos(self):

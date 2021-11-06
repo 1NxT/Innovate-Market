@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import time
 from tkinter import font
-from controller.Controller import *
+from controller.Controller import usuarioControler
 from view.SegundaTela import *
 from model.Config import *
 
@@ -33,18 +33,18 @@ class Principal(Frame):
         #self.tk.iconbitmap(self.__iconImagemPath)
 
     def chamarLogar(self):
-        usuario = chamarLogar(self.ent_login.get(), self.ent_senha.get())
+        usuario = usuarioControler().usuarioLogar(self.ent_login.get(), self.ent_senha.get())
 
         self.lbl_dadosUsuario["text"] = ""
         self.lbl_dadosUsuario["text"] = ""
-        if usuario == "User ERRADO":
+        if usuario == None:
             self.lbl_dadosUsuario["text"] = "Dados de usuário incorretos!"
-
-        if not self.ent_senha.get():
+        elif not self.ent_senha.get():
             self.lbl_dadosSenha["text"] = "Dados de senha incorretos!"
         elif usuario == "SENHA ERRADA":
             self.lbl_dadosSenha["text"] = "Dados de senha incorretos!"
         else:
+            
             SegundaTela(usuario)
 
     def elementos(self):
