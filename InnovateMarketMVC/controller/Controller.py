@@ -1,3 +1,4 @@
+from datetime import datetime
 from model.UsuarioDB import *
 from model.Pesquisar import *
 from model.Mostrar import *
@@ -70,13 +71,45 @@ class promocoesControler():
     
 class caixaControler():
     def mostarCaixa(self):
-        resultado = Mostrar().mostrar("caixa", "ID")
+        resultado = Mostrar().mostrar("caixaCompras", "CodigoCompra")
         return resultado
 
-    def pesquisarPromocoes(self, valoresCaixa):
-        resultado = Pesquisar().pesquisar(valoresCaixa, "caixa", "ID")
-        return resultado
+    def CaixaPesquisarProdutos(self, valoresProdutos):
+        resultado = Pesquisar().pesquisar(valoresProdutos, "caixa", "ID")
+        if len(resultado) != 1:
+            return "Nenhum produto!"
+        else:
+            return resultado
+    def caixaValues(self, valorCaixaProduto):
+        self.values = ValuesDB().carregarValues("caixaCompras", valorCaixaProduto)
+        return self.values
 
+    def adicionarProdutoCaixa(self, valoresCaixa):
+        Inserir().salvar("caixaCompras", valoresCaixa)
+
+    def deletarProduto(self, valorProdutoCaixa):
+        Deletar().deletar("caixaCompras", "CodigoProduto", valorProdutoCaixa)
+
+    def caixaAbortar(self, compraID):
+        Deletar().deletar("caixaCompras", "CodigoCompra", compraID)
+
+    def caixaFinalizarCompra(self, compraID):
+        
+        today = datetime.today().strftime('%d%m%Y')
+        data = str(today)
+        valoresCompra = Pesquisar().pesquisar(compraID, "caixaFinalizar", "CodigoCompra")
+        for i in valoresCompra:
+            self.dicti = {}
+            
+            self.dicti["CodigoCompra"] = str(i[0])
+            self.dicti["Nome Produto"] = str(i[1])
+            self.dicti["Qtd"] = str(i[2])
+            self.dicti["CodigoProduto"] = str(i[3])
+            self.dicti["Data"] = data
+            
+            Inserir().salvar("Vendas", self.dicti)
+        
+        Deletar().deletar("caixaCompras", "CodigoCompra", compraID)
 class pedidosControler():
     def mostarPedido(self):
         resultado = Mostrar().mostrar("pedidos", "ID")

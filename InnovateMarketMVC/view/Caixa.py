@@ -1,12 +1,16 @@
 from tkinter import *
 import tkinter.ttk as ttk
+from tkinter import messagebox
+from time import sleep
 from controller.Controller import *
 from model.Config import *
-
+from random import randint
+from view.PesquisarProduto import *
 
 class Caixa(Frame):
     def __init__(self):
         Frame.__init__(self, master=None)
+        self.compraID = self.gerarVendaId()
         self.telacaixa = Toplevel()
         self.geometry()
         self.imagecaixapath = imagespath /  "Logo.png"
@@ -17,8 +21,66 @@ class Caixa(Frame):
 
         
         self.elementos()
+        self.telacaixa.bind('<F1>', lambda event: self.adicionarProduto())
+        self.telacaixa.bind('<F2>', lambda event: self.excluirProdutoCompra())
+        self.telacaixa.bind('<F5>', lambda event: self.pesquisarProduto())
+        self.telacaixa.bind('<F6>', lambda event: self.finalizarVenda())
+        self.telacaixa.bind('<F7>', lambda event: self.abortarCompra())
         
 
+    def pesquisarProduto(self):
+        PesquisarProdutos()
+
+    def abortarCompra(self):
+        self.result = messagebox.askquestion(
+            'AVISO', 'Tem certeza que deseja abortar a compra?', icon="warning", parent=self.telacaixa)
+        if self.result == "yes":
+            caixaControler().caixaAbortar(self.compraID)
+            self.telacaixa.destroy()
+        return
+    
+    def adicionarProduto(self):
+        self.dicti = {}
+        self.dicti["CodigoCompra"] = self.compraID
+        self.nomeProduto = caixaControler().CaixaPesquisarProdutos(self.ent_cod_barras.get())
+        if self.nomeProduto == "Nenhum produto!":
+            messagebox.showwarning(
+                title="ERROR!", message="Selecione um produto para deletar!", parent=self.telacaixa)
+        else:
+            self.dicti["nomeProduto"] = self.nomeProduto[0][1]
+        self.dicti["Qtd"] = "1"
+        self.dicti["CodigoProduto"] = self.ent_cod_barras.get()
+
+        print(self.dicti)
+        caixaControler().adicionarProdutoCaixa(self.dicti)
+        self.view_tree()
+
+
+    def excluirProdutoCompra(self):
+        self.currItem = self.tree_caixa.focus()
+        if not self.currItem :
+            messagebox.showwarning(title="ERROR!", message="Selecione um produto para deletar!", parent=self.telacaixa)
+        else:
+            self.values = caixaControler().caixaValues(self.tree_caixa.item(self.currItem)['values'])
+            self.tree_caixa.delete(self.currItem)
+            caixaControler().deletarProduto(self.values.CodigoProduto)
+            self.view_tree()
+
+    def finalizarVenda(self):
+        self.result = messagebox.askquestion(
+            'AVISO', 'Tem certeza que deseja finalizar a compra?', icon="warning", parent=self.telacaixa)
+        if self.result == "yes":
+            caixaControler().caixaFinalizarCompra(self.compraID)
+            self.view_tree()
+            messagebox.showinfo(title="Finalizado!", message="Compra finalizada!", parent=self.telacaixa)
+            sleep(3)
+            self.telacaixa.destroy()
+        return
+        
+    def gerarVendaId(self):
+        self.compraID = randint(0, 9999999)
+        self.compraID = str(self.compraID)
+        return self.compraID
     def geometry(self):
         self.telacaixa.title("Caixa")
         self.telacaixa.geometry("1360x760")
@@ -58,8 +120,15 @@ class Caixa(Frame):
     
     # LABELS, ENTRYS, BUTTONS e ETC da tela:
     def elementos(self):
+
+        self.pathBg = imagespath / "caixa_bg.png"
+        self.__bg = PhotoImage(file=self.pathBg)
+        self.lblimgbg = Label(self.telacaixa, image=self.__bg)
+        self.lblimgbg.place(x=0, y=0)
+
         #Button de voltar a tela inicial
-        self.btn_telainicial_caixa = Button(self.telacaixa, text="Voltar Para Tela Inicial", command=self.voltar_inicial_caixa,bg="firebrick")
+        self.btn_telainicial_caixa = Button(
+            self.telacaixa, text="Voltar Para Tela Inicial", command=self.voltar_inicial_caixa, bg="firebrick")
         self.btn_telainicial_caixa.place(x=1200, y=700)
 
         #Estilo da Treeview
@@ -67,68 +136,34 @@ class Caixa(Frame):
         self.style.theme_use("default")
 
         # Frame da Treeview Caixa
-        self.tree_caixa_frame = Frame(self.telacaixa, padx=1, pady=3, bg="DodgerBlue")
-        self.tree_caixa_frame.place(x=0, y=0)
+        self.tree_caixa_frame = Frame(
+            self.telacaixa, padx=1, pady=3, bg="lightgrey")
+        self.tree_caixa_frame.place(x=530, y=0)
 
         # ScrollBar Caixa
         self.scroll = ttk.Scrollbar(self.tree_caixa_frame)
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
-        
+
         # Treeview Caixa
-        self.tree_caixa = ttk.Treeview(self.tree_caixa_frame, column=("1","2","3","4"), show='headings', height=24, yscrollcommand=self.scroll.set)
-        
+        self.tree_caixa = ttk.Treeview(self.tree_caixa_frame, column=(
+            "1", "2", "3", "4"), show='headings', height=24, yscrollcommand=self.scroll.set)
+
         self.tree_caixa.pack()
 
         self.scroll.config(command=self.tree_caixa.yview)
-        
+
         # Colunas da Treeview Caixa
-        self.tree_caixa.heading('#1', text="Nome do Item", anchor=CENTER)
-        self.tree_caixa.heading('#2', text="Preço", anchor=CENTER)
-        self.tree_caixa.heading('#3', text="Fornecedor", anchor=CENTER)
-        self.tree_caixa.heading('#4', text="ID do Produto", anchor=CENTER)
+        self.tree_caixa.heading('#1', text="Codigo compra", anchor=CENTER)
+        self.tree_caixa.heading('#2', text="Nome produto", anchor=CENTER)
+        self.tree_caixa.heading('#3', text="Quantidade", anchor=CENTER)
+        self.tree_caixa.heading('#4', text="Codigo produto", anchor=CENTER)
         self.view_tree()
-
-        # Imagem da Logo
-        self.lbl_imagem_caixa = Label(self.telacaixa, image=self.imgcaixa, width=280, height=240, bg="DodgerBlue")
-        self.lbl_imagem_caixa.place(x=1100,y=0)
-
         # Menu de opções
-        self.menu_quantidade = OptionMenu(self.telacaixa, self.itemVariable, *self.options)
-        self.menu_quantidade.place(x=840,y=300)
+        #self.menu_quantidade = OptionMenu(self.telacaixa, self.itemVariable, *self.options)
+        #self.menu_quantidade.place(x=840,y=300)
 
         # Botões da tela Caixa
-        self.btn_editar = Button(self.telacaixa, text="Editar", font="arial 18")
-        self.btn_editar.place(x=1150,y=400)
-
-        self.btn_cancelar = Button(self.telacaixa, text="Cancelar", font="arial 18")
-        self.btn_cancelar.place(x=850,y=400)
-
-        self.btn_final = Button(self.telacaixa, text="Finalizar", font="arial 18")
-        self.btn_final.place(x=1150,y=400)
-
-        self.btn_excluir = Button(self.telacaixa, text="Excluir", font="arial 18")
-        self.btn_excluir.place(x=1000,y=400)
 
         self.ent_cod_barras = Entry(self.telacaixa, font="arial 18")
-        self.ent_cod_barras.place(x=830, y=60)
-
-        
-        self.lbl_subtotal = Label(self.telacaixa,text="SUB TOTAL:", font="arial 24",fg="black",bg="DodgerBlue")
-        self.lbl_subtotal.place(x=0,y=527)
-
-        self.lbl_total_recebido = Label(self.telacaixa, text="Total Recebido:", font="arial 24",bg="DodgerBlue")
-        self.lbl_total_recebido.place(x=0,y=640)
-
-        self.lbl_total_unitario = Label(self.telacaixa, text="Valor Unitario :", font="arial 24", bg="DodgerBlue")
-        self.lbl_total_unitario.place(x=830,y=100)
-
-
-        self.lbl_troco = Label(self.telacaixa, text="Troco:", font="arial 24",bg="DodgerBlue")
-        self.lbl_troco.place(x=470,y=640)
-
-        self.lbl_codigo = Label(self.telacaixa, text="ID do Produto:", font="arial 24",bg="DodgerBlue")
-        self.lbl_codigo.place(x=830,y=10)
-
-        self.lbl_total_item = Label(self.telacaixa, text="Total do item:", font="arial 24",bg="DodgerBlue")
-        self.lbl_total_item.place(x=830,y=200)
+        self.ent_cod_barras.place(x=50, y=100)
         
