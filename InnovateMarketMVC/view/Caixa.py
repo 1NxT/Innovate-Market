@@ -95,7 +95,7 @@ class Caixa(Frame):
     
     # Função para aparecer os dados na Treeview
     def view_tree(self):
-        resultado = caixaControler().mostarCaixa()
+        resultado = Mostrar().mostrar(self, "caixa", "ID")
         
         if resultado != None:
             self.tree_caixa.delete(*self.tree_caixa.get_children())
@@ -107,7 +107,7 @@ class Caixa(Frame):
     
     # Função para procurar por dados na Treeview        
     def chamaPesquisar(self):
-        resultado = caixaControler().pesquisarPromocoes(self.ent_pesquisar.get())
+        resultado = Pesquisar.pesquisar(self.ent_pesquisar.get(), "caixa")
 
         if resultado != None:
             self.tree_caixa.delete(*self.tree_caixa.get_children())
@@ -136,8 +136,7 @@ class Caixa(Frame):
         self.style.theme_use("default")
 
         # Frame da Treeview Caixa
-        self.tree_caixa_frame = Frame(
-            self.telacaixa, padx=1, pady=3, bg="lightgrey")
+        self.tree_caixa_frame = Frame(self.telacaixa, padx=1, pady=3, bg="lightgrey")
         self.tree_caixa_frame.place(x=530, y=0)
 
         # ScrollBar Caixa
@@ -163,7 +162,14 @@ class Caixa(Frame):
         #self.menu_quantidade.place(x=840,y=300)
 
         # Botões da tela Caixa
+        
 
         self.ent_cod_barras = Entry(self.telacaixa, font="arial 18")
-        self.ent_cod_barras.place(x=50, y=100)
+        self.ent_cod_barras.place(x=50, y=80)
+
+
+
+        self.ent_qtde = Entry(self.telacaixa, font="arial 18")
+        self.ent_qtde.place(x=50, y=460)
+
         

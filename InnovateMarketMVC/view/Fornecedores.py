@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import tkinter.ttk as ttk
 from controller.Controller import fornecedorControler
 from model.Config import *
