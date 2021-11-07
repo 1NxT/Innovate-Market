@@ -66,7 +66,7 @@ class caixaControler():
         resultado = Mostrar().mostrar("caixa", "ID")
         return resultado
 
-    def pesquisarPromocoes(self, valoresPromocao):
+    def pesquisarPromocoes(self, valoresCaixa):
         resultado = Pesquisar().pesquisar(valoresCaixa, "caixa", "ID")
         return resultado
 

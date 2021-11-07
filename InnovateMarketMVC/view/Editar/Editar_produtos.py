@@ -27,6 +27,13 @@ class Editar_produtos(Frame):
         self.ent_nome.insert(0, self.values.nome)
         self.ent_forne.insert(0, self.values.fornecedor)
 
+    def geometry(self):
+        self.edit_produtos.title("Edite seu produto")
+        self.edit_produtos.geometry("1360x768")
+        self.edit_produtos.resizable(False, False)
+        self.__iconImagemPath = imagespath / "logo.ico"
+        self.edit_produtos.iconbitmap(self.__iconImagemPath)
+
     def updateProduto(self):
         self.values.nome = self.ent_nome.get()
         self.values.preco = self.ent_preco.get()
@@ -46,13 +53,6 @@ class Editar_produtos(Frame):
                 self.tree_pro.insert("","end",values=i)
         else:
             print("Error!")
-
-    def geometry(self):
-        self.edit_produtos.title("Produtos")
-        self.edit_produtos.geometry("1360x768")
-        self.edit_produtos.resizable(False, False)
-        self.__iconImagemPath = imagespath / "logo.ico"
-        self.edit_produtos.iconbitmap(self.__iconImagemPath)
 
     def elementos(self):
         self.pathBg = imagespath / "editProdutos_bg.png"

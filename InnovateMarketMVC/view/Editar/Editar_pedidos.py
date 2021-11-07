@@ -26,7 +26,7 @@ class Editar_produtos(Frame):
         self.ent_forne.insert(0, self.values.fornecedor)
 
     def geometry(self):
-        self.edit_forne.title("Edite seu fornecedor")
+        self.edit_forne.title("Produtos")
         self.edit_forne.geometry("1360x768")
         self.edit_forne.resizable(False, False)
         self.__iconImagemPath = imagespath / "logo.ico"
