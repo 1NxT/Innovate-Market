@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter.ttk as ttk
 from controller.Controller import fornecedorControler
 from model.Config import *
+from view.Editar.Editar_fornecedores import Editar_fornecedor
 
 class Fornecedor:
     def __init__(self):
@@ -30,7 +31,7 @@ class Fornecedor:
     
     def view_tree(self):
         resultado = fornecedorControler().mostarFornecedor()
-        
+        print(resultado)
         if resultado != None:
             self.tree_forne.delete(*self.tree_forne.get_children())
             
@@ -40,11 +41,10 @@ class Fornecedor:
             print("Error!")
         
     def chamaPesquisar(self):
-        self.dicti["nome"] = self.ent_pesquisar.get()
+        self.dicti["nome_fornecedor"] = self.ent_pesquisar.get()
         self.dicti["CNPJ"] = self.ent_pesquisar.get()
-        self.dicti["telefone"] = self.ent_pesquisar.get()
-        self.dicti["endereco"] = self.ent_pesquisar.get()
-        self.dicti["produto_fornecido"] = self.ent_pesquisar.get()
+        self.dicti["telefones"] = self.ent_pesquisar.get()
+        self.dicti["email"] = self.ent_pesquisar.get()
         resultado = fornecedorControler().pesquisarFornecedor(self.dicti)
 
         if resultado != None:
@@ -53,7 +53,16 @@ class Fornecedor:
                 self.tree_forne.insert("","end",values=i)
         else:
             print("Error: Nenhum valor saiu da Classe")
-    
+
+    def edit_fornecedor(self):
+        if not self.tree_forne.focus():
+            messagebox.showwarning(title="ERROR!", message="Selecione uma opção para editar", parent=self.telaforne)
+        else:
+            self.currItem = self.tree_forne.focus()
+            self.values = fornecedorControler().valuesFornecedor(self.tree_forne.item(self.currItem)['values'])
+            Editar_fornecedor(self.values)
+            return self.view_tree()
+
     def elementos(self):
         self.pathBg = imagespath / "fornecedor_bg.png"
         self.__bg = PhotoImage(file =self.pathBg)
@@ -77,7 +86,7 @@ class Fornecedor:
         self.scroll = ttk.Scrollbar(self.tree_forne_frame)
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        self.tree_forne = ttk.Treeview(self.tree_forne_frame, column=("1","2","3","4","5"), show='headings', height=37, yscrollcommand=self.scroll.set)
+        self.tree_forne = ttk.Treeview(self.tree_forne_frame, column=("1","2","3","4"), show='headings', height=37, yscrollcommand=self.scroll.set)
         self.tree_forne.pack()
 
         self.scroll.config(command=self.tree_forne.yview)
@@ -85,8 +94,7 @@ class Fornecedor:
         self.tree_forne.heading('#1', text="Nome", anchor=CENTER)
         self.tree_forne.heading('#2', text="CNPJ", anchor=CENTER)
         self.tree_forne.heading('#3', text="Telefone", anchor=CENTER)
-        self.tree_forne.heading('#4', text="Endereço", anchor=CENTER)
-        self.tree_forne.heading('#5',text="Produto Fornecido", anchor=CENTER)
+        self.tree_forne.heading('#4', text="Email", anchor=CENTER)
         self.view_tree()
 
         self.ent_pesquisar = Entry(self.telaforne, width=16, font="Arial 18")
@@ -109,7 +117,7 @@ class Fornecedor:
 
         self.img_editar = imagespath / "editar.png"
         self.btn_editar = PhotoImage(file =self.img_editar)
-        self.btn_show = Button(self.telaforne, command=lambda:[self.view_tree()], image=self.btn_editar, relief="flat", borderwidth=0, bg="Gainsboro")
+        self.btn_show = Button(self.telaforne, command=self.edit_fornecedor, image=self.btn_editar, relief="flat", borderwidth=0, bg="Gainsboro")
         self.btn_show.place(x=1075, y=410)
 
         self.img_deletar = imagespath / "deletar.png"

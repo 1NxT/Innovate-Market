@@ -36,7 +36,7 @@ class produtosControler():
         return resultado
 
     def valuesProdutos(self, valores):
-        self.__values = ValuesDB().carregarValues(valores)
+        self.__values = ValuesDB().carregarValues("produtos", valores)
         return self.__values
 
     def atualizarProdutos(self, valores, id):
@@ -44,13 +44,20 @@ class produtosControler():
 
 class fornecedorControler():
     def pesquisarFornecedor(self, valoresFornecedor):
-        resultado = Pesquisar().pesquisar(valoresFornecedor, "fornecedor", "nome")
+        resultado = Pesquisar().pesquisar(valoresFornecedor, "fornecedores", "CNPJ")
         return resultado
 
     def mostarFornecedor(self):
         resultado = Mostrar().mostrar("fornecedores", "CNPJ")
         return resultado
 
+    def atualizarFornecedor(self, valores, id):
+        Update().salvar("fornecedores", valores, id)
+
+    def valuesFornecedor(self, valores):
+        self.__values = ValuesDB().carregarValues("fornecedor", valores)
+        print(self.__values)
+        return self.__values
 class promocoesControler():
     def pesquisarPromocoes(self, valoresPromocao):
         resultado = Pesquisar().pesquisar(valoresPromocao, "promocoes", "ID")

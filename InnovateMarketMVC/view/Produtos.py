@@ -78,6 +78,7 @@ class Produtos(Frame):
             self.currItem = self.tree_pro.focus()
             self.values = produtosControler().valuesProdutos(self.tree_pro.item(self.currItem)['values'])
             Editar_produtos(self.values)
+            return self.view_tree()
 
 
     def elementos(self):
