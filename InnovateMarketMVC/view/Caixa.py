@@ -5,7 +5,7 @@ from time import sleep
 from controller.Controller import *
 from model.Config import *
 from random import randint
-from view.PesquisarProduto import *
+from view.CaixaProdutos import *
 
 class Caixa(Frame):
     def __init__(self):
@@ -29,7 +29,7 @@ class Caixa(Frame):
         
 
     def pesquisarProduto(self):
-        PesquisarProdutos()
+        CaixaProdutos()
 
     def abortarCompra(self):
         self.result = messagebox.askquestion(

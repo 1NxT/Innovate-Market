@@ -3,12 +3,10 @@ from tkinter import font
 import tkinter.ttk as ttk
 from tkinter import messagebox
 from controller.Controller import produtosControler
-from view.Editar.Editar_produtos import *
-from view.Adicionar.Adicionar_pro import *
 from model.Config import *
 
 
-class PesquisarProdutos(Frame):
+class CaixaProdutos(Frame):
     def __init__(self):
         self.dicti = {}
         Frame.__init__(self, master=None)
@@ -60,25 +58,6 @@ class PesquisarProdutos(Frame):
                 self.tree_pro.insert("", "end", values=i)
         else:
             print("Error: Nenhum valor saiu da Classe")
-
-    def deleteElemento(self):
-        self.currItem = self.tree_pro.focus()
-        self.values = produtosControler().valuesProdutos(
-            self.tree_pro.item(self.currItem)['values'])
-        self.tree_pro.delete(self.currItem)
-        produtosControler().deletarProduto(self.values.id)
-        self.tree_pro.bind('<ButtonRelease-1>', self.currItem)
-
-    def edit_pro(self):
-        if not self.tree_pro.focus():
-            messagebox.showwarning(
-                title="ERROR!", message="Selecione uma opção para editar", parent=self.telapesquisarprodutos)
-        else:
-            self.currItem = self.tree_pro.focus()
-            self.values = produtosControler().valuesProdutos(
-                self.tree_pro.item(self.currItem)['values'])
-            Editar_produtos(self.values)
-            return self.view_tree()
 
     def elementos(self):
         self.pathBg = imagespath / "produtos_bg.png"
