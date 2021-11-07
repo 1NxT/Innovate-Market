@@ -113,7 +113,7 @@ class Produtos(Frame):
         self.tree_pro.heading('#1', text="Código de barras", anchor=CENTER)
         self.tree_pro.heading('#2', text="Preço", anchor=CENTER)
         self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
-        self.tree_pro.heading('#4', text="Fornecedor", anchor=CENTER)
+        #self.tree_pro.heading('#4', text="Fornecedor", anchor=CENTER)
 
         self.view_tree()
 

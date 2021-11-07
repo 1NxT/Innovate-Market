@@ -1,14 +1,17 @@
 #from Pages.Adicionar.Adicionar_pedi import *
 from tkinter import *
+from tkinter import messagebox
 import tkinter.ttk as ttk
 from controller.Controller import pedidosControler
-
+from view.Adicionar.Adicionar_pedi import *
+from view.Editar.Editar_pedidos import *
 from model.Config import *
 
 class Pedidos(Frame):
     def __init__(self):
         Frame.__init__(self, master=None)
         self.telapedi = Toplevel()
+        self.edit_produtos.attributes("-fullscreen", True)
         self.geometry()
 
         self.elementos()
