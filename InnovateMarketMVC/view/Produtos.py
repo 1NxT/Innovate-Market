@@ -73,7 +73,7 @@ class Produtos(Frame):
 
     def edit_pro(self):
         if not self.tree_pro.focus():
-            messagebox.showwarning(title="ERROR!", message="Selecione uma opção para editar", parent=self.telaprodutos)
+            messagebox.showwarning(title="ERRO!", message="Selecione uma opção para editar", parent=self.telaprodutos)
         else:
             self.currItem = self.tree_pro.focus()
             self.values = produtosControler().valuesProdutos(self.tree_pro.item(self.currItem)['values'])

@@ -30,30 +30,30 @@ class Adicionar_pro(Frame):
         # self.__iconImagemPath = imagespath / "logo.ico"
         # self.adicionar_pro.iconbitmap(self.__iconImagemPath)
 
-    def voltar_inicial_add_pedi(self):
+    def voltar_inicial_add_pro(self):
         self.adicionar_pro.destroy()
         return
 
-    def adicionar_produto(self):
-        self.dicti = {}
-        self.dicti["cod"] = self.ent_cod.get()
-        self.dicti["preco"] = self.ent_preco.get()
-        self.dicti["nome"] = self.ent_nome.get()
-        #self.dicti["fornecedor"] = self.ent_fornecedor.get()
-        produtosControler().inserirProduto(self.dicti)
+    # def adicionar_produto(self):
+    #     self.dicti = {}
+    #     self.dicti["cod"] = self.ent_cod.get()
+    #     self.dicti["preco"] = self.ent_preco.get()
+    #     self.dicti["nome"] = self.ent_nome.get()
+    #     #self.dicti["fornecedor"] = self.ent_fornecedor.get()
+    #     produtosControler().inserirProduto(self.dicti)
         
         self.view_tree()
 
     def elementos(self):
         
-        self.pathBg = imagespath / "adicionarPro_bg.png"
+        self.pathBg = imagespath / "editProdutos_bg.png"
         self.__bg = PhotoImage(file =self.pathBg)
         self.lblimgbg = Label(self.adicionar_pro, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
 
         self.btn_telainicial = imagespath / "Salvar.png"
         self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
-        self.btn_telainicial_add_pro = Button(self.adicionar_pro, image=self.btn_voltartelainicial, command=lambda:[self.voltar_inicial_add_pedi(), self.adicionar_produto()], relief="flat", borderwidth=0, width=225, height=50, bg="Gainsboro")
+        self.btn_telainicial_add_pro = Button(self.adicionar_pro, image=self.btn_voltartelainicial, command=self.voltar_inicial_add_pro, relief="flat", borderwidth=0, width=225, height=50, bg="Gainsboro")
         self.btn_telainicial_add_pro.place(x=980, y=660)
 
 

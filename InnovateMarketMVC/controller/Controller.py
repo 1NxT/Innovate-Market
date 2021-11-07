@@ -16,7 +16,6 @@ class usuarioControler():
             #verifica se a senha está correta
             self.__usuarioSenhaOK = self.__usuario.verificarSenha(senha)
             if self.__usuarioSenhaOK:
-                print(self.__usuario)
                 return self.__usuario
             else:
                 return "SENHA ERRADA"
@@ -59,15 +58,6 @@ class fornecedorControler():
         self.__values = ValuesDB().carregarValues("fornecedor", valores)
         print(self.__values)
         return self.__values
-class promocoesControler():
-    def pesquisarPromocoes(self, valoresPromocao):
-        resultado = Pesquisar().pesquisar(valoresPromocao, "promocoes", "ID")
-        return resultado
-
-    def mostarPromocoes(self):
-        resultado = Mostrar().mostrar("cupons", "ID")
-        return resultado
-
     
 class caixaControler():
     def mostarCaixa(self):
@@ -118,6 +108,14 @@ class pedidosControler():
     def pesquisarPedido(self, valoresPedidos):
         resultado = Pesquisar().pesquisar(valoresPedidos, "pedidos", "ID")
         return resultado
+    
+    def atualizarPedidos(self, valores, id):
+        Update().salvar("pedidos", valores, id)
+
+    def valuesPedidos(self, valores):
+        self.__values = ValuesDB().carregarValues("pedidos", valores)
+        print(self.__values)
+        return self.__values
 
 class gerenciarControler():
     def mostarGerenciar(self):

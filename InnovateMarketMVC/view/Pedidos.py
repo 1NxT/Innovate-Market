@@ -11,7 +11,7 @@ class Pedidos(Frame):
     def __init__(self):
         Frame.__init__(self, master=None)
         self.telapedi = Toplevel()
-        self.edit_produtos.attributes("-fullscreen", True)
+        self.telapedi.attributes("-fullscreen", True)
         self.geometry()
 
         self.elementos()
@@ -52,7 +52,16 @@ class Pedidos(Frame):
             for i in resultado:
                 self.tree_pedi.insert("","end",values=i)
         else:
-            print("Error: Nenhum valor saiu da Classe") 
+            print("Error: Nenhum valor saiu da Classe")
+
+    def edit_pedi(self):
+        if not self.tree_pedi.focus():
+            messagebox.showwarning(title="ERRO!", message="Selecione uma opção para editar", parent=self.telapedi)
+        else:
+            self.currItem = self.tree_pedi.focus()
+            self.values = pedidosControler().valuesPedidos(self.tree_pedi.item(self.currItem)['values'])
+            Editar_Pedi(self.values)
+            return self.view_tree()
 
     def elementos(self):
 
@@ -106,7 +115,7 @@ class Pedidos(Frame):
 
         self.img_editar = imagespath / "editar.png"
         self.btn_editar = PhotoImage(file =self.img_editar)
-        self.btn_showpedi = Button(self.telapedi, command=lambda:[self.view_tree()], image=self.btn_editar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_showpedi = Button(self.telapedi, command=self.edit_pedi, image=self.btn_editar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_showpedi.place(x=980, y=400)
 
         self.img_deletar = imagespath / "deletar.png"
@@ -118,4 +127,3 @@ class Pedidos(Frame):
         self.btn_adicionar = PhotoImage(file =self.img_adicionar)
         self.btn_show_pedi = Button(self.telapedi, command=Adicionar_pedi, image=self.btn_adicionar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_show_pedi.place(x=980, y=330)
-

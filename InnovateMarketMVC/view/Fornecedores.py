@@ -57,7 +57,7 @@ class Fornecedor:
 
     def edit_fornecedor(self):
         if not self.tree_forne.focus():
-            messagebox.showwarning(title="ERROR!", message="Selecione uma opção para editar", parent=self.telaforne)
+            messagebox.showwarning(title="ERRO!", message="Selecione uma opção para editar", parent=self.telaforne)
         else:
             self.currItem = self.tree_forne.focus()
             self.values = fornecedorControler().valuesFornecedor(self.tree_forne.item(self.currItem)['values'])

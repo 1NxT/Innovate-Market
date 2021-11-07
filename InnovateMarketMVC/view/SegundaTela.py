@@ -6,7 +6,6 @@ from view.Gerenciar import *
 from view.Lucros import *
 from view.Pedidos import *
 from view.Produtos import *
-from view.Promocoes import *
 from model.Config import *
 from model.Usuario import Cargo
 
@@ -43,7 +42,7 @@ class SegundaTela(Frame):
         self.__caixaImagem = PhotoImage(file=self.__caixaImagemPath)
         self.__btn_CaixaImagem = Button(
             self.tela2, image=self.__caixaImagem, width=140,  command=Caixa, relief="flat", borderwidth=0)
-        self.__btn_CaixaImagem.place(x=1117, y=70)
+        self.__btn_CaixaImagem.place(x=745, y=70)
 
     def __criarButtonProdutosImagem(self):
         self.__produtosImagemPath = imagespath / "Produtos1.png"
@@ -73,13 +72,6 @@ class SegundaTela(Frame):
             self.tela2, image=self.__lucroImagem,  width=140, command=Lucros, relief="flat", borderwidth=0)
         self.__btn_lucroImagem.place(x=370, y=400)
 
-    def __criarButtonPromocoesImagem(self):
-        self.__promocoesImagemPath = imagespath / "promocoes.png"
-        self.__promocoesImagem = PhotoImage(file=self.__promocoesImagemPath)
-        self.__btn_promocoesImagem = Button(
-            self.tela2, image=self.__promocoesImagem,  width=140,  command=Promocoes, relief="flat", borderwidth=0)
-        self.__btn_promocoesImagem.place(x=745, y=70)
-
     def __criarButtonGerenciarImagem(self):
         self.__gerenteImagemPath = imagespath / "gerente.png"
         self.__gerenteImagem = PhotoImage(file=self.__gerenteImagemPath)
@@ -88,9 +80,9 @@ class SegundaTela(Frame):
         self.__btn_gerenteImagem.place(x=745, y=400)
 
     def __criarBtnVoltar(self):
-        self.__btn_voltarImagePath = imagespath / "sairdosbuttons.png"
+        self.__btn_voltarImagePath = imagespath / "logout_button.png"
         self.__btn_voltarImage = PhotoImage(file=self.__btn_voltarImagePath)
-        self.btn_voltar = Button(self.tela2, command=self.iExit2,image=self.__btn_voltarImage, relief="ridge", borderwidth=0)
+        self.btn_voltar = Button(self.tela2, command=self.iExit2, image=self.__btn_voltarImage, relief="ridge", borderwidth=0)
         self.btn_voltar.place(x=1150, y=660)
 
     #Validar permissão
@@ -113,8 +105,6 @@ class SegundaTela(Frame):
             self.__criarButtonFornecedoresImagem()
 
             self.__criarButtonLucrosImagem()
-
-            self.__criarButtonPromocoesImagem()
 
             self.__criarButtonGerenciarImagem()
 
