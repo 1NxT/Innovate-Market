@@ -1,8 +1,7 @@
 from tkinter import * 
 import tkinter.ttk as ttk
-from Classes.Pesquisar import *
-from Classes.Mostrar import *
-from Pages.common.Config import *
+from controller.Controller import gerenciarControler 
+from model.Config import *
 
 class Gerenciar :
     def __init__(self):
@@ -28,7 +27,7 @@ class Gerenciar :
     
     
     def view_tree(self):
-        resultado = Mostrar().mostrar(self, "user", "CPF")
+        resultado = gerenciarControler().mostarGerenciar()
         
         if resultado != None:
             self.tree_gere.delete(*self.tree_gere.get_children())
@@ -44,7 +43,7 @@ class Gerenciar :
 
     # Função para procurar por dados na Treeview        
     def chamaPesquisar(self):
-        resultado = Pesquisar().pesquisar(self.ent_pesquisar.get(), "usuarios")
+        resultado = gerenciarControler().pesquisarGerenciar(self.ent_pesquisar.get(), "usuarios")
 
         if resultado != None:
             self.tree_gere.delete(*self.tree_gere.get_children())

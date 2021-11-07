@@ -95,7 +95,7 @@ class Caixa(Frame):
     
     # Função para aparecer os dados na Treeview
     def view_tree(self):
-        resultado = Mostrar().mostrar(self, "caixa", "ID")
+        resultado = caixaControler().mostarCaixa()
         
         if resultado != None:
             self.tree_caixa.delete(*self.tree_caixa.get_children())
