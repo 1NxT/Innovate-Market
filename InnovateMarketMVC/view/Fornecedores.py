@@ -3,7 +3,8 @@ from tkinter import messagebox
 import tkinter.ttk as ttk
 from controller.Controller import fornecedorControler
 from model.Config import *
-from view.Editar.Editar_fornecedores import Editar_fornecedor
+from view.Editar.Editar_fornecedores import *
+from view.Adicionar.Adicionar_forne import *
 
 class Fornecedor:
     def __init__(self):
@@ -11,13 +12,12 @@ class Fornecedor:
         self.telaforne = Toplevel()
         self.telaforne.attributes("-fullscreen", True)
         self.geometry()
-        
         self.elementos()
 
     def geometry(self):
         self.telaforne.title("Fornecedor")
-        self.telaforne.geometry("1360x760")
-        self.telaforne.configure(bg="DodgerBlue")
+        self.telaforne.geometry("1360x768")
+        self.telaforne.configure(bg="lightgrey")
         self.telaforne.resizable(False, False)
         self.__iconImagemPath = imagespath / "logo.ico"
         #self.telaforne.iconbitmap(self.__iconImagemPath)
@@ -80,14 +80,14 @@ class Fornecedor:
         self.style.theme_use("default")
 
         # Frame da Treeview
-        self.tree_forne_frame = Frame(self.telaforne, padx=0, pady=0.5, bg="lightgrey")
-        self.tree_forne_frame.place(x=0, y=0)
+        self.tree_forne_frame = Frame(self.telaforne, padx=1, pady=1, bg="lightgrey")
+        self.tree_forne_frame.place(x=10, y=5)
 
         # ScrollBar
         self.scroll = ttk.Scrollbar(self.tree_forne_frame)
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        self.tree_forne = ttk.Treeview(self.tree_forne_frame, column=("1","2","3","4"), show='headings', height=37, yscrollcommand=self.scroll.set)
+        self.tree_forne = ttk.Treeview(self.tree_forne_frame, column=("1","2","3","4"), show='headings', height=43, yscrollcommand=self.scroll.set)
         self.tree_forne.pack()
 
         self.scroll.config(command=self.tree_forne.yview)
@@ -98,7 +98,7 @@ class Fornecedor:
         self.tree_forne.heading('#4', text="Email", anchor=CENTER)
         self.view_tree()
 
-        self.ent_pesquisar = Entry(self.telaforne, width=16, font="Arial 18")
+        self.ent_pesquisar = Entry(self.telaforne, width=30, font="Arial 18")
         self.ent_pesquisar.place(x=1040, y=158)
 
         self.img_pesquisar = imagespath / "pesquisar.png"
@@ -113,7 +113,7 @@ class Fornecedor:
 
         self.img_adicionar = imagespath / "adicionar.png"
         self.btn_adicionar = PhotoImage(file =self.img_adicionar)
-        self.btn_show = Button(self.telaforne, command=lambda:[self.view_tree()], image=self.btn_adicionar, relief="flat", borderwidth=0, bg="Gainsboro")
+        self.btn_show = Button(self.telaforne, command=Adicionar_forne, image=self.btn_adicionar, relief="flat", borderwidth=0, bg="Gainsboro")
         self.btn_show.place(x=1075, y=340)
 
         self.img_editar = imagespath / "editar.png"

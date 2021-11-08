@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
+from tkinter import messagebox
 from model.Config import *
 from controller.Controller import produtosControler
 
@@ -12,7 +13,14 @@ class Adicionar_pro(Frame):
         self.geometry()
         self.elementos()
 
-    def view_tree(self):
+    def geometry(self):
+        self.adicionar_pro.title("Adicionar produtos")
+        self.adicionar_pro.geometry("1360x768")
+        self.adicionar_pro.resizable(False, False)
+        # self.__iconImagemPath = imagespath / "logo.ico"
+        # self.adicionar_pro.iconbitmap(self.__iconImagemPath)
+
+    def mostrarDados(self):
         self.resultado = produtosControler().mostarProdutos()
 
         if self.resultado != None:
@@ -23,14 +31,8 @@ class Adicionar_pro(Frame):
         else:
             print("Error!")
 
-    def geometry(self):
-        self.adicionar_pro.title("Adicionar produtos")
-        self.adicionar_pro.geometry("1360x768")
-        self.adicionar_pro.resizable(False, False)
-        # self.__iconImagemPath = imagespath / "logo.ico"
-        # self.adicionar_pro.iconbitmap(self.__iconImagemPath)
-
     def voltar_inicial_add_pro(self):
+        messagebox.showinfo(title="AVISO!", message="Item adicionado com sucesso!", parent=self.adicionar_pro)
         self.adicionar_pro.destroy()
         return
 
@@ -42,7 +44,7 @@ class Adicionar_pro(Frame):
         print(self.dicti.get('cod'))
         produtosControler().inserirProduto(self.dicti)
         
-        self.view_tree()
+        self.mostrarDados()
         self.voltar_inicial_add_pro()
 
     def elementos(self):
@@ -69,9 +71,6 @@ class Adicionar_pro(Frame):
         self.ent_nome.place(x=886, y=400)
 
 
-        # self.ent_fornecedor = Entry(self.adicionar_pro, width=25, font="Arial 18")
-        # self.ent_fornecedor.place(x=886, y=520)
-
         self.style = ttk.Style()
         self.style.theme_use("default")
 
@@ -95,4 +94,4 @@ class Adicionar_pro(Frame):
         self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
         
 
-        self.view_tree()
+        self.mostrarDados()
