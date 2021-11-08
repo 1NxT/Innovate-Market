@@ -55,6 +55,14 @@ class Fornecedor:
         else:
             print("Error: Nenhum valor saiu da Classe")
 
+    def deleteElemento(self):
+        self.currItem = self.tree_forne.focus()
+        self.values = fornecedorControler().valuesFornecedor(
+            self.tree_forne.item(self.currItem)['values'])
+        self.tree_forne.delete(self.currItem)
+        fornecedorControler().deletarFornecedor(self.values.cnpj)
+        self.tree_forne.bind('<ButtonRelease-1>', self.currItem)
+
     def edit_fornecedor(self):
         if not self.tree_forne.focus():
             messagebox.showwarning(title="ERRO!", message="Selecione uma opção para editar", parent=self.telaforne)
@@ -123,5 +131,5 @@ class Fornecedor:
 
         self.img_deletar = imagespath / "deletar.png"
         self.btn_deletar = PhotoImage(file =self.img_deletar)
-        self.btn_show = Button(self.telaforne, command=lambda:[self.view_tree()], image=self.btn_deletar, relief="flat", borderwidth=0, bg="Gainsboro")
+        self.btn_show = Button(self.telaforne, command=self.deleteElemento, image=self.btn_deletar, relief="flat", borderwidth=0, bg="Gainsboro")
         self.btn_show.place(x=1075, y=477)

@@ -47,6 +47,12 @@ class fornecedorControler():
         resultado = Pesquisar().pesquisar(valoresFornecedor, "fornecedores", "CNPJ")
         return resultado
 
+    def inserirFornecedor(self, values):
+        Inserir().salvarFornecedor(values)
+    
+    def deletarFornecedor(self, valorID):
+        Deletar().deletar("fornecedores", "CNPJ", valorID)
+
     def mostarFornecedor(self):
         resultado = Mostrar().mostrar("fornecedores", "CNPJ")
         return resultado

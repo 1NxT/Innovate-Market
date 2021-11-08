@@ -35,7 +35,7 @@ class Adicionar_forne(Frame):
         self.dicti["CNPJ"] = self.ent_cnpj.get()
         self.dicti["telefone"] = self.ent_telefone.get()
         self.dicti["email"] = self.ent_email.get()
-        produtosControler().inserirProduto(self.dicti)
+        fornecedorControler().inserirFornecedor(self.dicti)
         
         self.mostrarDados()
         self.voltar_inicial_add_pro()
