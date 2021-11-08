@@ -6,7 +6,10 @@ class Update():
 
     def salvar(self, tabela, valores, whereParameter):
         if tabela == "produtos":
-            self.__cursor.execute(f"UPDATE produtos SET nome = {valores.nome}, preco = {valores.preco}, ID = {valores.id} WHERE ID = {whereParameter};")
+            print(valores.nome)
+            print(valores.id)
+            print(valores.preco)
+            self.__cursor.execute(f"UPDATE produtos SET nome = '{valores.nome}', preco = '{valores.preco}', ID = '{valores.id}' WHERE ID = {whereParameter};")
             self.__cursor.execute("commit;")
             DB().closeCursor()
         elif tabela == "fornecedores":

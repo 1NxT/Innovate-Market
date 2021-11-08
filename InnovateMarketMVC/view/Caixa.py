@@ -41,23 +41,29 @@ class Caixa(Frame):
 
     def adicionarProduto(self):
         self.dicti = {}
+        self.dicti["Qtd"] = "Vazio!"
         self.dicti["CodigoCompra"] = self.compraID
         self.nomeProduto = caixaControler().CaixaPesquisarProdutos(self.ent_cod_barras.get())
         if self.nomeProduto == "Nenhum produto!":
             messagebox.showwarning(
-                title="ERROR!", message="Selecione um produto válido! Use F5 para pesquisar!", parent=self.telacaixa)
+                title="ERROR!", message="Selecione um produto válido! Use F5 para pesquisar!", parent=self.telacaixa) 
         else:
             self.dicti["nomeProduto"] = self.nomeProduto[0][1]
         self.quantidade = self.ent_qtde.get()
-        if self.quantidade.isdigit():
+        resultado = caixaControler().validarQuantidade(self.quantidade)
+        if resultado:
             self.dicti["Qtd"] = self.quantidade
         else:
             messagebox.showwarning(
             title="ERROR!", message="Coloque uma quantidade válida!", parent=self.telacaixa)
-        self.dicti["CodigoProduto"] = self.ent_cod_barras.get()
         
-        caixaControler().adicionarProdutoCaixa(self.dicti)
-        self.view_tree()
+        resultado = caixaControler().validarValues(self.dicti)
+        print(resultado)
+        if resultado:
+            self.dicti["CodigoProduto"] = self.ent_cod_barras.get()
+            caixaControler().adicionarProdutoCaixa(self.dicti)
+            self.view_tree()
+
 
 
     def excluirProdutoCompra(self):
@@ -93,9 +99,6 @@ class Caixa(Frame):
         # self.__iconImagemPath = imagespath / "logo.ico"
         # self.telacaixa.iconbitmap(self.__iconImagemPath)
 
-    def voltar_inicial_caixa(self):
-        self.telacaixa.destroy()
-        return
     
     # Função para aparecer os dados na Treeview
     def view_tree(self):
@@ -130,10 +133,6 @@ class Caixa(Frame):
         self.lblimgbg = Label(self.telacaixa, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
 
-        #Button de voltar a tela inicial
-        self.btn_telainicial_caixa = Button(
-            self.telacaixa, text="Voltar Para Tela Inicial", command=self.voltar_inicial_caixa, bg="firebrick")
-        self.btn_telainicial_caixa.place(x=1200, y=700)
 
         #Estilo da Treeview
         self.style = ttk.Style()
