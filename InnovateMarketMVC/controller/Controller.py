@@ -74,6 +74,18 @@ class caixaControler():
         self.values = ValuesDB().carregarValues("caixaCompras", valorCaixaProduto)
         return self.values
 
+    def validarQuantidade(self, quantidade):
+        return quantidade.isdigit()
+            
+    def validarValues(self, valores):
+        valido = True
+        for value in valores.values():
+            print(value)
+            if value == "Vazio!":
+                valido = False
+                return valido
+            
+        return valido
     def adicionarProdutoCaixa(self, valoresCaixa):
         Inserir().salvarProdutoCaixa(valoresCaixa)
 

@@ -20,12 +20,12 @@ class Editar_produtos(Frame):
         self.ent_cod.delete(0, END)
         self.ent_preco.delete(0, END)
         self.ent_nome.delete(0, END)
-        self.ent_forne.delete(0, END)
+
         # Insert values on Entrys
         self.ent_cod.insert(0, self.values.id)
         self.ent_preco.insert(0, self.values.preco)
         self.ent_nome.insert(0, self.values.nome)
-        self.ent_forne.insert(0, self.values.fornecedor)
+
 
     def geometry(self):
         self.edit_produtos.title("Edite seu produto")
@@ -37,8 +37,8 @@ class Editar_produtos(Frame):
     def updateProduto(self):
         self.values.nome = self.ent_nome.get()
         self.values.preco = self.ent_preco.get()
-        self.values.fornecedor = self.ent_forne.get()
         self.values.id = self.ent_cod.get()
+        print(self.values.id)
         produtosControler().atualizarProdutos(self.values, self.id)
         self.edit_produtos.destroy()
         return 
@@ -77,7 +77,7 @@ class Editar_produtos(Frame):
         self.scroll = ttk.Scrollbar(self.tree_pro_frame)
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        self.tree_pro = ttk.Treeview(self.tree_pro_frame, column=("Código de barras","Preço", "Nome","Fornecedor"), show='headings', height=37, yscrollcommand=self.scroll.set)
+        self.tree_pro = ttk.Treeview(self.tree_pro_frame, column=("Código de barras","Preço", "Nome"), show='headings', height=37, yscrollcommand=self.scroll.set)
 
         self.tree_pro.pack()
 
@@ -86,7 +86,7 @@ class Editar_produtos(Frame):
         self.tree_pro.heading('#1', text="Código de barras", anchor=CENTER)
         self.tree_pro.heading('#2', text="Preço", anchor=CENTER)
         self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
-        self.tree_pro.heading('#4', text="Fornecedor", anchor=CENTER)
+
 
         self.view_tree()
 
@@ -102,5 +102,3 @@ class Editar_produtos(Frame):
         self.ent_nome = Entry(self.edit_produtos, width=25, font="Arial 18")
         self.ent_nome.place(x=886, y=400)
 
-        self.ent_forne = Entry(self.edit_produtos, width=25, font="Arial 18")
-        self.ent_forne.place(x=886, y=520)
