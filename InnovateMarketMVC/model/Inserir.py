@@ -16,7 +16,7 @@ class Inserir():
         DB().closeCursor()
     
     def salvarVenda(self, valores):
-        self.__cursor.execute(f"INSERT INTO caixaCompras (CodigoCompra, Nome_Produto, Qtd, CodigoProduto) VALUES (?, ?, ?, ?)", (valores.get('CodigoCompra'), valores.get('nomeProduto'), valores.get('Qtd'), valores.get('CodigoProduto'), valores.get('Data')))
+        self.__cursor.execute(f"INSERT INTO Vendas (CodigoCompra, NomeProduto, Qtd, CodigoProduto, Data) VALUES (?, ?, ?, ?, ?)", (valores.get('CodigoCompra'), valores.get('nomeProduto'), valores.get('Qtd'), valores.get('CodigoProduto'), valores.get('Data')))
         self.__cursor.execute("commit;")
         DB().closeCursor()
 

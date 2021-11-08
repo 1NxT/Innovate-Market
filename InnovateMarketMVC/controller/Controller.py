@@ -109,7 +109,7 @@ class caixaControler():
             self.dicti["CodigoProduto"] = str(i[3])
             self.dicti["Data"] = data
             
-            Inserir().salvarVenda("Vendas", self.dicti)
+            Inserir().salvarVenda(self.dicti)
         
         Deletar().deletar("caixaCompras", "CodigoCompra", compraID)
 class pedidosControler():
