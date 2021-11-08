@@ -13,8 +13,7 @@ class Update():
             self.__cursor.execute("commit;")
             DB().closeCursor()
         elif tabela == "fornecedores":
-            self.__cursor.execute(
-                f"UPDATE fornecedores SET CNPJ = {valores.cnpj}, nome_fornecedor = {valores.nome}, telefones={valores.telefone}, email={valores.email} WHERE CNPJ = {whereParameter};")
+            self.__cursor.execute(f"UPDATE fornecedores SET CNPJ = {valores.cnpj}, nome_fornecedor = {valores.nome}, telefones={valores.telefone}, email={valores.email} WHERE CNPJ = {whereParameter};")
             self.__cursor.execute("commit;")
             DB().closeCursor()
         

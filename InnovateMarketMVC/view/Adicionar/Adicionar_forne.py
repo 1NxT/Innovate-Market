@@ -47,7 +47,7 @@ class Adicionar_forne(Frame):
 
     def elementos(self):
         
-        self.pathBg = imagespath / "editProdutos_bg.png"
+        self.pathBg = imagespath / "editFornecedores_bg.png"
         self.__bg = PhotoImage(file =self.pathBg)
         self.lblimgbg = Label(self.adicionar_forne, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
