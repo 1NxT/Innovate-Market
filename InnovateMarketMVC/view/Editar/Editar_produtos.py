@@ -35,7 +35,7 @@ class Editar_produtos(Frame):
         self.edit_produtos.iconbitmap(self.__iconImagemPath)
 
     def updateProduto(self):
-        self.values.nome = self.ent_nome.get()
+        self.values.id = self.ent_cod.get()
         self.values.preco = self.ent_preco.get()
         self.values.id = self.ent_cod.get()
         print(self.values.id)
@@ -70,8 +70,8 @@ class Editar_produtos(Frame):
         self.style.theme_use("default")
 
         # Frame da Treeview Produtos
-        self.tree_pro_frame = Frame(self.edit_produtos, padx=0, pady=1, bg="lightgrey")
-        self.tree_pro_frame.place(x=0, y=0)
+        self.tree_pro_frame = Frame(self.edit_produtos, padx=2, pady=2, bg="lightgrey")
+        self.tree_pro_frame.place(x=20, y=5)
 
         # ScrollBar
         self.scroll = ttk.Scrollbar(self.tree_pro_frame)
@@ -86,7 +86,6 @@ class Editar_produtos(Frame):
         self.tree_pro.heading('#1', text="Código de barras", anchor=CENTER)
         self.tree_pro.heading('#2', text="Preço", anchor=CENTER)
         self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
-
 
         self.view_tree()
 

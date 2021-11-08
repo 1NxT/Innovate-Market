@@ -9,7 +9,6 @@ from view.CaixaProdutos import *
 
 class Caixa(Frame):
     def __init__(self):
-        Frame.__init__(self, master=None)
         self.compraID = self.gerarVendaId()
         self.telacaixa = Toplevel()
         self.geometry()

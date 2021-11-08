@@ -9,7 +9,6 @@ from model.Config import *
 
 class Pedidos(Frame):
     def __init__(self):
-        Frame.__init__(self, master=None)
         self.telapedi = Toplevel()
         self.telapedi.attributes("-fullscreen", True)
         self.geometry()
