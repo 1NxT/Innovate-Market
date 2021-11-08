@@ -38,20 +38,24 @@ class Caixa(Frame):
             caixaControler().caixaAbortar(self.compraID)
             self.telacaixa.destroy()
         return
-    
+
     def adicionarProduto(self):
         self.dicti = {}
         self.dicti["CodigoCompra"] = self.compraID
         self.nomeProduto = caixaControler().CaixaPesquisarProdutos(self.ent_cod_barras.get())
         if self.nomeProduto == "Nenhum produto!":
             messagebox.showwarning(
-                title="ERROR!", message="Selecione um produto para deletar!", parent=self.telacaixa)
+                title="ERROR!", message="Selecione um produto válido! Use F5 para pesquisar!", parent=self.telacaixa)
         else:
             self.dicti["nomeProduto"] = self.nomeProduto[0][1]
-        self.dicti["Qtd"] = "1"
+        self.quantidade = self.ent_qtde.get()
+        if self.quantidade.isdigit():
+            self.dicti["Qtd"] = self.quantidade
+        else:
+            messagebox.showwarning(
+            title="ERROR!", message="Coloque uma quantidade válida!", parent=self.telacaixa)
         self.dicti["CodigoProduto"] = self.ent_cod_barras.get()
-
-        print(self.dicti)
+        
         caixaControler().adicionarProdutoCaixa(self.dicti)
         self.view_tree()
 

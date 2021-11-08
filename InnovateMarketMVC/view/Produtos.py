@@ -49,7 +49,6 @@ class Produtos(Frame):
 
         self.dicti["nome"] = self.ent_pesquisar.get()
         self.dicti["preco"] = self.ent_pesquisar.get()
-        self.dicti["fornecedor"] = self.ent_pesquisar.get()
         self.dicti["id"] = self.ent_pesquisar.get()
         resultado = produtosControler().pesquisarProdutos(self.dicti)
 
@@ -104,7 +103,7 @@ class Produtos(Frame):
         self.scroll = ttk.Scrollbar(self.tree_pro_frame)
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        self.tree_pro = ttk.Treeview(self.tree_pro_frame, column=("Código de barras","Preço", "Nome","Fornecedor"), show='headings', height=37, yscrollcommand=self.scroll.set)
+        self.tree_pro = ttk.Treeview(self.tree_pro_frame, column=("Código de barras","Preço", "Nome"), show='headings', height=37, yscrollcommand=self.scroll.set)
 
         self.tree_pro.pack()
 
@@ -113,7 +112,7 @@ class Produtos(Frame):
         self.tree_pro.heading('#1', text="Código de barras", anchor=CENTER)
         self.tree_pro.heading('#2', text="Preço", anchor=CENTER)
         self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
-        #self.tree_pro.heading('#4', text="Fornecedor", anchor=CENTER)
+        
 
         self.view_tree()
 

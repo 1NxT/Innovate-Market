@@ -26,7 +26,7 @@ class produtosControler():
         return resultado
 
     def inserirProduto(self, values):
-        Inserir().salvar("produtos",  values)
+        Inserir().salvarProdutos(values)
     
     def deletarProduto(self, valorID):
         Deletar().deletar("produtos", "ID", valorID)
@@ -75,7 +75,7 @@ class caixaControler():
         return self.values
 
     def adicionarProdutoCaixa(self, valoresCaixa):
-        Inserir().salvar("caixaCompras", valoresCaixa)
+        Inserir().salvarProdutoCaixa(valoresCaixa)
 
     def deletarProduto(self, valorProdutoCaixa):
         Deletar().deletar("caixaCompras", "CodigoProduto", valorProdutoCaixa)
@@ -97,7 +97,7 @@ class caixaControler():
             self.dicti["CodigoProduto"] = str(i[3])
             self.dicti["Data"] = data
             
-            Inserir().salvar("Vendas", self.dicti)
+            Inserir().salvarVenda("Vendas", self.dicti)
         
         Deletar().deletar("caixaCompras", "CodigoCompra", compraID)
 class pedidosControler():

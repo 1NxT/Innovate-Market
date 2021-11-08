@@ -34,15 +34,16 @@ class Adicionar_pro(Frame):
         self.adicionar_pro.destroy()
         return
 
-    # def adicionar_produto(self):
-    #     self.dicti = {}
-    #     self.dicti["cod"] = self.ent_cod.get()
-    #     self.dicti["preco"] = self.ent_preco.get()
-    #     self.dicti["nome"] = self.ent_nome.get()
-    #     #self.dicti["fornecedor"] = self.ent_fornecedor.get()
-    #     produtosControler().inserirProduto(self.dicti)
+    def adicionar_produto(self):
+        self.dicti = {}
+        self.dicti["cod"] = self.ent_cod.get()
+        self.dicti["preco"] = self.ent_preco.get()
+        self.dicti["nome"] = self.ent_nome.get()
+        print(self.dicti.get('cod'))
+        produtosControler().inserirProduto(self.dicti)
         
         self.view_tree()
+        self.voltar_inicial_add_pro()
 
     def elementos(self):
         
@@ -51,10 +52,10 @@ class Adicionar_pro(Frame):
         self.lblimgbg = Label(self.adicionar_pro, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
 
-        self.btn_telainicial = imagespath / "Salvar.png"
-        self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
-        self.btn_telainicial_add_pro = Button(self.adicionar_pro, image=self.btn_voltartelainicial, command=self.voltar_inicial_add_pro, relief="flat", borderwidth=0, width=225, height=50, bg="Gainsboro")
-        self.btn_telainicial_add_pro.place(x=980, y=660)
+        self.btn_salvarPath = imagespath / "Salvar.png"
+        self.btn_salvar = PhotoImage(file =self.btn_salvarPath)
+        self.btn_salvar_add_pro = Button(self.adicionar_pro, image=self.btn_salvar, command=self.adicionar_produto, relief="flat", borderwidth=0, width=225, height=50, bg="Gainsboro")
+        self.btn_salvar_add_pro.place(x=980, y=660)
 
 
         self.ent_cod = Entry(self.adicionar_pro, width=25, font="Arial 18")
@@ -83,7 +84,7 @@ class Adicionar_pro(Frame):
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
         self.tree_pro = ttk.Treeview(self.tree_pro_frame, column=(
-            "Código de barras", "Preço", "Nome", "Fornecedor"), show='headings', height=35, yscrollcommand=self.scroll.set)
+            "Código de barras", "Preço", "Nome"), show='headings', height=35, yscrollcommand=self.scroll.set)
 
         self.tree_pro.pack()
 
@@ -92,6 +93,6 @@ class Adicionar_pro(Frame):
         self.tree_pro.heading('#1', text="Código de barras", anchor=CENTER)
         self.tree_pro.heading('#2', text="Preço", anchor=CENTER)
         self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
-        #self.tree_pro.heading('#4', text="Fornecedor", anchor=CENTER)
+        
 
         self.view_tree()
