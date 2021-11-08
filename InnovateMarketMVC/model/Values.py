@@ -1,9 +1,8 @@
 class setValuesProduto():
-    def __init__(self, id, preco, nome, fornecedor):
-        self.id = id
-        self.preco = preco
-        self.nome = nome
-        self.fornecedor = fornecedor
+    def __init__(self, id, preco, nome):
+        self.id = str(id)
+        self.preco = str(preco)
+        self.nome = str(nome)
         
 
 class setValuesFornecedor():
