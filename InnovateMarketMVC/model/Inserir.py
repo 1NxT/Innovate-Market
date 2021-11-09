@@ -24,7 +24,11 @@ class Inserir():
         self.__cursor.execute(f"INSERT INTO Vendas (CodigoCompra, NomeProduto, Qtd, CodigoProduto, Data) VALUES (?, ?, ?, ?, ?)", (valores.get('CodigoCompra'), valores.get('nomeProduto'), valores.get('Qtd'), valores.get('CodigoProduto'), valores.get('Data')))
         self.__cursor.execute("commit;")
         DB().closeCursor()
-
+    
+    def salvarUsuario(self, valores):
+        self.__cursor.execute(f"INSERT INTO user (CPF, password, Cargo, Nome) VALUES (?, ?, ?, ?)", (valores.get('CPF'), valores.get('password'), valores.get('Cargo'), valores.get('Nome')))
+        self.__cursor.execute("commit;")
+        DB().closeCursor()
     def salvar(self, tabela, valores):
         print(valores)
         self.__cursor.execute("INSERT INTO {} VALUES ({})".format(tabela, ", ".join(value for value in valores.values())))

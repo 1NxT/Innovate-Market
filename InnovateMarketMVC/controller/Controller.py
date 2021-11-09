@@ -26,8 +26,17 @@ class produtosControler():
         return resultado
 
     def inserirProduto(self, values):
-        Inserir().salvarProdutos(values)
-    
+        cadastroValido = True
+        for value in values.values():
+            print(value)
+            if value == "Vazio!":
+                cadastroValido = False
+        
+        if cadastroValido:
+            Inserir().salvarProdutos(values)
+            return True
+        else:
+            return False
     def deletarProduto(self, valorID):
         Deletar().deletar("produtos", "ID", valorID)
 
@@ -48,8 +57,12 @@ class fornecedorControler():
         return resultado
 
     def inserirFornecedor(self, values):
-        Inserir().salvarFornecedor(values)
-    
+        for i in values.values():
+            if i == " ":
+                return False
+            else:
+                Inserir().salvarFornecedor(values)
+                return True
     def deletarFornecedor(self, valorID):
         Deletar().deletar("fornecedores", "CNPJ", valorID)
 
@@ -143,3 +156,6 @@ class gerenciarControler():
     def pesquisarGerenciar(self, valoresGerenciar):
         resultado = Pesquisar().pesquisar(valoresGerenciar, "user", "CPF")
         return resultado
+    
+    def inserirUsuario(self, valoresUsuario):
+        Inserir().salvarUsuario(valoresUsuario)

@@ -36,14 +36,26 @@ class Adicionar_pro():
         return
 
     def adicionar_produto(self):
-        self.dicti = {}
-        self.dicti["cod"] = self.ent_cod.get()
-        self.dicti["preco"] = self.ent_preco.get()
-        self.dicti["nome"] = self.ent_nome.get()
-        print(self.dicti.get('cod'))
-        produtosControler().inserirProduto(self.dicti)
-        self.mostrarDados()
-        self.voltar_inicial_add_pro()
+        try:
+            self.dicti = {}
+            self.dicti["cod"] = self.ent_cod.get() if self.ent_cod.get() != '' else "Vazio!"
+            self.dicti["preco"] = self.ent_preco.get() if self.ent_preco.get() != '' else "Vazio!"
+            self.dicti["nome"] = self.ent_nome.get() if self.ent_nome.get() != '' else "Vazio!"
+            resultado = produtosControler().inserirProduto(self.dicti)
+            if resultado:
+                self.mostrarDados()
+                self.voltar_inicial_add_pro()
+            else:
+                messagebox.showwarning(title="AVISO!", message="Coloque valores válidos!", parent=self.adicionar_pro)
+        except Exception as e:
+            e = str(e)
+            if e == "datatype mismatch":
+                messagebox.showwarning(title="AVISO!", message="Coloque valores válidos!", parent=self.adicionar_pro)
+            elif e == "UNIQUE constraint failed: produtos.ID":
+                messagebox.showwarning(title="AVISO!", message="Itens repetidos!", parent=self.adicionar_pro)
+            else:
+                print(e)
+                messagebox.showwarning(title="AVISO!", message="Algum erro aconteceu! Espere um pouco e tente novamente!", parent=self.adicionar_pro)
 
     def elementos(self):
         self.pathBg = imagespath / "editProdutos_bg.png"
@@ -56,7 +68,6 @@ class Adicionar_pro():
 
         self.ent_preco = Entry(self.adicionar_pro, width=25, font="Arial 18")
         self.ent_preco.place(x=710, y=350)
-        self.ent_preco.insert(0, "R$ ")
 
         self.ent_nome = Entry(self.adicionar_pro, width=25, font="Arial 18")
         self.ent_nome.place(x=710, y=470)

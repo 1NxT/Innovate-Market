@@ -60,13 +60,20 @@ class Gerenciar():
         else:
             print("Error: Nenhum valor saiu da Classe")
     def adicionarNovoUsuario(self):
-        cargoselecionado = self.itemVariable.get()
-        if cargoselecionado == "Caixa":
-            cargoselecionado = "1"
+        self.cargoselecionado = self.itemVariable.get()
+        if self.cargoselecionado == "Caixa":
+            self.cargoselecionado = "1"
         else: 
-            cargoselecionado = "2"
+            self.cargoselecionado = "2"
+        self.dicti = {}
+        self.dicti["CPF"] = self.ent_cpf.get()
+        self.dicti["password"] = self.ent_senha.get()
+        self.dicti["Cargo"] = self.cargoselecionado
+        self.dicti["Nome"] = self.ent_cpf.get()
         
-        print(cargoselecionado)
+        gerenciarControler().inserirUsuario(self.dicti)
+        
+        
     def elementos(self):
 
 
