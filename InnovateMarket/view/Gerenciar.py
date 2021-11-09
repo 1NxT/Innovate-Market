@@ -33,7 +33,6 @@ class Gerenciar():
             self.currItem = self.tree_gere.focus()
             self.values = gerenciarControler().usuarioValue(
                 self.tree_gere.item(self.currItem)['values'])
-            print(self.values)
             self.tree_gere.delete(self.currItem)
             gerenciarControler().deletarUser(self.values.CPF)
             
@@ -41,7 +40,6 @@ class Gerenciar():
         
     def mostrarDados(self):
         resultado = gerenciarControler().mostarGerenciar()
-        print(resultado)
         if resultado != None:
             self.tree_gere.delete(*self.tree_gere.get_children())
             
