@@ -91,10 +91,14 @@ class Pedidos:
 
         self.scroll.config(command=self.tree_pedi.yview)
 
-        self.tree_pedi.heading('#1', text="Nome do produto", anchor=CENTER)
-        self.tree_pedi.heading('#2', text="Cliente", anchor=CENTER)
-        self.tree_pedi.heading('#3', text="Valor Total", anchor=CENTER)
-        self.tree_pedi.heading('#4', text="Numero do Pedido", anchor=CENTER)
+        self.tree_pedi.heading('#1', text="Numero do Pedido", anchor=CENTER)
+        self.tree_pedi.heading('#2', text="Nome do produto", anchor=CENTER)
+        self.tree_pedi.heading('#3', text="Data", anchor=CENTER)
+        self.tree_pedi.heading('#4', text="Valores", anchor=CENTER)
+        
+        
+        
+        
         self.view_tree()
      
 

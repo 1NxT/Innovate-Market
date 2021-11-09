@@ -29,15 +29,28 @@ class Adicionar_forne():
             print("Error!")
 
     def adicionar_fornecedor(self):
-        self.dicti = {}
-        self.dicti["nome"] = self.ent_nome.get()
-        self.dicti["CNPJ"] = self.ent_cnpj.get()
-        self.dicti["telefone"] = self.ent_telefone.get()
-        self.dicti["email"] = self.ent_email.get()
-        fornecedorControler().inserirFornecedor(self.dicti)
-        
-        self.mostrarDados()
-        self.voltar_inicial_add_pro()
+        try:
+            self.dicti = {}
+            self.dicti["nome"] = self.ent_nome.get() if self.ent_nome.get() != '' else "Vazio!"
+            self.dicti["CNPJ"] = self.ent_cnpj.get() if self.ent_cnpj.get() != '' else "Vazio!" 
+            self.dicti["telefone"] = self.ent_telefone.get() if self.ent_telefone.get() != '' else "Vazio!"
+            self.dicti["email"] = self.ent_email.get() if self.ent_email.get() != '' else "Vazio!"
+            resultado =  fornecedorControler().inserirFornecedor(self.dicti)
+            
+            if resultado:
+                self.mostrarDados()
+                self.voltar_inicial_add_pro()
+            else:
+                messagebox.showwarning(title="AVISO!", message="Coloque valores válidos!", parent=self.adicionar_forne)
+        except Exception as e:
+            e = str(e)
+            if e == "datatype mismatch":
+                messagebox.showwarning(title="AVISO!", message="Coloque valores válidos!", parent=self.adicionar_forne)
+            elif e == "UNIQUE constraint failed: fornecedores.CNPJ":
+                messagebox.showwarning(title="AVISO!", message="Itens repetidos!", parent=self.adicionar_forne)
+            else:
+                print(e)
+                messagebox.showwarning(title="AVISO!", message="Algum erro aconteceu! Espere um pouco e tente novamente!", parent=self.adicionar_forne)
 
     def voltar_inicial_add_pro(self):
         messagebox.showinfo(title="AVISO!", message="Item adicionado com sucesso!", parent=self.adicionar_forne)

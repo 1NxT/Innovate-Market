@@ -57,12 +57,16 @@ class fornecedorControler():
         return resultado
 
     def inserirFornecedor(self, values):
-        for i in values.values():
-            if i == " ":
-                return False
-            else:
-                Inserir().salvarFornecedor(values)
-                return True
+        cadastroValido = True
+        for value in values.values():
+            if value == "Vazio!":
+                cadastroValido = False
+        
+        if cadastroValido:
+            Inserir().salvarFornecedor(values)
+            return True
+        else:
+            return False
     def deletarFornecedor(self, valorID):
         Deletar().deletar("fornecedores", "CNPJ", valorID)
 
@@ -147,6 +151,21 @@ class pedidosControler():
         self.__values = ValuesDB().carregarValues("pedidos", valores)
         print(self.__values)
         return self.__values
+    
+    def inserirPedidos(self, values):
+        today = datetime.today().strftime('%d%m%Y')
+        data = str(today)
+        values["data"] = data
+        cadastroValido = True
+        for value in values.values():
+            if value == "Vazio!":
+                cadastroValido = False
+
+        if cadastroValido:
+            Inserir().salvarPedidos(values)
+            return True
+        else:
+            return False
 
 class gerenciarControler():
     def mostarGerenciar(self):
