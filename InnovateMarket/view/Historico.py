@@ -59,7 +59,7 @@ class Historico():
         self.scroll = ttk.Scrollbar(self.tree_vendas_frame)
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        self.tree_vendas = ttk.Treeview(self.tree_vendas_frame, column=("Código de compra", "Nome do produto", "Quantidade", "Código do produto", "Data"), show='headings', height=36, yscrollcommand=self.scroll.set)
+        self.tree_vendas = ttk.Treeview(self.tree_vendas_frame, column=("Código de compra", "Nome do produto", "Quantidade", "Código do produto", "Data", "Valores"), show='headings', height=36, yscrollcommand=self.scroll.set)
 
         self.tree_vendas.pack()
 
@@ -70,6 +70,7 @@ class Historico():
         self.tree_vendas.heading('#3', text="Quantidade", anchor=CENTER)
         self.tree_vendas.heading('#4', text="Código do produto", anchor=CENTER)
         self.tree_vendas.heading('#5', text="Data", anchor=CENTER)
+        self.tree_vendas.heading('#6', text="Valores", anchor=CENTER)
         self.mostrarDados()
 
         
