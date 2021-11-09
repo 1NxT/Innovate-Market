@@ -3,7 +3,7 @@ import tkinter.ttk as ttk
 from controller.Controller import gerenciarControler 
 from model.Config import *
 
-class Gerenciar :
+class Gerenciar():
     def __init__(self):
         self.telageren = Toplevel()
         self.geometry()
