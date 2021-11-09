@@ -20,3 +20,10 @@ class setValuesProdutosCaixa():
         self.NomeProduto = NomeProduto
         self.Qtd = Qtd
         self.CodigoProduto = CodigoProduto
+
+class setValuesPedidos():
+    def __init__(self, ID, produtos, data, valores):
+        self.ID = ID
+        self.produtos = produtos
+        self.data = data
+        self.valores = valores

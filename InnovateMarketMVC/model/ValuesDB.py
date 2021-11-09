@@ -12,3 +12,6 @@ class ValuesDB():
         elif tabela == "caixaCompras":
             self.values = values
             return setValuesProdutosCaixa(self.values[0], self.values[1], self.values[2], self.values[3])
+        elif tabela == "pedidos":
+            self.values = values
+            return setValuesPedidos(self.values[0], self.values[1], self.values[2], self.values[3])

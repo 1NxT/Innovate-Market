@@ -28,7 +28,7 @@ class produtosControler():
     def inserirProduto(self, values):
         cadastroValido = True
         for value in values.values():
-            print(value)
+            
             if value == "Vazio!":
                 cadastroValido = False
         
@@ -79,7 +79,7 @@ class fornecedorControler():
 
     def valuesFornecedor(self, valores):
         self.__values = ValuesDB().carregarValues("fornecedor", valores)
-        print(self.__values)
+        
         return self.__values
     
 class caixaControler():
@@ -103,7 +103,7 @@ class caixaControler():
     def validarValues(self, valores):
         valido = True
         for value in valores.values():
-            print(value)
+            
             if value == "Vazio!":
                 valido = False
                 return valido
@@ -145,11 +145,14 @@ class pedidosControler():
         return resultado
     
     def atualizarPedidos(self, valores, id):
+        today = datetime.today().strftime('%d%m%Y')
+        data = str(today)
+        valores.data = data
         Update().salvar("pedidos", valores, id)
 
     def valuesPedidos(self, valores):
         self.__values = ValuesDB().carregarValues("pedidos", valores)
-        print(self.__values)
+        
         return self.__values
     
     def inserirPedidos(self, values):
@@ -167,6 +170,8 @@ class pedidosControler():
         else:
             return False
 
+    def deletarPedido(self, valorID):
+        Deletar().deletar("pedidos", "ID", valorID)
 class gerenciarControler():
     def mostarGerenciar(self):
         resultado = Mostrar().mostrar("user", "CPF")

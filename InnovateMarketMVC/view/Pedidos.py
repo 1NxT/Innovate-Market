@@ -61,7 +61,17 @@ class Pedidos:
             self.values = pedidosControler().valuesPedidos(self.tree_pedi.item(self.currItem)['values'])
             Editar_Pedi(self.values)
             return self.view_tree()
-
+        
+    def deleteElemento(self):
+        if not self.tree_pedi.focus():
+            messagebox.showwarning(title="ERRO!", message="Selecione uma opção para editar", parent=self.telapedi)
+        else:
+            self.currItem = self.tree_pedi.focus()
+            self.values = produtosControler().valuesProdutos(
+                self.tree_pedi.item(self.currItem)['values'])
+            self.tree_pedi.delete(self.currItem)
+            pedidosControler().deletarPedido(self.values.id)
+            
     def elementos(self):
 
         self.pathBg = imagespath / "pedidos_bg.png"
@@ -123,7 +133,7 @@ class Pedidos:
 
         self.img_deletar = imagespath / "deletar.png"
         self.btn_deletar = PhotoImage(file =self.img_deletar)
-        self.btn_deletarpedi = Button(self.telapedi, command=lambda:[self.view_tree()], image=self.btn_deletar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_deletarpedi = Button(self.telapedi, command=self.deleteElemento, image=self.btn_deletar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_deletarpedi.place(x=980, y=467)
 
         self.img_adicionar = imagespath / "adicionar.png"
