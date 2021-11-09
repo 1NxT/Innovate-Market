@@ -69,7 +69,7 @@ class Produtos():
                 self.tree_pro.item(self.currItem)['values'])
             self.tree_pro.delete(self.currItem)
             produtosControler().deletarProduto(self.values.id)
-            self.tree_pro.bind('<ButtonRelease-1>', self.currItem)
+            
 
 
     def edit_pro(self):
