@@ -8,7 +8,7 @@ class Cargo(Enum):
 
 class Usuario:
 
-    def __init__(self, cpf, password, cargo: Cargo, caixa, nome):
+    def __init__(self, cpf, password, cargo: Cargo, nome):
         self.cpf = cpf
         self.password = password
         self.cargo = cargo

@@ -29,11 +29,16 @@ class Gerenciar:
     
     def view_tree(self):
         resultado = gerenciarControler().mostarGerenciar()
-        
+        print(resultado)
         if resultado != None:
             self.tree_gere.delete(*self.tree_gere.get_children())
             
             for i in resultado:
+                i = list(i)
+                if i[2] == "1":
+                    i[2] = "Caixa"
+                elif i[2] == "2":
+                    i[2] = "Adiministrador"
                 self.tree_gere.insert("","end",values=i)
         else:
             print("Error!")
@@ -45,11 +50,12 @@ class Gerenciar:
     # Função para procurar por dados na Treeview        
     def chamaPesquisar(self):
         resultado = gerenciarControler().pesquisarGerenciar(self.ent_pesquisar.get(), "usuarios")
-
+        
         if resultado != None:
             self.tree_gere.delete(*self.tree_gere.get_children())
             
             for i in resultado:
+                
                 self.tree_gere.insert("","end",values=i)
         else:
             print("Error: Nenhum valor saiu da Classe")
@@ -87,10 +93,10 @@ class Gerenciar:
 
         self.scroll.config(command=self.tree_gere.yview)
 
-        self.tree_gere.heading('#1',text="Nome ", anchor=CENTER)
+        self.tree_gere.heading('#1',text="CPF ", anchor=CENTER)
         self.tree_gere.heading('#2',text="Senha Do Usuario", anchor=CENTER)
-        self.tree_gere.heading('#3',text="CPF do Usuario", anchor=CENTER)
-        self.tree_gere.heading('#4',text="Cargo", anchor=CENTER)
+        self.tree_gere.heading('#3',text="Cargo", anchor=CENTER)
+        self.tree_gere.heading('#4',text="Nome", anchor=CENTER)
         self.view_tree()
 
         self.ent_pesquisar = Entry(self.telageren,bg="lightgrey", font= "arial 18", width= "25")
