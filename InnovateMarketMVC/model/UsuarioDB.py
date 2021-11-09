@@ -17,4 +17,4 @@ class UsuarioDB():
             if resultado1 == None:
                 return None
             else:
-                return Usuario(resultado1[0], resultado1[1], Cargo(resultado1[2]), resultado1[3], resultado1[4])
+                return Usuario(resultado1[0], resultado1[1], Cargo(resultado1[2]), resultado1[3])
