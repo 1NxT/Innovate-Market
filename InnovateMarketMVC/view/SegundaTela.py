@@ -10,7 +10,7 @@ from model.Config import *
 from model.Usuario import Cargo
 
 
-class SegundaTela(Frame):
+class SegundaTela:
     def __init__(self, usuario):
         self.tela2 = Toplevel()
         self.tela2.attributes("-fullscreen", True)

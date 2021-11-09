@@ -4,9 +4,8 @@ import tkinter.ttk as ttk
 from model.Config import *
 from controller.Controller import pedidosControler
 
-class Adicionar_pedi(Frame):
+class Adicionar_pedi:
     def __init__(self):
-        Frame.__init__(self, master=None)
         self.adicionar_pedi = Toplevel()
         self.adicionar_pedi.attributes("-fullscreen", True)
         self.geometry()

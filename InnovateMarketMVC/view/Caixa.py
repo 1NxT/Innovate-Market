@@ -7,7 +7,7 @@ from model.Config import *
 from random import randint
 from view.CaixaProdutos import *
 
-class Caixa(Frame):
+class Caixa:
     def __init__(self):
         self.compraID = self.gerarVendaId()
         self.telacaixa = Toplevel()

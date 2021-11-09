@@ -6,7 +6,7 @@ from controller.Controller import produtosControler
 import time
 
 
-class Adicionar_pro(Frame):
+class Adicionar_pro:
     def __init__(self):
         self.adicionar_pro = Toplevel()
         self.adicionar_pro.attributes("-fullscreen", True)

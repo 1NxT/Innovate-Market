@@ -7,7 +7,7 @@ from view.Editar.Editar_produtos import *
 from view.Adicionar.Adicionar_pro import *
 from model.Config import *
 
-class Produtos(Frame):
+class Produtos:
     def __init__(self):
         self.dicti = {}
         self.telaprodutos = Toplevel()
@@ -69,7 +69,7 @@ class Produtos(Frame):
                 self.tree_pro.item(self.currItem)['values'])
             self.tree_pro.delete(self.currItem)
             produtosControler().deletarProduto(self.values.id)
-            self.tree_pro.bind('<ButtonRelease-1>', self.currItem)
+            
 
 
     def edit_pro(self):

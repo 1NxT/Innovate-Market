@@ -61,7 +61,7 @@ class Fornecedor:
             self.tree_forne.item(self.currItem)['values'])
         self.tree_forne.delete(self.currItem)
         fornecedorControler().deletarFornecedor(self.values.cnpj)
-        self.tree_forne.bind('<ButtonRelease-1>', self.currItem)
+        
 
     def edit_fornecedor(self):
         if not self.tree_forne.focus():

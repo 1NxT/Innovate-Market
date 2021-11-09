@@ -4,9 +4,8 @@ import tkinter.ttk as ttk
 from model.Config import *
 from controller.Controller import fornecedorControler
 
-class Adicionar_forne(Frame):
+class Adicionar_forne:
     def __init__(self):
-        Frame.__init__(self, mater=None)
         self.adicionar_forne = Toplevel()
         self.adicionar_forne.attributes("-fullscreen", True)
         self.geometry()

@@ -7,7 +7,7 @@ from view.Adicionar.Adicionar_pedi import *
 from view.Editar.Editar_pedidos import *
 from model.Config import *
 
-class Pedidos(Frame):
+class Pedidos:
     def __init__(self):
         self.telapedi = Toplevel()
         self.telapedi.attributes("-fullscreen", True)

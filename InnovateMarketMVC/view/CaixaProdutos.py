@@ -6,7 +6,7 @@ from controller.Controller import produtosControler
 from model.Config import *
 
 
-class CaixaProdutos(Frame):
+class CaixaProdutos:
     def __init__(self):
         self.dicti = {}
         Frame.__init__(self, master=None)

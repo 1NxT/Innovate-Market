@@ -3,9 +3,10 @@ import tkinter.ttk as ttk
 from controller.Controller import gerenciarControler 
 from model.Config import *
 
-class Gerenciar :
+class Gerenciar:
     def __init__(self):
         self.telageren = Toplevel()
+        self.telageren.attributes("-fullscreen", True)
         self.geometry()
 
         self.elementos()
@@ -52,7 +53,8 @@ class Gerenciar :
                 self.tree_gere.insert("","end",values=i)
         else:
             print("Error: Nenhum valor saiu da Classe")
-
+    def adicionarNovoUsuario(self):
+        pass
     def elementos(self):
 
 
