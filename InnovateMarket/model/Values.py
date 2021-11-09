@@ -15,11 +15,12 @@ class setValuesFornecedor():
 
 
 class setValuesProdutosCaixa():
-    def __init__(self, CodigoCompra, NomeProduto, Qtd, CodigoProduto):
-        self.CodigoCompra = CodigoCompra
+    def __init__(self, NomeProduto, Valores,CodigoProduto , Qtd, CodigoCompra):
         self.NomeProduto = NomeProduto
+        self.Valores = Valores
         self.Qtd = Qtd
         self.CodigoProduto = CodigoProduto
+        self.CodigoCompra = CodigoCompra
 
 class setValuesPedidos():
     def __init__(self, ID, produtos, data, valores):

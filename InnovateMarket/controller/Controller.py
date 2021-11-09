@@ -125,15 +125,16 @@ class caixaControler():
         today = datetime.today().strftime('%d%m%Y')
         data = str(today)
         valoresCompra = Pesquisar().pesquisar(compraID, "caixaFinalizar", "CodigoCompra")
+        
         for i in valoresCompra:
             self.dicti = {}
             
             self.dicti["CodigoCompra"] = compraID
-            self.dicti["Nome Produto"] = str(i[1])
+            self.dicti["nomeProduto"] = str(i[1])
             self.dicti["Qtd"] = str(i[2])
             self.dicti["CodigoProduto"] = str(i[3])
             self.dicti["Data"] = data
-            
+            self.dicti["Valores"] = str(i[4])
             Inserir().salvarVenda(self.dicti)
         
         Deletar().deletar("caixaCompras", "CodigoCompra", compraID)

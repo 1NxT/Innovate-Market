@@ -11,7 +11,8 @@ class ValuesDB():
             return setValuesFornecedor(self.values[0], self.values[1], self.values[2], self.values[3])
         elif tabela == "caixaCompras":
             self.values = values
-            return setValuesProdutosCaixa(self.values[0], self.values[1], self.values[2], self.values[3])
+            print(self.values)
+            return setValuesProdutosCaixa(self.values[0], self.values[1], self.values[2], self.values[3], self.values[4])
         elif tabela == "pedidos":
             self.values = values
             return setValuesPedidos(self.values[0], self.values[1], self.values[2], self.values[3])
