@@ -17,6 +17,8 @@ class Pesquisar():
             self.__cursor.execute(f"SELECT * FROM caixaCompras WHERE CodigoCompra = {pesquisa}")
         elif tabela == "Vendas":
             self.__cursor.execute(f"SELECT * FROM {tabela} WHERE {keys[0]} LIKE '%{pesquisa[keys[0]]}%' OR {keys[1]} LIKE '%{pesquisa[keys[1]]}%' OR {keys[2]} LIKE '%{pesquisa[keys[2]]}%' OR {keys[3]} LIKE '%{pesquisa[keys[3]]}%' OR {keys[4]} LIKE '%{pesquisa[keys[4]]}%' ORDER BY {coluna}")
+        elif tabela == "produtos":
+            self.__cursor.execute(f"SELECT * FROM {tabela} WHERE {keys[0]} LIKE '%{pesquisa[keys[0]]}%' OR {keys[1]} LIKE '%{pesquisa[keys[1]]}%' OR {keys[2]} LIKE '%{pesquisa[keys[2]]}%' ORDER BY {coluna}")
         else:
             self.__cursor.execute(f"SELECT * FROM {tabela} WHERE {keys[0]} LIKE '%{pesquisa[keys[0]]}%' OR {keys[1]} LIKE '%{pesquisa[keys[1]]}%' OR {keys[2]} LIKE '%{pesquisa[keys[2]]}%' OR {keys[3]} LIKE '%{pesquisa[keys[3]]}%' ORDER BY {coluna}")
 

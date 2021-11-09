@@ -57,8 +57,8 @@ class Caixa():
         return self.values
 
     def atualizarDadosLabel(self):
-        self.lbl_valorPagar.config(text=self.valor)
-        self.lbl_troco.config(text=self.troco)
+        self.lbl_valorPagar.config(text=f"R$ {self.valor}")
+        self.lbl_troco.config(text=f"R$ {self.troco}")
         
 
     def adicionarProduto(self):

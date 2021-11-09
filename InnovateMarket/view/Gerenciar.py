@@ -15,7 +15,7 @@ class Gerenciar():
         self.telageren.geometry("1360x760")
         self.telageren.configure(bg="Lightgrey")
         self.telageren.resizable(False, False)
-        self.options = ["Caixa", "Gerente"]
+        self.options = ["Caixa", "Adiministrador"]
         self.itemVariable = StringVar()
         self.itemVariable.set(self.options[0])
         # self.__iconImagemPath = imagespath / "logo.ico"
@@ -73,6 +73,7 @@ class Gerenciar():
         
         gerenciarControler().inserirUsuario(self.dicti)
         
+        self.mostrarDados()
         
     def elementos(self):
         self.pathBg = imagespath / "gerenciar_bg.png"
@@ -80,12 +81,17 @@ class Gerenciar():
         self.lblimgbg = Label(self.telageren, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
 
+        
         self.btn_telainicial = imagespath / "voltar.png"
         self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
         self.btn_telainicial_pedi = Button(self.telageren, image=self.btn_voltartelainicial, command=self.tela_inicial_gerenciar, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
         self.btn_telainicial_pedi.place(x=980, y=660)
 
-
+        self.img_adicionar = imagespath / "adicionar.png"
+        self.btn_adicionar = PhotoImage(file =self.img_adicionar)
+        self.btn_show = Button(self.telageren, command=self.adicionarNovoUsuario, image=self.btn_adicionar, relief="flat", borderwidth=0, bg="Gainsboro")
+        self.btn_show.place(x=980, y=600)
+        
         # Estilo da Treeview
         self.style = ttk.Style()
         self.style.theme_use("default")
@@ -122,7 +128,7 @@ class Gerenciar():
         self.ent_cpf = Entry(self.telageren,bg="lightgrey",font= "arial 18", width= "25")
         self.ent_cpf.place(x=900,y=440)
 
-
+        
 
         self.menu_quantidade = OptionMenu(self.telageren, self.itemVariable, *self.options)
         self.menu_quantidade.place(x=900,y=550)
