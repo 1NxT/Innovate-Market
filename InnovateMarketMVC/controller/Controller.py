@@ -67,6 +67,7 @@ class fornecedorControler():
             return True
         else:
             return False
+            
     def deletarFornecedor(self, valorID):
         Deletar().deletar("fornecedores", "CNPJ", valorID)
 
@@ -109,6 +110,7 @@ class caixaControler():
                 return valido
             
         return valido
+
     def adicionarProdutoCaixa(self, valoresCaixa):
         Inserir().salvarProdutoCaixa(valoresCaixa)
 
@@ -135,6 +137,7 @@ class caixaControler():
             Inserir().salvarVenda(self.dicti)
         
         Deletar().deletar("caixaCompras", "CodigoCompra", compraID)
+
 class pedidosControler():
     def mostarPedido(self):
         resultado = Mostrar().mostrar("pedidos", "ID")
@@ -172,6 +175,7 @@ class pedidosControler():
 
     def deletarPedido(self, valorID):
         Deletar().deletar("pedidos", "ID", valorID)
+
 class gerenciarControler():
     def mostarGerenciar(self):
         resultado = Mostrar().mostrar("user", "CPF")
@@ -183,3 +187,8 @@ class gerenciarControler():
     
     def inserirUsuario(self, valoresUsuario):
         Inserir().salvarUsuario(valoresUsuario)
+
+class vendasControler():
+    def mostrarVendas(self):
+        resultado = Mostrar().mostrar("vendas", "CodigoCompra")
+        return resultado

@@ -24,13 +24,13 @@ class Editar_Pedi():
         self.ent_nome.insert(0, self.values.produtos)
 
     def geometry(self):
-        self.edit_pedi.title("Produtos")
+        self.edit_pedi.title("Editar pedidos")
         self.edit_pedi.geometry("1360x768")
         self.edit_pedi.resizable(False, False)
         self.__iconImagemPath = imagespath / "logo.ico"
         self.edit_pedi.iconbitmap(self.__iconImagemPath)
 
-    def view_tree(self):
+    def mostrarDados(self):
         resultado = pedidosControler().mostarPedido()
 
         if resultado != None:
@@ -47,7 +47,7 @@ class Editar_Pedi():
         self.values.valores = self.ent_preco.get()
         
         pedidosControler().atualizarPedidos(self.values, self.id)
-        self.view_tree()
+        self.mostrarDados()
         self.edit_pedi.destroy()
         return
     
@@ -83,18 +83,15 @@ class Editar_Pedi():
         self.tree_pedi.heading('#2', text="Nome do produto", anchor=CENTER)
         self.tree_pedi.heading('#3', text="Data", anchor=CENTER)
         self.tree_pedi.heading('#4', text="Valores", anchor=CENTER)
-
-        self.view_tree()
-
-        # self.tree_pro.bind("<ButtonRelease-1>")
+        self.mostrarDados()
 
         #Entrys
-        self.ent_cod = Entry(self.edit_pedi, width=25, font="Arial 18")
-        self.ent_cod.place(x=886, y=160)
+        self.ent_cod = Entry(self.edit_pedi, width=25, bg="lightgrey", font="Arial 18")
+        self.ent_cod.place(x=865, y=230)
 
-        self.ent_preco = Entry(self.edit_pedi, width=25, font="Arial 18")
-        self.ent_preco.place(x=886, y=280)
+        self.ent_preco = Entry(self.edit_pedi, width=25, bg="lightgrey", font="Arial 18")
+        self.ent_preco.place(x=865, y=355)
 
-        self.ent_nome = Entry(self.edit_pedi, width=25, font="Arial 18")
-        self.ent_nome.place(x=886, y=400)
+        self.ent_nome = Entry(self.edit_pedi, width=25, bg="lightgrey", font="Arial 18")
+        self.ent_nome.place(x=865, y=489)
 

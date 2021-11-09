@@ -26,7 +26,14 @@ class Caixa():
         self.telacaixa.bind('<F5>', lambda event: self.pesquisarProduto())
         self.telacaixa.bind('<F6>', lambda event: self.finalizarVenda())
         self.telacaixa.bind('<F7>', lambda event: self.abortarCompra())
-        
+
+    def geometry(self):
+        self.telacaixa.title("Caixa")
+        self.telacaixa.geometry("1360x768")
+        self.telacaixa.configure(bg="Lightgrey")
+        self.telacaixa.resizable(False, False)
+        self.__iconImagemPath = imagespath / "logo.ico"
+        self.telacaixa.iconbitmap(self.__iconImagemPath)
 
     def pesquisarProduto(self):
         CaixaProdutos()
@@ -62,9 +69,7 @@ class Caixa():
         if resultado:
             self.dicti["CodigoProduto"] = self.ent_cod_barras.get()
             caixaControler().adicionarProdutoCaixa(self.dicti)
-            self.view_tree()
-
-
+            self.mostrarDados()
 
     def excluirProdutoCompra(self):
         self.currItem = self.tree_caixa.focus()
@@ -74,14 +79,14 @@ class Caixa():
             self.values = caixaControler().caixaValues(self.tree_caixa.item(self.currItem)['values'])
             self.tree_caixa.delete(self.currItem)
             caixaControler().deletarProduto(self.values.CodigoProduto)
-            self.view_tree()
+            self.mostrarDados()
 
     def finalizarVenda(self):
         self.result = messagebox.askquestion(
             'AVISO', 'Tem certeza que deseja finalizar a compra?', icon="warning", parent=self.telacaixa)
         if self.result == "yes":
             caixaControler().caixaFinalizarCompra(self.compraID)
-            self.view_tree()
+            self.mostrarDados()
             messagebox.showinfo(title="Finalizado!", message="Compra finalizada!", parent=self.telacaixa)
             sleep(3)
             self.telacaixa.destroy()
@@ -91,17 +96,9 @@ class Caixa():
         self.compraID = randint(0, 9999999)
         self.compraID = str(self.compraID)
         return self.compraID
-    def geometry(self):
-        self.telacaixa.title("Caixa")
-        self.telacaixa.geometry("1360x760")
-        self.telacaixa.configure(bg="DodgerBlue")
-        self.telacaixa.resizable(False, False)
-        # self.__iconImagemPath = imagespath / "logo.ico"
-        # self.telacaixa.iconbitmap(self.__iconImagemPath)
-
     
     # Função para aparecer os dados na Treeview
-    def view_tree(self):
+    def mostrarDados(self):
         resultado = caixaControler().mostarCaixa()
         
         if resultado != None:
@@ -159,7 +156,7 @@ class Caixa():
         self.tree_caixa.heading('#2', text="Nome produto", anchor=CENTER)
         self.tree_caixa.heading('#3', text="Quantidade", anchor=CENTER)
         self.tree_caixa.heading('#4', text="Codigo produto", anchor=CENTER)
-        self.view_tree()
+        self.mostrarDados()
         # Menu de opções
         #self.menu_quantidade = OptionMenu(self.telacaixa, self.itemVariable, *self.options)
         #self.menu_quantidade.place(x=840,y=300)
@@ -167,12 +164,12 @@ class Caixa():
         # Botões da tela Caixa
         
 
-        self.ent_cod_barras = Entry(self.telacaixa, font="arial 18")
+        self.ent_cod_barras = Entry(self.telacaixa, bg="lightgrey", font="arial 18")
         self.ent_cod_barras.place(x=50, y=80)
 
 
 
-        self.ent_qtde = Entry(self.telacaixa, font="arial 18")
+        self.ent_qtde = Entry(self.telacaixa, bg="lightgrey", font="arial 18")
         self.ent_qtde.place(x=50, y=460)
 
         

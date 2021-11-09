@@ -20,17 +20,17 @@ class CaixaProdutos():
         self.telapesquisarprodutos.configure(bg="Lightgrey")
         self.telapesquisarprodutos.resizable(False, False)
         self.__iconImagemPath = imagespath / "logo.ico"
-        #self.telapesquisarprodutos.iconbitmap(self.__iconImagemPath)
+        self.telapesquisarprodutos.iconbitmap(self.__iconImagemPath)
 
-    def voltar_inicial_pro(self):
+    def voltar_inicial_CaixaPro(self):
         self.telapesquisarprodutos.destroy()
         return
 
-    def clear_entry(self):
+    def clearEntry(self):
         self.ent_pesquisar.delete(0, END)
         self.ent_pesquisar.insert(0, "")
 
-    def view_tree(self):
+    def mostrarDados(self):
         self.resultado = produtosControler().mostarProdutos()
 
         if self.resultado != None:
@@ -61,15 +61,8 @@ class CaixaProdutos():
     def elementos(self):
         self.pathBg = imagespath / "produtos_bg.png"
         self.__bg = PhotoImage(file=self.pathBg)
-
         self.lblimgbg = Label(self.telapesquisarprodutos, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
-
-        self.btn_telainicial = imagespath / "voltar.png"
-        self.btn_voltartelainicial = PhotoImage(file=self.btn_telainicial)
-        self.btn_telainicial_pro = Button(self.telapesquisarprodutos, command=self.voltar_inicial_pro,
-                                          image=self.btn_voltartelainicial, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
-        self.btn_telainicial_pro.place(x=980, y=660)
 
         self.style = ttk.Style()
         self.style.theme_use("default")
@@ -94,12 +87,11 @@ class CaixaProdutos():
         self.tree_pro.heading('#2', text="Preço", anchor=CENTER)
         self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
         self.tree_pro.heading('#4', text="Fornecedor", anchor=CENTER)
-
-        self.view_tree()
+        self.mostrarDados()
 
         # ENTRYS TELA PRODUTOS
         self.ent_pesquisar = Entry(
-            self.telapesquisarprodutos, width=25, font="Arial 18")
+            self.telapesquisarprodutos, bg="lightgrey", width=25, font="Arial 18")
         self.ent_pesquisar.place(x=886, y=160)
 
         # BUTTONS TELA PRODUTOS
@@ -109,6 +101,8 @@ class CaixaProdutos():
                                         command=self.chamaPesquisar, relief="flat", borderwidth=0, width=110, height=50)
         self.btn_pesquisar_pro.place(x=1225, y=150)
 
-        
-
-        
+        self.btn_telainicial = imagespath / "voltar.png"
+        self.btn_voltartelainicial = PhotoImage(file=self.btn_telainicial)
+        self.btn_telainicial_pro = Button(self.telapesquisarprodutos, command=self.voltar_inicial_CaixaPro,
+                                          image=self.btn_voltartelainicial, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
+        self.btn_telainicial_pro.place(x=980, y=660)

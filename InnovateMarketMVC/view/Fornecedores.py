@@ -26,7 +26,7 @@ class Fornecedor():
         self.telaforne.destroy()
         return
     
-    def clear_entry(self):
+    def clearEntry(self):
         self.ent_pesquisar.delete(0, END)
         self.ent_pesquisar.insert(0, "")
     
@@ -66,7 +66,7 @@ class Fornecedor():
             fornecedorControler().deletarFornecedor(self.values.cnpj)
             self.tree_forne.bind('<ButtonRelease-1>', self.currItem)
 
-    def edit_fornecedor(self):
+    def editar_fornecedor(self):
         if not self.tree_forne.focus():
             messagebox.showwarning(title="ERRO!", message="Selecione uma opção para editar!", parent=self.telaforne)
         else:
@@ -114,7 +114,7 @@ class Fornecedor():
 
         self.img_mostrar = imagespath / "Mostrar.png"
         self.btn_mostrar = PhotoImage(file =self.img_mostrar)
-        self.btn_show = Button(self.telaforne, command=lambda:[self.mostrarDados(), self.clear_entry()], image=self.btn_mostrar, relief="flat", borderwidth=0, bg="Gainsboro")
+        self.btn_show = Button(self.telaforne, command=lambda:[self.mostrarDados(), self.clearEntry()], image=self.btn_mostrar, relief="flat", borderwidth=0, bg="Gainsboro")
         self.btn_show.place(x=980, y=215)
 
         self.img_adicionar = imagespath / "adicionar.png"
@@ -124,7 +124,7 @@ class Fornecedor():
 
         self.img_editar = imagespath / "editar.png"
         self.btn_editar = PhotoImage(file =self.img_editar)
-        self.btn_show = Button(self.telaforne, command=self.edit_fornecedor, image=self.btn_editar, relief="flat", borderwidth=0, bg="Gainsboro")
+        self.btn_show = Button(self.telaforne, command=self.editar_fornecedor, image=self.btn_editar, relief="flat", borderwidth=0, bg="Gainsboro")
         self.btn_show.place(x=980, y=410)
 
         self.img_deletar = imagespath / "deletar.png"

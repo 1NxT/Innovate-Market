@@ -8,13 +8,12 @@ class Gerenciar():
         self.telageren = Toplevel()
         self.telageren.attributes("-fullscreen", True)
         self.geometry()
-
         self.elementos()
 
     def geometry(self):
         self.telageren.title("Gerenciar Usuarios ")
         self.telageren.geometry("1360x760")
-        self.telageren.configure(bg="DodgerBlue")
+        self.telageren.configure(bg="Lightgrey")
         self.telageren.resizable(False, False)
         self.options = ["Caixa", "Gerente"]
         self.itemVariable = StringVar()
@@ -27,7 +26,7 @@ class Gerenciar():
     #         return
     
     
-    def view_tree(self):
+    def mostrarDados(self):
         resultado = gerenciarControler().mostarGerenciar()
         print(resultado)
         if resultado != None:
@@ -59,6 +58,7 @@ class Gerenciar():
                 self.tree_gere.insert("","end",values=i)
         else:
             print("Error: Nenhum valor saiu da Classe")
+
     def adicionarNovoUsuario(self):
         self.cargoselecionado = self.itemVariable.get()
         if self.cargoselecionado == "Caixa":
@@ -75,8 +75,6 @@ class Gerenciar():
         
         
     def elementos(self):
-
-
         self.pathBg = imagespath / "gerenciar_bg.png"
         self.__bg = PhotoImage(file =self.pathBg)
         self.lblimgbg = Label(self.telageren, image=self.__bg)
@@ -87,7 +85,6 @@ class Gerenciar():
         self.btn_telainicial_pedi = Button(self.telageren, image=self.btn_voltartelainicial, command=self.tela_inicial_gerenciar, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
         self.btn_telainicial_pedi.place(x=980, y=660)
 
-       
 
         # Estilo da Treeview
         self.style = ttk.Style()
@@ -110,8 +107,9 @@ class Gerenciar():
         self.tree_gere.heading('#2',text="Senha Do Usuario", anchor=CENTER)
         self.tree_gere.heading('#3',text="Cargo", anchor=CENTER)
         self.tree_gere.heading('#4',text="Nome", anchor=CENTER)
-        self.view_tree()
+        self.mostrarDados()
 
+        # ENTRYS GEERENCIAR
         self.ent_pesquisar = Entry(self.telageren,bg="lightgrey", font= "arial 18", width= "25")
         self.ent_pesquisar.place(x=900,y=70)
 

@@ -15,8 +15,8 @@ class Adicionar_forne():
             self.adicionar_forne.title("Adicionar Fornecedor")
             self.adicionar_forne.geometry("1360x768")
             self.adicionar_forne.resizable(False, False)
-            # self.__iconImagemPath = imagespath / "logo.ico"
-            # self.adicionar_forne.iconbitmap(self.__iconImagemPath)
+            self.__iconImagemPath = imagespath / "logo.ico"
+            self.adicionar_forne.iconbitmap(self.__iconImagemPath)
 
     def mostrarDados(self):
         self.resultado = fornecedorControler().mostarFornecedor()
@@ -39,7 +39,8 @@ class Adicionar_forne():
             
             if resultado:
                 self.mostrarDados()
-                self.voltar_inicial_add_pro()
+                messagebox.showinfo(title="AVISO!", message="Fornecedor adicionado com sucesso!", parent=self.adicionar_forne)
+                self.voltar_inicial_add_forne()
             else:
                 messagebox.showwarning(title="AVISO!", message="Coloque valores válidos!", parent=self.adicionar_forne)
         except Exception as e:
@@ -52,10 +53,8 @@ class Adicionar_forne():
                 print(e)
                 messagebox.showwarning(title="AVISO!", message="Algum erro aconteceu! Espere um pouco e tente novamente!", parent=self.adicionar_forne)
 
-    def voltar_inicial_add_pro(self):
-        messagebox.showinfo(title="AVISO!", message="Item adicionado com sucesso!", parent=self.adicionar_forne)
+    def voltar_inicial_add_forne(self):
         self.adicionar_forne.destroy()
-
         return
 
     def elementos(self):
@@ -87,19 +86,24 @@ class Adicionar_forne():
         self.tree_forne.heading('#4', text="Email", anchor=CENTER)
         self.mostrarDados()
 
-        self.ent_nome = Entry(self.adicionar_forne, width=25, font="Arial 18")
+        self.ent_nome = Entry(self.adicionar_forne, bg="lightgrey", width=25, font="Arial 18")
         self.ent_nome.place(x=865, y=200)
 
-        self.ent_cnpj = Entry(self.adicionar_forne, width=25, font="Arial 18")
+        self.ent_cnpj = Entry(self.adicionar_forne, bg="lightgrey", width=25, font="Arial 18")
         self.ent_cnpj.place(x=865, y=320)
 
-        self.ent_telefone = Entry(self.adicionar_forne, width=25, font="Arial 18")
+        self.ent_telefone = Entry(self.adicionar_forne, bg="lightgrey", width=25, font="Arial 18")
         self.ent_telefone.place(x=865, y=445)
 
-        self.ent_email = Entry(self.adicionar_forne, width=25, font="Arial 18")
+        self.ent_email = Entry(self.adicionar_forne, bg="lightgrey", width=25, font="Arial 18")
         self.ent_email.place(x=865, y=560)
 
-        self.btn_salvarPath = imagespath / "Salvar.png"
+        self.btn_salvarPath = imagespath / "adicionar.png"
         self.btn_salvar = PhotoImage(file =self.btn_salvarPath)
         self.btn_salvar_add_forne = Button(self.adicionar_forne, image=self.btn_salvar, command=self.adicionar_fornecedor, relief="flat", borderwidth=0, width=225, height=50, bg="Gainsboro")
         self.btn_salvar_add_forne.place(x=980, y=660)
+
+        self.btn_telainicial = imagespath / "fechar_X.png"
+        self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
+        self.btn_telainicial_add_forne = Button(self.adicionar_forne, image=self.btn_voltartelainicial, command=self.voltar_inicial_add_forne, relief="flat", borderwidth=0, width=30, height=30, bg="Gainsboro")
+        self.btn_telainicial_add_forne.place(x=1330, y=5)

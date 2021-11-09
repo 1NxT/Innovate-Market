@@ -3,7 +3,7 @@ from tkinter import messagebox
 from view.Caixa import *
 from view.Fornecedores import *
 from view.Gerenciar import *
-from view.Lucros import *
+from view.Historico import *
 from view.Pedidos import *
 from view.Produtos import *
 from model.Config import *
@@ -24,9 +24,10 @@ class SegundaTela():
     def __geometry(self):
         self.tela2.title("Tela Inicial")
         self.tela2.geometry("1360x768")
+        self.tela2.configure(bg="Lightgrey")
         self.tela2.resizable(False, False)
-        #self.__iconImagemPath = imagespath / "logo.ico"
-        #self.tela2.iconbitmap(self.__iconImagemPath)
+        self.__iconImagemPath = imagespath / "logo.ico"
+        self.tela2.iconbitmap(self.__iconImagemPath)
 
     def elementos(self):
         self.pathBg = imagespath / "Tela de menu.png"
@@ -65,12 +66,12 @@ class SegundaTela():
             self.tela2, image=self.__pedidosImagem,  width=140,  command=Pedidos, relief="flat", borderwidth=0)
         self.__btn_pedidosImagem.place(x=200, y=400)
 
-    def __criarButtonLucrosImagem(self):
-        self.__lucroImagemPath = imagespath / "lucro.png"
-        self.__lucroImagem = PhotoImage(file=self.__lucroImagemPath)
-        self.__btn_lucroImagem = Button(
-            self.tela2, image=self.__lucroImagem,  width=140, command=Lucros, relief="flat", borderwidth=0)
-        self.__btn_lucroImagem.place(x=575, y=400)
+    def __criarButtonHistoricoImagem(self):
+        self.__histoircoImagemPath = imagespath / "historicoCompras.png"
+        self.__histoircoImagem = PhotoImage(file=self.__histoircoImagemPath)
+        self.__btn_histoircoImagem = Button(
+            self.tela2, image=self.__histoircoImagem,  width=140, command=Historico, relief="flat", borderwidth=0)
+        self.__btn_histoircoImagem.place(x=575, y=400)
 
     def __criarButtonGerenciarImagem(self):
         self.__gerenteImagemPath = imagespath / "gerente.png"
@@ -106,7 +107,7 @@ class SegundaTela():
 
             self.__criarButtonPedidosImagem()
 
-            self.__criarButtonLucrosImagem()
+            self.__criarButtonHistoricoImagem()
 
             self.__criarButtonGerenciarImagem()
 

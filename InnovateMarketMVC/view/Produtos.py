@@ -27,12 +27,12 @@ class Produtos():
         self.telaprodutos.destroy()
         return
 
-    def clear_entry(self):
+    def clearEntry(self):
         self.ent_pesquisar.delete(0, END)
         self.ent_pesquisar.insert(0, "")
 
 
-    def view_tree(self):
+    def mostrarDados(self):
         self.resultado = produtosControler().mostarProdutos()
 
         if self.resultado != None:
@@ -62,7 +62,7 @@ class Produtos():
 
     def deleteElemento(self):
         if not self.tree_pro.focus():
-            messagebox.showwarning(title="ERRO!", message="Selecione uma opção para editar", parent=self.telaprodutos)
+            messagebox.showwarning(title="ERRO!", message="Selecione uma opção para deletar!", parent=self.telaprodutos)
         else:
             self.currItem = self.tree_pro.focus()
             self.values = produtosControler().valuesProdutos(
@@ -72,14 +72,14 @@ class Produtos():
             
 
 
-    def edit_pro(self):
+    def editar_produto(self):
         if not self.tree_pro.focus():
-            messagebox.showwarning(title="ERRO!", message="Selecione uma opção para editar", parent=self.telaprodutos)
+            messagebox.showwarning(title="ERRO!", message="Selecione uma opção para editar!", parent=self.telaprodutos)
         else:
             self.currItem = self.tree_pro.focus()
             self.values = produtosControler().valuesProdutos(self.tree_pro.item(self.currItem)['values'])
             Editar_produtos(self.values)
-            return self.view_tree()
+            return self.mostrarDados()
 
 
     def elementos(self):
@@ -109,7 +109,7 @@ class Produtos():
         self.tree_pro.heading('#2', text="Preço", anchor=CENTER)
         self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
     
-        self.view_tree()
+        self.mostrarDados()
 
         # ENTRYS TELA PRODUTOS
         self.ent_pesquisar = Entry(self.telaprodutos, width=35, font="Arial 18")
@@ -123,7 +123,7 @@ class Produtos():
 
         self.img_mostrar = imagespath / "Mostrar.png"
         self.btn_mostrar = PhotoImage(file =self.img_mostrar)
-        self.btn_show = Button(self.telaprodutos, command=lambda:[self.view_tree(), self.clear_entry()], image=self.btn_mostrar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show = Button(self.telaprodutos, command=lambda:[self.mostrarDados(), self.clearEntry()], image=self.btn_mostrar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_show.place(x=910, y=210)
 
         self.img_adicionar = imagespath / "adicionar.png"
@@ -133,7 +133,7 @@ class Produtos():
 
         self.img_editar = imagespath / "editar.png"
         self.btn_editar = PhotoImage(file =self.img_editar)
-        self.btn_show = Button(self.telaprodutos, command=self.edit_pro, image=self.btn_editar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show = Button(self.telaprodutos, command=self.editar_produto, image=self.btn_editar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_show.place(x=910, y=400)
 
         self.img_deletar = imagespath / "deletar.png"

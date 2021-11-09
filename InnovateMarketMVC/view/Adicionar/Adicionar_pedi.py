@@ -15,8 +15,8 @@ class Adicionar_pedi():
         self.adicionar_pedi.title("Adicionar pedidos")
         self.adicionar_pedi.geometry("1360x768")
         self.adicionar_pedi.resizable(False, False)
-        #self.__iconImagePath = imagespath / "logo.ico"
-        #self.adicionar_pedi.iconbitmap(self.__iconImagePath)
+        self.__iconImagePath = imagespath / "logo.ico"
+        self.adicionar_pedi.iconbitmap(self.__iconImagePath)
 
     def mostrarDados(self):
         self.resultado = pedidosControler().mostarPedido()
@@ -27,6 +27,7 @@ class Adicionar_pedi():
                 self.tree_pedi.insert("", "end", values=i)
         else:
             print("Error!")
+
     def adicionar_pedido(self):
         try:
             self.dicti = {}
@@ -38,6 +39,7 @@ class Adicionar_pedi():
             
             if resultado:
                 self.mostrarDados()
+                messagebox.showinfo(title="AVISO!", message="Pedido adicionado com sucesso!", parent=self.adicionar_pedi)
                 self.voltar_inicial_add_pedi()
             else:
                 messagebox.showwarning(title="AVISO!", message="Coloque valores válidos!", parent=self.adicionar_pedi)
@@ -50,51 +52,40 @@ class Adicionar_pedi():
             else:
                 print(e)
                 messagebox.showwarning(title="AVISO!", message="Algum erro aconteceu! Espere um pouco e tente novamente!", parent=self.adicionar_pedi)
-                
-    def view_tree(self):
-        self.resultado = pedidosControler().mostarPedido()
-
-        if self.resultado != None:
-            self.tree_pedi.delete(*self.tree_pedi.get_children())
-            for i in self.resultado:
-                self.tree_pedi.insert("", "end", values=i)
-        else:
-            print("ERROR!")
 
     def voltar_inicial_add_pedi(self):
         self.adicionar_pedi.destroy()
         return
         
     def elementos(self):
-        self.pathBg = imagespath / "editPedidos_bg.png"
+        self.pathBg = imagespath / "addPedidos_bg.png"
         self.__bg = PhotoImage(file =self.pathBg)
         self.lblimgbg = Label(self.adicionar_pedi, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
 
-        self.btn_telainicial = imagespath / "voltar.png"
-        self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
-        self.btn_telainicial_add_pedi = Button(self.adicionar_pedi, image=self.btn_voltartelainicial, command=self.voltar_inicial_add_pedi, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
-        self.btn_telainicial_add_pedi.place(x=980, y=660)
+        self.ent_nomeProduto = Entry(self.adicionar_pedi, bg="lightgrey", width=25, font="Arial 18")
+        self.ent_nomeProduto.place(x=865, y=200)
+
+        self.ent_cliente = Entry(self.adicionar_pedi, bg="lightgrey", width=25, font="Arial 18")
+        self.ent_cliente.place(x=865, y=315)
 
 
-        self.ent_nomeProduto = Entry(self.adicionar_pedi, width=25, font="Arial 18")
-        self.ent_nomeProduto.place(x=886, y=160)
-
-        self.ent_cliente = Entry(self.adicionar_pedi, width=25, font="Arial 18")
-        self.ent_cliente.place(x=886, y=280)
+        self.ent_valorTotal = Entry(self.adicionar_pedi, bg="lightgrey", width=25, font="Arial 18")
+        self.ent_valorTotal.place(x=865, y=435)
 
 
-        self.ent_valorTotal = Entry(self.adicionar_pedi, width=25, font="Arial 18")
-        self.ent_valorTotal.place(x=886, y=400)
-
-
-        self.ent_numPedi = Entry(self.adicionar_pedi, width=25, font="Arial 18")
-        self.ent_numPedi.place(x=886, y=520)
+        self.ent_numPedi = Entry(self.adicionar_pedi, bg="lightgrey", width=25, font="Arial 18")
+        self.ent_numPedi.place(x=865, y=553)
 
         self.img_adicionar = imagespath / "adicionar.png"
         self.btn_adicionar = PhotoImage(file =self.img_adicionar)
         self.btn_adicionar_pedido = Button(self.adicionar_pedi, command=self.adicionar_pedido, image=self.btn_adicionar, relief="flat", borderwidth=0, bg="lightgrey")
-        self.btn_adicionar_pedido.place(x=980, y=580)
+        self.btn_adicionar_pedido.place(x=980, y=668)
+
+        self.btn_telainicial = imagespath / "fechar_X.png"
+        self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
+        self.btn_telainicial_add_pedi = Button(self.adicionar_pedi, image=self.btn_voltartelainicial, command=self.voltar_inicial_add_pedi, relief="flat", borderwidth=0, width=30, height=30, bg="Gainsboro")
+        self.btn_telainicial_add_pedi.place(x=1330, y=5)
 
         # Estilo da Treeview
         self.style = ttk.Style()
@@ -118,5 +109,4 @@ class Adicionar_pedi():
         self.tree_pedi.heading('#2', text="Nome do produto", anchor=CENTER)
         self.tree_pedi.heading('#3', text="Data", anchor=CENTER)
         self.tree_pedi.heading('#4', text="Valores", anchor=CENTER)
-        
-        self.view_tree()
+        self.mostrarDados()

@@ -12,25 +12,24 @@ class Pedidos:
         self.telapedi = Toplevel()
         self.telapedi.attributes("-fullscreen", True)
         self.geometry()
-
         self.elementos()
 
     def geometry(self):
         self.telapedi.title("Pedidos")
-        self.telapedi.geometry("1360x760")
+        self.telapedi.geometry("1360x768")
         self.telapedi.resizable(False, False)
-        # self.__iconImagemPath = imagespath / "logo.ico"
-        # self.telapedi.iconbitmap(self.__iconImagemPath)
+        self.__iconImagemPath = imagespath / "logo.ico"
+        self.telapedi.iconbitmap(self.__iconImagemPath)
 
     def voltar_inicial_pedi(self):
             self.telapedi.destroy()
             return
         
-    def clear_entry(self):
+    def clearEntry(self):
         self.ent_pesquisar.delete(0, END)
         self.ent_pesquisar.insert(0, "")
         
-    def view_tree(self):
+    def mostrarDados(self):
         resultado = pedidosControler().mostarPedido()
         
         if resultado != None:
@@ -53,14 +52,14 @@ class Pedidos:
         else:
             print("Error: Nenhum valor saiu da Classe")
 
-    def edit_pedi(self):
+    def editar_pedido(self):
         if not self.tree_pedi.focus():
             messagebox.showwarning(title="ERRO!", message="Selecione uma opção para editar", parent=self.telapedi)
         else:
             self.currItem = self.tree_pedi.focus()
             self.values = pedidosControler().valuesPedidos(self.tree_pedi.item(self.currItem)['values'])
             Editar_Pedi(self.values)
-            return self.view_tree()
+            return self.mostrarDados()
         
     def deleteElemento(self):
         if not self.tree_pedi.focus():
@@ -104,15 +103,11 @@ class Pedidos:
         self.tree_pedi.heading('#1', text="Numero do Pedido", anchor=CENTER)
         self.tree_pedi.heading('#2', text="Nome do produto", anchor=CENTER)
         self.tree_pedi.heading('#3', text="Data", anchor=CENTER)
-        self.tree_pedi.heading('#4', text="Valores", anchor=CENTER)
-        
-        
-        
-        
-        self.view_tree()
+        self.tree_pedi.heading('#4', text="Valores", anchor=CENTER)        
+        self.mostrarDados()
      
 
-        self.ent_pesquisar = Entry(self.telapedi, width=25, font="Arial 18")
+        self.ent_pesquisar = Entry(self.telapedi, bg="lightgrey", width=25, font="Arial 18")
         self.ent_pesquisar.place(x=886, y=160)
 
         self.img_pesquisar = imagespath / "pesquisar.png"
@@ -123,12 +118,12 @@ class Pedidos:
 
         self.img_mostrar = imagespath / "Mostrar.png"
         self.btn_mostrar = PhotoImage(file =self.img_mostrar)
-        self.btn_showpedi = Button(self.telapedi, command=lambda:[self.view_tree(), self.clear_entry()], image=self.btn_mostrar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_showpedi = Button(self.telapedi, command=lambda:[self.mostrarDados(), self.clearEntry()], image=self.btn_mostrar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_showpedi.place(x=980,y=210)
 
         self.img_editar = imagespath / "editar.png"
         self.btn_editar = PhotoImage(file =self.img_editar)
-        self.btn_showpedi = Button(self.telapedi, command=self.edit_pedi, image=self.btn_editar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_showpedi = Button(self.telapedi, command=self.editar_pedido, image=self.btn_editar, relief="flat", borderwidth=0, bg="lightgrey")
         self.btn_showpedi.place(x=980, y=400)
 
         self.img_deletar = imagespath / "deletar.png"

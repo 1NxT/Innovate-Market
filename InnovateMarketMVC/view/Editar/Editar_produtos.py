@@ -87,13 +87,13 @@ class Editar_produtos():
         # self.tree_pro.bind("<ButtonRelease-1>")
 
         #Entrys
-        self.ent_cod = Entry(self.edit_produtos, width=25, font="Arial 18")
+        self.ent_cod = Entry(self.edit_produtos, bg="lightgrey", width=25, font="Arial 18")
         self.ent_cod.place(x=710, y=230)
 
-        self.ent_preco = Entry(self.edit_produtos, width=25, font="Arial 18")
+        self.ent_preco = Entry(self.edit_produtos, bg="lightgrey", width=25, font="Arial 18")
         self.ent_preco.place(x=710, y=350)
 
-        self.ent_nome = Entry(self.edit_produtos, width=25, font="Arial 18")
+        self.ent_nome = Entry(self.edit_produtos, bg="lightgrey", width=25, font="Arial 18")
         self.ent_nome.place(x=710, y=470)
 
         self.btn_salvarPath = imagespath / "Salvar.png"

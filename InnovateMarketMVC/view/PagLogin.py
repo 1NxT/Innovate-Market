@@ -26,10 +26,10 @@ class Principal():
     def geometry(self):
         self.tk.title("Tela de login")
         self.tk.geometry("1360x768")
-
+        self.tk.configure(bg="Lightgrey")
         self.tk.resizable(False, False)
-        #self.__iconImagemPath = imagespath / "logo.ico"
-        #self.tk.iconbitmap(self.__iconImagemPath)
+        self.__iconImagemPath = imagespath / "logo.ico"
+        self.tk.iconbitmap(self.__iconImagemPath)
 
     def chamarLogar(self):
         usuario = usuarioControler().usuarioLogar(self.ent_login.get(), self.ent_senha.get())
@@ -62,10 +62,10 @@ class Principal():
         self.lbl_dadosSenha.place(x=720, y=525)
 
         #ENTRYS 1° TELA
-        self.ent_login = Entry(self.tk, font=("arial", 28), width=20)
+        self.ent_login = Entry(self.tk, bg="lightgrey", font=("arial", 28), width=20)
         self.ent_login.place(x=720, y=280)
 
-        self.ent_senha = Entry(self.tk, font=("arial", 28), width=20, show="*")
+        self.ent_senha = Entry(self.tk, bg="lightgrey", font=("arial", 28), width=20, show="*")
         self.ent_senha.place(x=720, y=475)
 
         self.__buttonEntrarImagemPath = imagespath / "Entrar.png"

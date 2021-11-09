@@ -34,7 +34,7 @@ class Editar_fornecedor():
         self.edit_forne.iconbitmap(self.__iconImagemPath)
 
 
-    def view_tree(self):
+    def mostrarDados(self):
         resultado = fornecedorControler().mostarFornecedor()
         print(resultado)
         if resultado != None:
@@ -45,14 +45,14 @@ class Editar_fornecedor():
         else:
             print("Error!")
 
-    def updateFornecedor(self):
+    def atualizarFonecedor(self):
         self.values.nome = self.ent_nome.get()
         self.values.cnpj = self.ent_cnpj.get()
         self.values.telefone = self.ent_telefone.get()
         self.values.email = self.ent_email.get()
         print(self.id)
         fornecedorControler().atualizarFornecedor(self.values, self.id)
-        self.view_tree()
+        self.mostrarDados()
         self.edit_forne.destroy()
         return
 
@@ -84,28 +84,25 @@ class Editar_fornecedor():
         self.tree_forne.heading('#2', text="CNPJ", anchor=CENTER)
         self.tree_forne.heading('#3', text="Telefone", anchor=CENTER)
         self.tree_forne.heading('#4', text="Email", anchor=CENTER)
-        self.view_tree()
+        self.mostrarDados()
 
         # self.tree_pro.bind("<ButtonRelease-1>")
 
         #Entrys
 
-        self.ent_nome = Entry(self.edit_forne, width=25, font="Arial 22")
+        self.ent_nome = Entry(self.edit_forne, bg="lightgrey", width=25, font="Arial 22")
         self.ent_nome.place(x=918, y=220)
 
-        self.ent_cod = Entry(self.edit_forne, width=25, font="Arial 22")
+        self.ent_cod = Entry(self.edit_forne, bg="lightgrey", width=25, font="Arial 22")
         self.ent_cod.place(x=918, y=370)
 
-        self.ent_telefone = Entry(self.edit_forne, width=25, font="Arial 22")
+        self.ent_telefone = Entry(self.edit_forne, bg="lightgrey", width=25, font="Arial 22")
         self.ent_telefone.place(x=918, y=510)
 
-        self.ent_email = Entry(self.edit_forne, width=25, font="Arial 22")
+        self.ent_email = Entry(self.edit_forne, bg="lightgrey", width=25, font="Arial 22")
         self.ent_email.place(x=918, y=645)
 
         self.btn_salvarPath = imagespath / "Salvar.png"
         self.btn_salvar = PhotoImage(file=self.btn_salvarPath)
-        self.btn_salvar_fornecedor = Button(self.edit_forne, command=self.updateFornecedor, image=self.btn_salvar, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
+        self.btn_salvar_fornecedor = Button(self.edit_forne, command=self.atualizarFonecedor, image=self.btn_salvar, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
         self.btn_salvar_fornecedor.place(x=1075, y=800)
-
-
-        
