@@ -1,10 +1,3 @@
-#Classes
-from Classes.MySql import *
+from view.PagLogin import *
 
-
-#Páginas
-from Pages.Principal import *
-    
-
-
-tela = Principal()
+Principal()
