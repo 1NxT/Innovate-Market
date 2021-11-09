@@ -56,7 +56,6 @@ class Adicionar_pro():
 
         self.ent_preco = Entry(self.adicionar_pro, width=25, font="Arial 18")
         self.ent_preco.place(x=710, y=350)
-        self.ent_preco.insert(0, "R$ ")
 
         self.ent_nome = Entry(self.adicionar_pro, width=25, font="Arial 18")
         self.ent_nome.place(x=710, y=470)

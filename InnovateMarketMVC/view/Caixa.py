@@ -11,6 +11,7 @@ class Caixa():
     def __init__(self):
         self.compraID = self.gerarVendaId()
         self.telacaixa = Toplevel()
+        self.telacaixa.attributes("-fullscreen", True)
         self.geometry()
         self.imagecaixapath = imagespath /  "Logo.png"
         self.imgcaixa = PhotoImage(file=self.imagecaixapath)
