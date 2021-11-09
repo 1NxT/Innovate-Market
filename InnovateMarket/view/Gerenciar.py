@@ -25,7 +25,20 @@ class Gerenciar():
     #         cadastro_usuario.destroy()
     #         return
     
+    def deleteElemento(self):
+        if not self.tree_gere.focus():
+            messagebox.showwarning(
+                title="ERRO!", message="Selecione uma opção para deletar!", parent=self.telaprodutos)
+        else:
+            self.currItem = self.tree_gere.focus()
+            self.values = gerenciarControler().usuarioValue(
+                self.tree_gere.item(self.currItem)['values'])
+            print(self.values)
+            self.tree_gere.delete(self.currItem)
+            gerenciarControler().deletarUser(self.values.CPF)
+            
     
+        
     def mostrarDados(self):
         resultado = gerenciarControler().mostarGerenciar()
         print(resultado)
@@ -90,7 +103,12 @@ class Gerenciar():
         self.img_adicionar = imagespath / "adicionar.png"
         self.btn_adicionar = PhotoImage(file =self.img_adicionar)
         self.btn_show = Button(self.telageren, command=self.adicionarNovoUsuario, image=self.btn_adicionar, relief="flat", borderwidth=0, bg="Gainsboro")
-        self.btn_show.place(x=980, y=600)
+        self.btn_show.place(x=1050, y=600)
+        
+        self.img_deletar = imagespath / "deletar.png"
+        self.btn_deletar = PhotoImage(file =self.img_deletar)
+        self.btn_show = Button(self.telageren, command=self.deleteElemento, image=self.btn_deletar, relief="flat", borderwidth=0, bg="lightgrey")
+        self.btn_show.place(x=850, y=600)
         
         # Estilo da Treeview
         self.style = ttk.Style()

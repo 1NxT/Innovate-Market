@@ -28,3 +28,11 @@ class setValuesPedidos():
         self.produtos = produtos
         self.data = data
         self.valores = valores
+        
+
+class setValuesUsuario():
+    def __init__(self, CPF, password, cargo, nome):
+        self.CPF = CPF
+        self.password = password
+        self.cargo = cargo
+        self.nome = nome
