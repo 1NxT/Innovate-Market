@@ -60,7 +60,13 @@ class Gerenciar:
         else:
             print("Error: Nenhum valor saiu da Classe")
     def adicionarNovoUsuario(self):
-        pass
+        cargoselecionado = self.itemVariable.get()
+        if cargoselecionado == "Caixa":
+            cargoselecionado = "1"
+        else: 
+            cargoselecionado = "2"
+        
+        print(cargoselecionado)
     def elementos(self):
 
 
