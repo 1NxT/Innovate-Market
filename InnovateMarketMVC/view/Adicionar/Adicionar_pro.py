@@ -3,10 +3,9 @@ import tkinter.ttk as ttk
 from tkinter import messagebox
 from model.Config import *
 from controller.Controller import produtosControler
-import time
 
 
-class Adicionar_pro:
+class Adicionar_pro():
     def __init__(self):
         self.adicionar_pro = Toplevel()
         self.adicionar_pro.attributes("-fullscreen", True)
@@ -53,14 +52,14 @@ class Adicionar_pro:
         self.lblimgbg.place(x=0, y=0)
 
         self.ent_cod = Entry(self.adicionar_pro, width=25, font="Arial 18")
-        self.ent_cod.place(x=886, y=160)
+        self.ent_cod.place(x=710, y=230)
 
         self.ent_preco = Entry(self.adicionar_pro, width=25, font="Arial 18")
-        self.ent_preco.place(x=886, y=280)
-
+        self.ent_preco.place(x=710, y=350)
+        self.ent_preco.insert(0, "R$ ")
 
         self.ent_nome = Entry(self.adicionar_pro, width=25, font="Arial 18")
-        self.ent_nome.place(x=886, y=400)
+        self.ent_nome.place(x=710, y=470)
 
         self.btn_telainicial = imagespath / "Salvar.png"
         self.btn_salvar = PhotoImage(file =self.btn_telainicial)

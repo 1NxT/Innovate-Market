@@ -6,10 +6,9 @@ from controller.Controller import produtosControler
 from model.Config import *
 
 
-class CaixaProdutos:
+class CaixaProdutos():
     def __init__(self):
         self.dicti = {}
-        Frame.__init__(self, master=None)
         self.telapesquisarprodutos = Toplevel()
         self.telapesquisarprodutos.attributes("-fullscreen", True)
         self.geometry()

@@ -3,7 +3,7 @@ from tkinter import *
 #import matplotlib.pyplot as plt
 from model.Config import *
 
-class Lucros:
+class Lucros():
     def __init__(self):
         self.telalucro = Toplevel()
         self.geometry()

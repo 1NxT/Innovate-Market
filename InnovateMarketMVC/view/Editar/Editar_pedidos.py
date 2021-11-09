@@ -5,10 +5,9 @@ from controller.Controller import *
 
 from model.Config import *
 
-class Editar_Pedi(Frame):
+class Editar_Pedi():
     def __init__(self, values):
         self.values = values
-        Frame.__init__(self, master=None)
         self.edit_pedi = Toplevel()
         self.edit_pedi.attributes("-fullscreen", True)
         self.geometry()

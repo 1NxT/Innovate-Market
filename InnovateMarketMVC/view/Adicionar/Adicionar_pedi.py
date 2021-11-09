@@ -4,7 +4,7 @@ import tkinter.ttk as ttk
 from model.Config import *
 from controller.Controller import pedidosControler
 
-class Adicionar_pedi:
+class Adicionar_pedi():
     def __init__(self):
         self.adicionar_pedi = Toplevel()
         self.adicionar_pedi.attributes("-fullscreen", True)

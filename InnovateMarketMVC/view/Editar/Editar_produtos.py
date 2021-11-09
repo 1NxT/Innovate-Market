@@ -6,11 +6,10 @@ from controller.Controller import produtosControler
 
 from model.Config import *
 
-class Editar_produtos(Frame):
+class Editar_produtos():
     def __init__(self, values):
         self.values = values
         self.id = self.values.id
-        Frame.__init__(self, master=None)
         self.edit_produtos = Toplevel()
         self.edit_produtos.attributes("-fullscreen", True)
         self.geometry()
@@ -40,10 +39,11 @@ class Editar_produtos(Frame):
         self.values.id = self.ent_cod.get()
         print(self.values.id)
         produtosControler().atualizarProdutos(self.values, self.id)
+        self.mostrarDados()
         self.edit_produtos.destroy()
         return 
 
-    def view_tree(self):
+    def mostrarDados(self):
         self.resultado = produtosControler().mostarProdutos()
 
         if self.resultado != None:
@@ -59,11 +59,6 @@ class Editar_produtos(Frame):
         self.__bg = PhotoImage(file =self.pathBg)
         self.lblimgbg = Label(self.edit_produtos, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
-
-        self.btn_salvarPath = imagespath / "Salvar.png"
-        self.btn_salvar = PhotoImage(file=self.btn_salvarPath)
-        self.btn_salvar_pro = Button(self.edit_produtos, command=self.updateProduto, image=self.btn_salvar, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
-        self.btn_salvar_pro.place(x=980, y=660)
 
         # Estilo da Treeview
         self.style = ttk.Style()
@@ -87,17 +82,22 @@ class Editar_produtos(Frame):
         self.tree_pro.heading('#2', text="Preço", anchor=CENTER)
         self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
 
-        self.view_tree()
+        self.mostrarDados()
 
         # self.tree_pro.bind("<ButtonRelease-1>")
 
         #Entrys
         self.ent_cod = Entry(self.edit_produtos, width=25, font="Arial 18")
-        self.ent_cod.place(x=886, y=160)
+        self.ent_cod.place(x=710, y=230)
 
         self.ent_preco = Entry(self.edit_produtos, width=25, font="Arial 18")
-        self.ent_preco.place(x=886, y=280)
+        self.ent_preco.place(x=710, y=350)
 
         self.ent_nome = Entry(self.edit_produtos, width=25, font="Arial 18")
-        self.ent_nome.place(x=886, y=400)
+        self.ent_nome.place(x=710, y=470)
+
+        self.btn_salvarPath = imagespath / "Salvar.png"
+        self.btn_salvar = PhotoImage(file=self.btn_salvarPath)
+        self.btn_salvar_pro = Button(self.edit_produtos, command=self.updateProduto, image=self.btn_salvar, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
+        self.btn_salvar_pro.place(x=980, y=660)
 
