@@ -22,25 +22,6 @@ class Historico():
         self.telahistorico.destroy()
         return
     
-    def chamaPesquisar(self):
-        #CodigoCompra, NomeProduto, Qtd, CodigoProduto, Data
-        self.dicti = {}
-        self.dicti["CodigoCompra"] = self.ent_pesquisar.get()
-        self.dicti["NomeProduto"] = self.ent_pesquisar.get()
-        self.dicti["Qtd"] = self.ent_pesquisar.get()
-        self.dicti["CodigoProduto"] = self.ent_pesquisar.get()
-        self.dicti["Data"] = self.ent_pesquisar.get()
-        resultado = vendasControler().pesquisarVendas(self.dicti)
-
-
-        if resultado != None:
-            self.tree_vendas.delete(*self.tree_vendas.get_children())
-
-            for i in resultado:
-                self.tree_vendas.insert("","end",values=i)
-        else:
-            print("Error: Nenhum valor saiu da Classe")
-
     def mostrarDados(self):
         self.resultado = vendasControler().mostrarVendas()
 
@@ -58,15 +39,8 @@ class Historico():
         self.lblimgbg = Label(self.telahistorico, image=self.__bg)
         self.lblimgbg.place(x=0, y=0)
 
-        # ENTRYS TELA HISTORICO
-        self.ent_pesquisar = Entry(self.telahistorico, width=35, font="Arial 18")
-        self.ent_pesquisar.place(x=700, y=160)
 
-        # BUTTONS TELA HISTORICO
-        self.img_pesquisar = imagespath / "pesquisar.png"
-        self.btn_pesquisar = PhotoImage(file =self.img_pesquisar)
-        self.btn_pesquisar_pro = Button(self.telahistorico, image=self.btn_pesquisar, command=self.chamaPesquisar, relief="flat", borderwidth=0, width=105, height=50)
-        self.btn_pesquisar_pro.place(x=1165, y=150)
+    
 
         self.btn_voltarPath = imagespath / "voltar.png"
         self.btn_voltar = PhotoImage(file=self.btn_voltarPath)

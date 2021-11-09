@@ -77,7 +77,7 @@ class CaixaProdutos():
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
         self.tree_pro = ttk.Treeview(self.tree_pro_frame, column=(
-            "Código de barras", "Preço", "Nome", "Fornecedor"), show='headings', height=37, yscrollcommand=self.scroll.set)
+            "Código de barras", "Preço", "Nome"), show='headings', height=37, yscrollcommand=self.scroll.set)
 
         self.tree_pro.pack()
 
@@ -86,7 +86,6 @@ class CaixaProdutos():
         self.tree_pro.heading('#1', text="Código de barras", anchor=CENTER)
         self.tree_pro.heading('#2', text="Preço", anchor=CENTER)
         self.tree_pro.heading('#3', text="Nome", anchor=CENTER)
-        self.tree_pro.heading('#4', text="Fornecedor", anchor=CENTER)
         self.mostrarDados()
 
         # ENTRYS TELA PRODUTOS
