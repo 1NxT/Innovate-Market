@@ -4,9 +4,8 @@ import tkinter.ttk as ttk
 from model.Config import *
 from controller.Controller import fornecedorControler
 
-class Adicionar_forne(Frame):
+class Adicionar_forne():
     def __init__(self):
-        Frame.__init__(self, mater=None)
         self.adicionar_forne = Toplevel()
         self.adicionar_forne.attributes("-fullscreen", True)
         self.geometry()
@@ -59,14 +58,13 @@ class Adicionar_forne(Frame):
 
 
         self.ent_nome = Entry(self.adicionar_forne, width=25, font="Arial 18")
-        self.ent_nome.place(x=886, y=160)
+        self.ent_nome.place(x=865, y=200)
 
         self.ent_cnpj = Entry(self.adicionar_forne, width=25, font="Arial 18")
-        self.ent_cnpj.place(x=886, y=280)
-
+        self.ent_cnpj.place(x=865, y=320)
 
         self.ent_telefone = Entry(self.adicionar_forne, width=25, font="Arial 18")
-        self.ent_telefone.place(x=886, y=400)
+        self.ent_telefone.place(x=865, y=445)
 
         self.ent_email = Entry(self.adicionar_forne, width=25, font="Arial 18")
-        self.ent_email.place(x=886, y=520)
+        self.ent_email.place(x=865, y=560)

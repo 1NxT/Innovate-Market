@@ -10,7 +10,7 @@ from model.Config import *
 from model.Usuario import Cargo
 
 
-class SegundaTela(Frame):
+class SegundaTela():
     def __init__(self, usuario):
         self.tela2 = Toplevel()
         self.tela2.attributes("-fullscreen", True)
@@ -25,7 +25,7 @@ class SegundaTela(Frame):
         self.tela2.title("Tela Inicial")
         self.tela2.geometry("1360x768")
         self.tela2.resizable(False, False)
-        self.__iconImagemPath = imagespath / "logo.ico"
+        #self.__iconImagemPath = imagespath / "logo.ico"
         #self.tela2.iconbitmap(self.__iconImagemPath)
 
     def elementos(self):

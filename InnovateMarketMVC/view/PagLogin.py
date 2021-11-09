@@ -1,13 +1,12 @@
 from tkinter import *
 from tkinter import messagebox
-import time
 from tkinter import font
 from controller.Controller import usuarioControler
 from view.SegundaTela import *
 from model.Config import *
 
 
-class Principal(Frame):
+class Principal():
     def __init__(self):
         self.tk = Tk()
         self.tk.attributes("-fullscreen", True)
@@ -29,7 +28,7 @@ class Principal(Frame):
         self.tk.geometry("1360x768")
 
         self.tk.resizable(False, False)
-        self.__iconImagemPath = imagespath / "logo.ico"
+        #self.__iconImagemPath = imagespath / "logo.ico"
         #self.tk.iconbitmap(self.__iconImagemPath)
 
     def chamarLogar(self):
@@ -44,7 +43,6 @@ class Principal(Frame):
         elif usuario == "SENHA ERRADA":
             self.lbl_dadosSenha["text"] = "Dados de senha incorretos!"
         else:
-            
             SegundaTela(usuario)
 
     def elementos(self):

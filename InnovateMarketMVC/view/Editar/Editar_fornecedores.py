@@ -6,11 +6,10 @@ from controller.Controller import *
 from model.Config import *
 
 
-class Editar_fornecedor(Frame):
+class Editar_fornecedor():
     def __init__(self, values):
         self.values = values
         self.id = self.values.cnpj
-        Frame.__init__(self, master=None)
         self.edit_forne = Toplevel()
         self.edit_forne.attributes("-fullscreen", True)
         self.geometry()

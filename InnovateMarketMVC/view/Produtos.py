@@ -7,7 +7,7 @@ from view.Editar.Editar_produtos import *
 from view.Adicionar.Adicionar_pro import *
 from model.Config import *
 
-class Produtos(Frame):
+class Produtos():
     def __init__(self):
         self.dicti = {}
         self.telaprodutos = Toplevel()

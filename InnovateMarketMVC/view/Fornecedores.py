@@ -6,7 +6,7 @@ from model.Config import *
 from view.Editar.Editar_fornecedores import *
 from view.Adicionar.Adicionar_forne import *
 
-class Fornecedor:
+class Fornecedor():
     def __init__(self):
         self.dicti = {}
         self.telaforne = Toplevel()
@@ -15,11 +15,11 @@ class Fornecedor:
         self.elementos()
 
     def geometry(self):
-        self.telaforne.title("Fornecedor")
+        self.telaforne.title("Fornecedores")
         self.telaforne.geometry("1360x768")
         self.telaforne.configure(bg="lightgrey")
         self.telaforne.resizable(False, False)
-        self.__iconImagemPath = imagespath / "logo.ico"
+        #self.__iconImagemPath = imagespath / "logo.ico"
         #self.telaforne.iconbitmap(self.__iconImagemPath)
         
     def voltar_inicial_forne(self):
@@ -56,12 +56,15 @@ class Fornecedor:
             print("Error: Nenhum valor saiu da Classe")
 
     def deleteElemento(self):
-        self.currItem = self.tree_forne.focus()
-        self.values = fornecedorControler().valuesFornecedor(
-            self.tree_forne.item(self.currItem)['values'])
-        self.tree_forne.delete(self.currItem)
-        fornecedorControler().deletarFornecedor(self.values.cnpj)
-        self.tree_forne.bind('<ButtonRelease-1>', self.currItem)
+        if not self.tree_forne.focus():
+            messagebox.showwarning(title="ERRO!", message="Selecione uma opção para apagar", parent=self.telaforne)
+        else:
+            self.currItem = self.tree_forne.focus()
+            self.values = fornecedorControler().valuesFornecedor(
+                self.tree_forne.item(self.currItem)['values'])
+            self.tree_forne.delete(self.currItem)
+            fornecedorControler().deletarFornecedor(self.values.cnpj)
+            self.tree_forne.bind('<ButtonRelease-1>', self.currItem)
 
     def edit_fornecedor(self):
         if not self.tree_forne.focus():
@@ -90,7 +93,7 @@ class Fornecedor:
         self.scroll = ttk.Scrollbar(self.tree_forne_frame)
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        self.tree_forne = ttk.Treeview(self.tree_forne_frame, column=("1","2","3","4"), show='headings', height=43, yscrollcommand=self.scroll.set)
+        self.tree_forne = ttk.Treeview(self.tree_forne_frame, column=("1","2","3","4"), show='headings', height=36, yscrollcommand=self.scroll.set)
         self.tree_forne.pack()
 
         self.scroll.config(command=self.tree_forne.yview)
@@ -101,35 +104,35 @@ class Fornecedor:
         self.tree_forne.heading('#4', text="Email", anchor=CENTER)
         self.mostrarDados()
 
-        self.ent_pesquisar = Entry(self.telaforne, width=30, font="Arial 18")
-        self.ent_pesquisar.place(x=915, y=173)
+        self.ent_pesquisar = Entry(self.telaforne, width=29, font="Arial 18")
+        self.ent_pesquisar.place(x=865, y=150)
 
         self.img_pesquisar = imagespath / "pesquisar.png"
         self.btn_pesquisar = PhotoImage(file =self.img_pesquisar)
         self.btn_pesquisar_pedi = Button(self.telaforne, image=self.btn_pesquisar, command=self.chamaPesquisar, relief="flat", borderwidth=0, width=110, height=50)
-        self.btn_pesquisar_pedi.place(x=1310, y=165)
+        self.btn_pesquisar_pedi.place(x=1257, y=142)
 
         self.img_mostrar = imagespath / "Mostrar.png"
         self.btn_mostrar = PhotoImage(file =self.img_mostrar)
         self.btn_show = Button(self.telaforne, command=lambda:[self.mostrarDados(), self.clear_entry()], image=self.btn_mostrar, relief="flat", borderwidth=0, bg="Gainsboro")
-        self.btn_show.place(x=1075, y=215)
+        self.btn_show.place(x=980, y=215)
 
         self.img_adicionar = imagespath / "adicionar.png"
         self.btn_adicionar = PhotoImage(file =self.img_adicionar)
         self.btn_show = Button(self.telaforne, command=Adicionar_forne, image=self.btn_adicionar, relief="flat", borderwidth=0, bg="Gainsboro")
-        self.btn_show.place(x=1075, y=340)
+        self.btn_show.place(x=980, y=340)
 
         self.img_editar = imagespath / "editar.png"
         self.btn_editar = PhotoImage(file =self.img_editar)
         self.btn_show = Button(self.telaforne, command=self.edit_fornecedor, image=self.btn_editar, relief="flat", borderwidth=0, bg="Gainsboro")
-        self.btn_show.place(x=1075, y=410)
+        self.btn_show.place(x=980, y=410)
 
         self.img_deletar = imagespath / "deletar.png"
         self.btn_deletar = PhotoImage(file =self.img_deletar)
         self.btn_show = Button(self.telaforne, command=self.deleteElemento, image=self.btn_deletar, relief="flat", borderwidth=0, bg="Gainsboro")
-        self.btn_show.place(x=1075, y=477)
+        self.btn_show.place(x=980, y=477)
 
         self.btn_telainicial = imagespath / "voltar.png"
         self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
-        self.btn_telainicial_for = Button(self.telaforne, command=self.voltar_inicial_forne, image=self.btn_voltartelainicial, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
-        self.btn_telainicial_for.place(x=1075, y=800)
+        self.btn_telainicial_forne = Button(self.telaforne, command=self.voltar_inicial_forne, image=self.btn_voltartelainicial, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
+        self.btn_telainicial_forne.place(x=980, y=668)
