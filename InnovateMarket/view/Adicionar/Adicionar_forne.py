@@ -106,4 +106,4 @@ class Adicionar_forne():
         self.btn_telainicial = imagespath / "fechar_X.png"
         self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
         self.btn_telainicial_add_forne = Button(self.adicionar_forne, image=self.btn_voltartelainicial, command=self.voltar_inicial_add_forne, relief="flat", borderwidth=0, width=30, height=30, bg="Gainsboro")
-        self.btn_telainicial_add_forne.place(x=1330, y=5)
+        self.btn_telainicial_add_forne.place(x=1325, y=5)

@@ -86,7 +86,7 @@ class Adicionar_pedi():
         self.btn_telainicial = imagespath / "fechar_X.png"
         self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
         self.btn_telainicial_add_pedi = Button(self.adicionar_pedi, image=self.btn_voltartelainicial, command=self.voltar_inicial_add_pedi, relief="flat", borderwidth=0, width=30, height=30, bg="Gainsboro")
-        self.btn_telainicial_add_pedi.place(x=1330, y=5)
+        self.btn_telainicial_add_pedi.place(x=1325, y=5)
 
         # Estilo da Treeview
         self.style = ttk.Style()

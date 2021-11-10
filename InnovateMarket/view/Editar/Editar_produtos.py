@@ -99,5 +99,5 @@ class Editar_produtos():
         self.btn_salvarPath = imagespath / "Salvar.png"
         self.btn_salvar = PhotoImage(file=self.btn_salvarPath)
         self.btn_salvar_pro = Button(self.edit_produtos, command=self.updateProduto, image=self.btn_salvar, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
-        self.btn_salvar_pro.place(x=980, y=660)
+        self.btn_salvar_pro.place(x=920, y=660)
 

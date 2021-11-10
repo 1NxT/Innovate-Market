@@ -1,5 +1,6 @@
 from tkinter import * 
 import tkinter.ttk as ttk
+from tkinter import messagebox
 from controller.Controller import gerenciarControler 
 from model.Config import *
 
@@ -96,7 +97,12 @@ class Gerenciar():
         self.btn_telainicial = imagespath / "voltar.png"
         self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
         self.btn_telainicial_pedi = Button(self.telageren, image=self.btn_voltartelainicial, command=self.tela_inicial_gerenciar, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
-        self.btn_telainicial_pedi.place(x=980, y=660)
+        self.btn_telainicial_pedi.place(x=940, y=668)
+
+        self.img_pesquisar = imagespath / "pesquisar.png"
+        self.btn_pesquisar = PhotoImage(file =self.img_pesquisar)
+        self.btn_pesquisar_gere = Button(self.telageren, image=self.btn_pesquisar, command=self.chamaPesquisar, relief="flat", borderwidth=0, width=105, height=50)
+        self.btn_pesquisar_gere.place(x=1235, y=60)
 
         self.img_adicionar = imagespath / "adicionar.png"
         self.btn_adicionar = PhotoImage(file =self.img_adicionar)

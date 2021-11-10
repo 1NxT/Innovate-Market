@@ -33,19 +33,12 @@ class Historico():
         else:
             print("Error!")
     
-    def elementos(self):
-        self.pathBg = imagespath / "historico_bg.png"
-        self.__bg = PhotoImage(file =self.pathBg)
-        self.lblimgbg = Label(self.telahistorico, image=self.__bg)
-        self.lblimgbg.place(x=0, y=0)
+    def elementos(self):    
 
-
-    
-
-        self.btn_voltarPath = imagespath / "voltar.png"
+        self.btn_voltarPath = imagespath / "fechar_X.png"
         self.btn_voltar = PhotoImage(file=self.btn_voltarPath)
-        self.btn_voltar_vendas = Button(self.telahistorico, command=self.voltar_inicial_historico, image=self.btn_voltar, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
-        self.btn_voltar_vendas.place(x=1100, y=400)
+        self.btn_voltar_vendas = Button(self.telahistorico, command=self.voltar_inicial_historico, image=self.btn_voltar, relief="flat", borderwidth=0, width=30, height=30, bg="Gainsboro")
+        self.btn_voltar_vendas.place(x=1325, y=5)
 
         # Estilo da Treeview
         self.style = ttk.Style()
@@ -53,7 +46,7 @@ class Historico():
 
         # Frame da Treeview Produtos
         self.tree_vendas_frame = Frame(self.telahistorico, padx=2, pady=2, bg="lightgrey")
-        self.tree_vendas_frame.place(x=8, y=5)
+        self.tree_vendas_frame.place(x=20, y=5)
 
         # ScrollBar
         self.scroll = ttk.Scrollbar(self.tree_vendas_frame)

@@ -74,13 +74,13 @@ class Adicionar_pro():
 
         self.btn_telainicial = imagespath / "adicionar.png"
         self.btn_salvar = PhotoImage(file =self.btn_telainicial)
-        self.btn_salvar_add_pro = Button(self.adicionar_pro, image=self.btn_salvar, command=self.adicionar_produto, relief="flat", borderwidth=0, width=225, height=50, bg="Gainsboro")
+        self.btn_salvar_add_pro = Button(self.adicionar_pro, image=self.btn_salvar, command=self.adicionar_produto, relief="flat", borderwidth=0, width=225, height=55, bg="Gainsboro")
         self.btn_salvar_add_pro.place(x=900, y=660)
 
         self.btn_telainicial = imagespath / "fechar_X.png"
         self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)
         self.btn_telainicial_add_pro = Button(self.adicionar_pro, image=self.btn_voltartelainicial, command=self.voltar_inicial_add_pro, relief="flat", borderwidth=0, width=30, height=30, bg="Gainsboro")
-        self.btn_telainicial_add_pro.place(x=1330, y=5)
+        self.btn_telainicial_add_pro.place(x=1325, y=5)
 
         self.style = ttk.Style()
         self.style.theme_use("default")
