@@ -101,7 +101,7 @@ class Adicionar_forne():
         self.btn_salvarPath = imagespath / "adicionar.png"
         self.btn_salvar = PhotoImage(file =self.btn_salvarPath)
         self.btn_salvar_add_forne = Button(self.adicionar_forne, image=self.btn_salvar, command=self.adicionar_fornecedor, relief="flat", borderwidth=0, width=225, height=50, bg="Gainsboro")
-        self.btn_salvar_add_forne.place(x=980, y=660)
+        self.btn_salvar_add_forne.place(x=980, y=668)
 
         self.btn_telainicial = imagespath / "fechar_X.png"
         self.btn_voltartelainicial = PhotoImage(file =self.btn_telainicial)

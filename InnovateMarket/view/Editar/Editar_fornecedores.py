@@ -2,7 +2,6 @@ from tkinter import *
 import tkinter.ttk as ttk
 from typing import ValuesView
 from controller.Controller import *
-
 from model.Config import *
 
 
@@ -16,11 +15,11 @@ class Editar_fornecedor():
         self.elementos()
 
         # Clear Entrys
-        self.ent_cod.delete(0, END)
+        self.ent_cnpj.delete(0, END)
         self.ent_nome.delete(0, END)
 
         # Insert values on Entrys
-        self.ent_cod.insert(0, self.values.cnpj)
+        self.ent_cnpj.insert(0, self.values.cnpj)
         self.ent_nome.insert(0, self.values.nome)
         self.ent_telefone.insert(0, self.values.telefone)
         self.ent_email.insert(0, self.values.email)
@@ -74,14 +73,14 @@ class Editar_fornecedor():
         self.scroll = ttk.Scrollbar(self.tree_forne_frame)
         self.scroll.pack(side=RIGHT, fill=Y, padx=0)
 
-        self.tree_forne = ttk.Treeview(self.tree_forne_frame, column=("Código de barras","Preço", "Nome","Fornecedor"), show='headings', height=43, yscrollcommand=self.scroll.set)
+        self.tree_forne = ttk.Treeview(self.tree_forne_frame, column=("CNPJ","Nome", "Telefone", "Email"), show='headings', height=43, yscrollcommand=self.scroll.set)
 
         self.tree_forne.pack()
 
         self.scroll.config(command=self.tree_forne.yview)
 
-        self.tree_forne.heading('#1', text="Nome", anchor=CENTER)
-        self.tree_forne.heading('#2', text="CNPJ", anchor=CENTER)
+        self.tree_forne.heading('#1', text="CNPJ", anchor=CENTER)
+        self.tree_forne.heading('#2', text="Nome", anchor=CENTER)
         self.tree_forne.heading('#3', text="Telefone", anchor=CENTER)
         self.tree_forne.heading('#4', text="Email", anchor=CENTER)
         self.mostrarDados()
@@ -91,18 +90,18 @@ class Editar_fornecedor():
         #Entrys
 
         self.ent_nome = Entry(self.edit_forne, bg="lightgrey", width=25, font="Arial 22")
-        self.ent_nome.place(x=918, y=220)
+        self.ent_nome.place(x=865, y=200)
 
-        self.ent_cod = Entry(self.edit_forne, bg="lightgrey", width=25, font="Arial 22")
-        self.ent_cod.place(x=918, y=370)
+        self.ent_cnpj = Entry(self.edit_forne, bg="lightgrey", width=25, font="Arial 22")
+        self.ent_cnpj.place(x=865, y=320)
 
         self.ent_telefone = Entry(self.edit_forne, bg="lightgrey", width=25, font="Arial 22")
-        self.ent_telefone.place(x=918, y=510)
+        self.ent_telefone.place(x=865, y=445)
 
         self.ent_email = Entry(self.edit_forne, bg="lightgrey", width=25, font="Arial 22")
-        self.ent_email.place(x=918, y=645)
+        self.ent_email.place(x=865, y=560)
 
         self.btn_salvarPath = imagespath / "Salvar.png"
         self.btn_salvar = PhotoImage(file=self.btn_salvarPath)
         self.btn_salvar_fornecedor = Button(self.edit_forne, command=self.atualizarFonecedor, image=self.btn_salvar, relief="flat", borderwidth=0, width=224, height=50, bg="Gainsboro")
-        self.btn_salvar_fornecedor.place(x=1075, y=800)
+        self.btn_salvar_fornecedor.place(x=980, y=668)
