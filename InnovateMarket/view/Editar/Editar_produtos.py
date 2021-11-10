@@ -36,7 +36,7 @@ class Editar_produtos():
     def updateProduto(self):
         self.values.id = self.ent_cod.get()
         self.values.preco = self.ent_preco.get()
-        self.values.id = self.ent_cod.get()
+        self.values.nome = self.ent_nome.get()
         print(self.values.id)
         produtosControler().atualizarProdutos(self.values, self.id)
         self.mostrarDados()

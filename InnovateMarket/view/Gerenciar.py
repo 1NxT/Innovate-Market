@@ -80,7 +80,7 @@ class Gerenciar():
         self.dicti["CPF"] = self.ent_cpf.get()
         self.dicti["password"] = self.ent_senha.get()
         self.dicti["Cargo"] = self.cargoselecionado
-        self.dicti["Nome"] = self.ent_cpf.get()
+        self.dicti["Nome"] = self.ent_nome.get()
         
         gerenciarControler().inserirUsuario(self.dicti)
         
