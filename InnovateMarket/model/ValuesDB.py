@@ -16,3 +16,6 @@ class ValuesDB():
         elif tabela == "pedidos":
             self.values = values
             return setValuesPedidos(self.values[0], self.values[1], self.values[2], self.values[3])
+        elif tabela == "user":
+            self.values = values
+            return setValuesUsuario(self.values[0], self.values[1], self.values[2], self.values[3])

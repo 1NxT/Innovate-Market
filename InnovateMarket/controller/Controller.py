@@ -189,6 +189,13 @@ class gerenciarControler():
     def inserirUsuario(self, valoresUsuario):
         Inserir().salvarUsuario(valoresUsuario)
 
+    def usuarioValue(self, valores):
+        self.__values = ValuesDB().carregarValues("user", valores)
+
+        return self.__values
+    
+    def deletarUser(self, valorID):
+        Deletar().deletar("user", "CPF", valorID)
 class vendasControler():
     def mostrarVendas(self):
         resultado = Mostrar().mostrar("vendas", "CodigoCompra")
