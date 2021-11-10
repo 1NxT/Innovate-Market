@@ -98,8 +98,8 @@ class Fornecedor():
 
         self.scroll.config(command=self.tree_forne.yview)
 
-        self.tree_forne.heading('#1', text="Nome", anchor=CENTER)
-        self.tree_forne.heading('#2', text="CNPJ", anchor=CENTER)
+        self.tree_forne.heading('#1', text="CNPJ", anchor=CENTER)
+        self.tree_forne.heading('#2', text="Nome", anchor=CENTER)
         self.tree_forne.heading('#3', text="Telefone", anchor=CENTER)
         self.tree_forne.heading('#4', text="Email", anchor=CENTER)
         self.mostrarDados()

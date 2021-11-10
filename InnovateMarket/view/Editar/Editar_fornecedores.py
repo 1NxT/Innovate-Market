@@ -85,8 +85,6 @@ class Editar_fornecedor():
         self.tree_forne.heading('#4', text="Email", anchor=CENTER)
         self.mostrarDados()
 
-        # self.tree_pro.bind("<ButtonRelease-1>")
-
         #Entrys
 
         self.ent_nome = Entry(self.edit_forne, bg="lightgrey", width=25, font="Arial 22")
