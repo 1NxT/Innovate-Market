@@ -160,9 +160,7 @@ class pedidosControler():
         return self.__values
     
     def inserirPedidos(self, values):
-        today = datetime.today().strftime('%d%m%Y')
-        data = str(today)
-        values["data"] = data
+    
         cadastroValido = True
         for value in values.values():
             if value == "Vazio!":

@@ -34,6 +34,7 @@ class Adicionar_pedi():
             self.dicti["ID"] = self.ent_numPedi.get() if self.ent_numPedi.get() != '' else "Vazio!"
             self.dicti["produtos"] = self.ent_nomeProduto.get() if self.ent_nomeProduto.get() != '' else "Vazio!" 
             self.dicti["valores"] = self.ent_valorTotal.get() if self.ent_valorTotal.get() != '' else "Vazio!"
+            self.dicti["data"] = self.ent_data.get() if self.ent_data.get() != '' else "Vazio!"
 
             resultado =  pedidosControler().inserirPedidos(self.dicti)
             
@@ -64,18 +65,18 @@ class Adicionar_pedi():
         self.lblimgbg.place(x=0, y=0)
 
         self.ent_nomeProduto = Entry(self.adicionar_pedi, bg="lightgrey", width=25, font="Arial 18")
-        self.ent_nomeProduto.place(x=865, y=200)
+        self.ent_nomeProduto.place(x=865, y=315)
 
-        self.ent_cliente = Entry(self.adicionar_pedi, bg="lightgrey", width=25, font="Arial 18")
-        self.ent_cliente.place(x=865, y=315)
+        self.ent_data = Entry(self.adicionar_pedi, bg="lightgrey", width=25, font="Arial 18")
+        self.ent_data.place(x=865, y=435)
 
 
         self.ent_valorTotal = Entry(self.adicionar_pedi, bg="lightgrey", width=25, font="Arial 18")
-        self.ent_valorTotal.place(x=865, y=435)
+        self.ent_valorTotal.place(x=865, y=553)
 
 
         self.ent_numPedi = Entry(self.adicionar_pedi, bg="lightgrey", width=25, font="Arial 18")
-        self.ent_numPedi.place(x=865, y=553)
+        self.ent_numPedi.place(x=865, y=200)
 
         self.img_adicionar = imagespath / "adicionar.png"
         self.btn_adicionar = PhotoImage(file =self.img_adicionar)
